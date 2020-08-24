@@ -2,6 +2,7 @@
 namespace OnepMini.OrmNhib.DBInterface
 {
     using Microsoft.Extensions.DependencyInjection;
+    using NHibernate;
     using Npgsql;
     using System;
     using System.Collections.Generic;
@@ -80,6 +81,30 @@ namespace OnepMini.OrmNhib.DBInterface
                 throw;
             }
 
+        }
+
+        public void ExecuteNonQuery(string sqlStatement)
+        {
+            //IQuery query = session.CreateSQLQuery(sqlstatement);
+            //query.ExecuteUpdate();
+
+
+            var command = DBConnection.CreateCommand();
+            command.CommandText = sqlStatement;
+            command.CommandTimeout = 0;
+
+            try
+            {
+                command.ExecuteNonQuery();
+                command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Command failed: {sqlStatement}. Exception: {ex.ToString()}");
+                command.Dispose();
+
+                throw;
+            }
         }
     }
 }

@@ -5,8 +5,9 @@ namespace OnepMini.OrmNhib.Initializer
 {
     public interface INHibernateInitializer
     {
-        void CreateSchemaInEmptyDatabase();
+        void CreateDatabase();
         bool DoesDatabaseExist();
+        void ExecuteNonQuery(string sqlStatement);
         void ExportSchemaFile(string onepBackendVersion);
         Configuration GetConfiguration();
         ISessionFactory GetSessionFactory();

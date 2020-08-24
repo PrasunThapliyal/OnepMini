@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using NHibernate;
+using Npgsql;
 using System;
 
 namespace OnepMini.OrmNhib.DBInterface
@@ -11,5 +12,6 @@ namespace OnepMini.OrmNhib.DBInterface
 
         void CreateDatabase();
         bool DoesDatabaseExist();
+        void ExecuteNonQuery(string sqlStatement);
     }
 }

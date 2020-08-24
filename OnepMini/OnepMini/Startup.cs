@@ -15,6 +15,7 @@ using OnepMini.ETP;
 using OnepMini.ETP.OnePlannerMigrations.Framework;
 using OnepMini.OrmNhib.DBInterface;
 using OnepMini.OrmNhib.Initializer;
+using OnepMini.OrmNhib.Util;
 
 namespace OnepMini
 {
@@ -41,6 +42,7 @@ namespace OnepMini
 
             services.AddSingleton<INetworkDBStorageInitializer, NetworkDBStorageInitializer>();
             services.AddSingleton<INHMigrationRunner, NHMigrationRunner>();
+            services.AddSingleton<IUtils, Utils>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

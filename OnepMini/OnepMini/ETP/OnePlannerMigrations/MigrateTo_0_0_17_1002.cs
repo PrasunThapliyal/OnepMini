@@ -1,5 +1,6 @@
 ﻿using OnepMini.ETP.OnePlannerMigrations.Framework;
 using OnepMini.OrmNhib.Initializer;
+using OnepMini.OrmNhib.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,16 +10,21 @@ using System.Threading.Tasks;
 
 namespace OnepMini.ETP.OnePlannerMigrations
 {
-    public class MigrateTo : NHMigrationsBase
+    public class MigrateTo_0_0_17_1002 : NHMigrationsBase
     {
         private readonly INHibernateInitializer _nHibernateInitializer;
+        private readonly IUtils _utils;
 
-        public MigrateTo(
+        public MigrateTo_0_0_17_1002(
             NHibernate.Cfg.Configuration configuration,
-            INHibernateInitializer nHibernateInitializer)
+            INHibernateInitializer nHibernateInitializer,
+            IUtils utils)
             :base(configuration)
         {
             this._nHibernateInitializer = nHibernateInitializer ?? throw new ArgumentNullException(nameof(nHibernateInitializer));
+            this._utils = utils ?? throw new ArgumentNullException(nameof(utils));
+            FromVersion = _utils.GetLastMigrated1PBackendVersion();
+            ToVersion = _utils.GetCurrent1PBackendVersion();
         }
 
         public override void Up()
@@ -32,19 +38,19 @@ namespace OnepMini.ETP.OnePlannerMigrations
                 // TODO : Create a model snapshot file (*.SQL)
                 // TODO : Update Migrations History table
 
-                var currentOnepBackendVersion = "0.0.17.1009";
+                _nHibernateInitializer.ExportSchemaFile(ToVersion);
 
-                _nHibernateInitializer.ExportSchemaFile(currentOnepBackendVersion);
-
-                NHibernate.Tool.hbm2ddl.SchemaUpdate schemaUpdate = new NHibernate.Tool.hbm2ddl.SchemaUpdate(Configuration);
-                schemaUpdate.Execute(LogAutoMigration, doUpdate: true);
-
+                var sqlStatement = ""; // Get this from the Diff of snapshot of previous to current
+                if (!string.IsNullOrEmpty(sqlStatement))
+                {
+                    _nHibernateInitializer.ExecuteNonQuery(sqlStatement);
+                }
             }
         }
 
-        private static void LogAutoMigration(string sql)
+        private void LogAutoMigration(string sql)
         {
-            using (var file = new FileStream(@"update.sql", FileMode.Append))
+            using (var file = new FileStream($"Postgres.{ToVersion}.AutoMigrateTo.sql", FileMode.Append))
             {
                 using (var sw = new StreamWriter(file))
                 {

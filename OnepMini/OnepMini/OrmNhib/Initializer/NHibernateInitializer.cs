@@ -53,6 +53,14 @@ namespace OnepMini.OrmNhib.Initializer
             return _configuration;
         }
 
+        public void CreateDatabase()
+        {
+            if (!_postgresInterface.DoesDatabaseExist())
+            {
+                _postgresInterface.CreateDatabase();
+            }
+        }
+
         public bool DoesDatabaseExist()
         {
             return _postgresInterface.DoesDatabaseExist();
@@ -63,11 +71,11 @@ namespace OnepMini.OrmNhib.Initializer
             NHibernate.Cfg.Configuration cfg = _configuration;
 
             var schemaExport = new NHibernate.Tool.hbm2ddl.SchemaExport(cfg);
-            schemaExport.SetOutputFile($"db.Postgre.{onepBackendVersion}.sql").Execute(
+            schemaExport.SetOutputFile($"Postgres.{onepBackendVersion}.Snapshot.sql").Execute(
                 useStdOut: true, execute: false, justDrop: false);
         }
 
-        public void CreateSchemaInEmptyDatabase()
+        private void CreateSchemaInEmptyDatabase()
         {
             // Expect an Empty Database to be present
             if (! _postgresInterface.DoesDatabaseExist())
@@ -139,5 +147,11 @@ namespace OnepMini.OrmNhib.Initializer
 
             return _sessionFactory;
         }
+
+        public void ExecuteNonQuery(string sqlStatement)
+        {
+            _postgresInterface.ExecuteNonQuery(sqlStatement);
+        }
+
     }
 }
