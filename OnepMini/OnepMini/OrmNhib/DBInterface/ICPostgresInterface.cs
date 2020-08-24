@@ -12,6 +12,7 @@ namespace OnepMini.OrmNhib.DBInterface
 
         void CreateDatabase();
         bool DoesDatabaseExist();
+        bool DoesTableExist(string tableName);
         void ExecuteNonQuery(string sqlStatement);
     }
 }

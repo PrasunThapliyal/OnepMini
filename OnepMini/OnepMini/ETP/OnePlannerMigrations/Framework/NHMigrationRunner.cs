@@ -27,10 +27,10 @@ namespace OnepMini.ETP.OnePlannerMigrations.Framework
                 var m = new InitialCreate(_configuration, _nHibernateInitializer, _utils);
                 AddMigration(m);
             }
-            {
-                var m = new MigrateTo_0_0_17_1002(_configuration, _nHibernateInitializer, _utils);
-                AddMigration(m);
-            }
+            //{
+            //    var m = new MigrateTo_0_0_17_1002(_configuration, _nHibernateInitializer, _utils);
+            //    AddMigration(m);
+            //}
         }
 
         private void AddMigration(NHMigrationsBase migration)

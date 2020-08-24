@@ -7,6 +7,7 @@ namespace OnepMini.OrmNhib.Initializer
     {
         void CreateDatabase();
         bool DoesDatabaseExist();
+        bool DoesTableExist(string tableName);
         void ExecuteNonQuery(string sqlStatement);
         void ExportSchemaFile(string onepBackendVersion);
         Configuration GetConfiguration();

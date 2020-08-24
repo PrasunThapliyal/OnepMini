@@ -21,7 +21,7 @@ namespace OnepMini.OrmNhib.Initializer
         {
             _configuration = GetConfiguration();
 
-            _postgresInterface = new CPostgresInterface("OnepMini", _configuration.GetProperty("connection.connection_string"));
+            _postgresInterface = new CPostgresInterface("onepmini", _configuration.GetProperty("connection.connection_string"));
         }
 
         public NHibernate.Cfg.Configuration GetConfiguration()
@@ -64,6 +64,11 @@ namespace OnepMini.OrmNhib.Initializer
         public bool DoesDatabaseExist()
         {
             return _postgresInterface.DoesDatabaseExist();
+        }
+
+        public bool DoesTableExist(string tableName)
+        {
+            return _postgresInterface.DoesTableExist(tableName);
         }
 
         public void ExportSchemaFile(string onepBackendVersion)
@@ -140,6 +145,11 @@ namespace OnepMini.OrmNhib.Initializer
             if (_sessionFactory != null)
             {
                 return _sessionFactory;
+            }
+
+            if (!_postgresInterface.DoesDatabaseExist())
+            {
+                _postgresInterface.CreateDatabase();
             }
 
             NHibernate.Cfg.Configuration cfg = _configuration;

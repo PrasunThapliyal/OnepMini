@@ -30,8 +30,13 @@ namespace OnepMini.ETP.OnePlannerMigrations
         {
             base.Up();
 
-            if (!_nHibernateInitializer.DoesDatabaseExist())
+            bool doesDBExist = _nHibernateInitializer.DoesDatabaseExist();
+
+            if ((!doesDBExist)
+                || (!_nHibernateInitializer.DoesTableExist("onep_network")))
             {
+                // Either DB doesnt exist or an empty DB exist
+
                 // Create DB
                 // TODO : Get 1P Backend version used in current ETP
                 // TODO : Create a model snapshot file (*.SQL)
@@ -43,7 +48,10 @@ namespace OnepMini.ETP.OnePlannerMigrations
 
                 _nHibernateInitializer.ExportSchemaFile(currentOnepBackendVersion);
 
-                _nHibernateInitializer.CreateDatabase();
+                if (!doesDBExist)
+                {
+                    _nHibernateInitializer.CreateDatabase();
+                }
 
                 NHibernate.Tool.hbm2ddl.SchemaUpdate schemaUpdate = new NHibernate.Tool.hbm2ddl.SchemaUpdate(Configuration);
                 schemaUpdate.Execute(useStdOut: true, doUpdate: true);
@@ -53,8 +61,6 @@ namespace OnepMini.ETP.OnePlannerMigrations
         public override void Down()
         {
             base.Down();
-
-            _nHibernateInitializer.
         }
     }
 }
