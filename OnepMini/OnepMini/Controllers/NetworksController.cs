@@ -277,6 +277,135 @@ namespace OnepMini.Controllers
             onepTP1.OnepTopologicallinksForZEndTP = null;
         }
 
+
+        [HttpPut("EditNetwork/{id}/EditVPs")]
+        public async Task<object> EditVPs(long id, [FromBody] string value)
+        {
+            var session = _sessionFactory.OpenSession();
+            var onepNetwork = session.Get<OnepNetwork>(id);
+
+            using (var tx = session.BeginTransaction())
+            {
+                try
+                {
+                    // Replace TP01 by new TP03, but move the same AmpRole object to TP03
+                    EditNetworkEditVPs(onepNetwork);
+
+                    await session.SaveOrUpdateAsync(onepNetwork).ConfigureAwait(false);
+                    tx.Commit();
+                }
+                catch (Exception ex)
+                {
+                    Debugger.Break();
+
+                    Debug.WriteLine(ex.ToString());
+                    tx.Rollback();
+                    throw;
+                }
+            }
+            return new { Id = id };
+
+        }
+
+        private void EditNetworkEditVPs(OnepNetwork onepNetwork)
+        {
+            // Network has 1 ValidationResult which has 2 VPs attached
+
+            // We want to try re-parenting VPs, i.e. Remove ValidationResult01 and Create ValidationResult02
+            // And move the existing VPs to the new ValidationResult
+
+            var onepValidationresult01 = onepNetwork.OnepValidationresults[0];
+
+            OnepValidationresult onepValidationresult02 = new OnepValidationresult
+            {
+                OnepNetwork = onepNetwork,
+                OnepValidochpaths = onepValidationresult01.OnepValidochpaths
+            };
+
+            foreach (var vp in onepNetwork.OnepValidochpaths)
+            {
+                vp.OnepValidationresult = onepValidationresult02;
+            }
+
+            onepValidationresult01.OnepValidochpaths.Clear();
+
+            onepNetwork.OnepValidationresults.Remove(onepValidationresult01);
+            onepNetwork.OnepValidationresults.Add(onepValidationresult02);
+        }
+
+        [HttpPut("EditNetwork/{id}/EditVPs2")]
+        public async Task<object> EditVPs2(long id, [FromBody] string value)
+        {
+            var session = _sessionFactory.OpenSession();
+            var onepNetwork = session.Get<OnepNetwork>(id);
+
+            // Replace TP01 by new TP03, but move the same AmpRole object to TP03
+            EditNetworkEditVPs(onepNetwork);
+
+            session.Close(); // Evict
+
+            var session2 = _sessionFactory.OpenSession();
+            using (var tx = session2.BeginTransaction())
+            {
+                try
+                {
+
+                    //// Replace TP01 by new TP03, but move the same AmpRole object to TP03
+                    //EditNetworkEditVPs(onepNetwork);
+
+                    await session2.SaveOrUpdateAsync(onepNetwork).ConfigureAwait(false);
+                    tx.Commit();
+                }
+                catch (Exception ex)
+                {
+                    Debugger.Break();
+
+                    Debug.WriteLine(ex.ToString());
+                    tx.Rollback();
+                    throw;
+                }
+            }
+            return new { Id = id };
+
+        }
+
+
+        [HttpPut("EditNetwork/{id}/EditVPs3")]
+        public async Task<object> EditVPs3(long id, [FromBody] string value)
+        {
+            var session = _sessionFactory.OpenSession();
+            var onepNetwork = session.Get<OnepNetwork>(id);
+
+            // Replace TP01 by new TP03, but move the same AmpRole object to TP03
+            EditNetworkEditVPs(onepNetwork);
+
+            session.Close(); // Evict
+
+            var session2 = _sessionFactory.OpenSession();
+            using (var tx = session2.BeginTransaction())
+            {
+                try
+                {
+
+                    //// Replace TP01 by new TP03, but move the same AmpRole object to TP03
+                    //EditNetworkEditVPs(onepNetwork);
+
+                    await session2.SaveOrUpdateAsync(onepNetwork).ConfigureAwait(false);
+                    tx.Commit();
+                }
+                catch (Exception ex)
+                {
+                    Debugger.Break();
+
+                    Debug.WriteLine(ex.ToString());
+                    tx.Rollback();
+                    throw;
+                }
+            }
+            return new { Id = id };
+
+        }
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(long id)
