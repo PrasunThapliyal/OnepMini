@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "OnepMini.OrmNhib.BusinessObjects">
+
+  <class name = "OnepValidationresult" table="onep_validationresults"  lazy="true">
+    <id name = "Id" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+    <property name="Status" column="status" />
+
+    <many-to-one name="OnepNetwork" column="network" class="OnepNetwork" />
+
+    <bag name="OnepValidochpaths" lazy="true" cascade="all-delete-orphan" inverse="true" fetch="select">
+      <key column="validationResults"></key>
+      <one-to-many class="OnepValidochpath"></one-to-many>
+    </bag>
+
+  </class>
+
+</hibernate-mapping>

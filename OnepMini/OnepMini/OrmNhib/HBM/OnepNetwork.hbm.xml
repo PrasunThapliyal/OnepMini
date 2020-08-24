@@ -28,6 +28,16 @@
       <key column="network"></key>
       <one-to-many class="OnepTopologicallink"></one-to-many>
     </bag>
-    
+
+    <bag name="OnepValidochpaths" lazy="true" cascade="all-delete-orphan" inverse="true" fetch="select"  >
+      <key column="network"></key>
+      <one-to-many class="OnepValidochpath"></one-to-many>
+    </bag>
+
+    <bag name="OnepValidationresults" lazy="true" cascade="all-delete-orphan" inverse="true" fetch="select"  >
+      <key column="network"></key>
+      <one-to-many class="OnepValidationresult"></one-to-many>
+    </bag>
+
   </class>
 </hibernate-mapping>

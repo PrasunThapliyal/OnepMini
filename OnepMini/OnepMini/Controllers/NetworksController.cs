@@ -177,6 +177,34 @@ namespace OnepMini.Controllers
                 onepTP2.OnepAmpRole = onepAmpTP2;
                 onepNetwork.OnepAmptps.Add(onepAmpTP2);
 
+                var onepValidationResult01 = new OnepValidationresult
+                {
+                    Status = 1,
+                    OnepNetwork = onepNetwork
+                };
+
+                var onepVP01_1 = new OnepValidochpath
+                {
+                    Name = "VP 01_1",
+                    OnepNetwork = onepNetwork,
+                    Pmd = 2.3,
+                    OnepValidationresult = onepValidationResult01
+                };
+                onepNetwork.OnepValidochpaths.Add(onepVP01_1);
+
+                var onepVP01_2 = new OnepValidochpath
+                {
+                    Name = "VP 01_2",
+                    OnepNetwork = onepNetwork,
+                    Pmd = 2.4,
+                    OnepValidationresult = onepValidationResult01
+                };
+                onepNetwork.OnepValidochpaths.Add(onepVP01_2);
+
+                onepValidationResult01.OnepValidochpaths.Add(onepVP01_1);
+                onepValidationResult01.OnepValidochpaths.Add(onepVP01_2);
+                onepNetwork.OnepValidationresults.Add(onepValidationResult01);
+
             }
 
             return onepNetwork;

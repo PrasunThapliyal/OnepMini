@@ -16,12 +16,14 @@ namespace OnepMini.OrmNhib.BusinessObjects
 		private IList<OnepFibertl> _onepFibertls = new List<OnepFibertl>();
 		private IList<OnepTerminationpoint> _onepTerminationpoints = new List<OnepTerminationpoint>();
 		private IList<OnepTopologicallink> _onepTopologicallinks = new List<OnepTopologicallink>();
+		private IList<OnepValidochpath> _onepValidochpaths = new List<OnepValidochpath>();
+		private IList<OnepValidationresult> _onepValidationresults = new List<OnepValidationresult>();
 
-        #endregion
+		#endregion
 
-        #region Constructors
+		#region Constructors
 
-        public OnepNetwork() { }
+		public OnepNetwork() { }
 
 		public OnepNetwork(long defaultID) : base(defaultID) { }
 
@@ -70,6 +72,8 @@ namespace OnepMini.OrmNhib.BusinessObjects
 		public virtual IList<OnepFibertl> OnepFibertls { get => _onepFibertls; set => _onepFibertls = value; }
 		public virtual IList<OnepTerminationpoint> OnepTerminationpoints { get => _onepTerminationpoints; set => _onepTerminationpoints = value; }
 		public virtual IList<OnepTopologicallink> OnepTopologicallinks { get => _onepTopologicallinks; set => _onepTopologicallinks = value; }
+		public virtual IList<OnepValidochpath> OnepValidochpaths { get => _onepValidochpaths; set => _onepValidochpaths = value; }
+		public virtual IList<OnepValidationresult> OnepValidationresults { get => _onepValidationresults; set => _onepValidationresults = value; }
 
 		#endregion
 

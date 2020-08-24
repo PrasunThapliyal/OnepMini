@@ -7,7 +7,7 @@ namespace OnepMini.OrmNhib.BusinessObjects
 	public partial class OnepTopologicallink : BusinessBase<long>
 	{
 		static OnepTopologicallink() { }
-		public virtual sbyte Discriminator { get; set; } = 1;
+		public virtual int Discriminator { get; set; } = 1;
 
 		public override string ToString()
 		{

@@ -16,3 +16,4 @@ OnePlanner Mini version
 (#) Add initialization code for NHibernate, few Business Object classes and their HBM mappings
 
 (#) Added APIs in NetworksController - Create new OnepNetwork, Delete, ChangeTerminationPoint
+(#) Add VP and ValidationResult

@@ -9,6 +9,10 @@
 
     drop table if exists onep_fibertl cascade
 
+    drop table if exists onep_validationresults cascade
+
+    drop table if exists onep_validochpath cascade
+
     drop table if exists hibernate_unique_key cascade
 
     create table onep_amptp (
@@ -51,6 +55,22 @@
         oid int8 not null,
        loss float8,
        network int8,
+       primary key (oid)
+    )
+
+    create table onep_validationresults (
+        oid int8 not null,
+       status int4,
+       network int8,
+       primary key (oid)
+    )
+
+    create table onep_validochpath (
+        oid int8 not null,
+       name varchar(255),
+       pmd float8,
+       network int8,
+       validationResults int8,
        primary key (oid)
     )
 
@@ -98,6 +118,21 @@
         add constraint FK_D775C7F5 
         foreign key (network) 
         references onep_network
+
+    alter table onep_validationresults
+        add constraint FK_41C56A95
+        foreign key (network)
+        references onep_network
+
+    alter table onep_validochpath
+        add constraint FK_DE0F4B7
+        foreign key (network)
+        references onep_network
+
+    alter table onep_validochpath
+        add constraint FK_F4AB2716
+        foreign key (validationResults)
+        references onep_validationresults
 
     create table hibernate_unique_key (
          next_hi int8 

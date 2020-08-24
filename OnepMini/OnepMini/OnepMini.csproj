@@ -9,6 +9,8 @@
     <None Remove="OrmNhib\HBM\OnepNetwork.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepTerminationpoint.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepTopologicallink.hbm.xml" />
+    <None Remove="OrmNhib\HBM\OnepValidationresult.hbm.xml" />
+    <None Remove="OrmNhib\HBM\OnepValidochpath.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +18,8 @@
     <EmbeddedResource Include="OrmNhib\HBM\OnepNetwork.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\OnepTerminationpoint.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\OnepTopologicallink.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\OnepValidationresult.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\OnepValidochpath.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,10 +27,6 @@
     <PackageReference Include="NHibernate" Version="5.2.7" />
     <PackageReference Include="Npgsql" Version="4.1.3.1" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="OrmNhib\BusinessObjects\" />
   </ItemGroup>
 
   <ItemGroup>
