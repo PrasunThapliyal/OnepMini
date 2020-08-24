@@ -24,6 +24,50 @@ namespace OnepMini.OrmNhib.Collections
         {
         }
 
+        public override ICollection GetOrphans(object snapshot, string entityName)
+        {
+            if (entityName == "OnepMini.OrmNhib.BusinessObjects.OnepValidationresult")
+            {
+                var orphans = (base.GetOrphans(snapshot, entityName))
+                .Cast<T>()
+                .Where(b => ReferenceEquals(null, (b as OnepValidationresult).OnepNetwork))
+                .ToArray();
+
+                Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphans.Length}");
+                if (orphans.Length > 0)
+                {
+                    Debugger.Break();
+                }
+
+                return orphans;
+            }
+            else if (entityName == "OnepMini.OrmNhib.BusinessObjects.OnepValidochpath")
+            {
+                var orphans = (base.GetOrphans(snapshot, entityName))
+                .Cast<T>()
+                .Where(b => ReferenceEquals(null, (b as OnepValidochpath).OnepNetwork))
+                .ToArray();
+
+                Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphans.Length}");
+                if (orphans.Length > 0)
+                {
+                    Debugger.Break();
+                }
+
+                return orphans;
+            }
+
+            var orphanEntities = base.GetOrphans(snapshot, entityName);
+
+            Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphanEntities.Count}");
+            if (orphanEntities.Count > 0)
+            {
+                Debugger.Break();
+            }
+
+            return orphanEntities;
+        }
+
 
         public override async Task<ICollection> GetOrphansAsync(object snapshot, string entityName, CancellationToken cancellationToken)
         {
@@ -35,6 +79,10 @@ namespace OnepMini.OrmNhib.Collections
                 .ToArray();
 
                 Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphans.Length}");
+                if (orphans.Length > 0)
+                {
+                    Debugger.Break();
+                }
 
                 return orphans;
             }
@@ -46,6 +94,10 @@ namespace OnepMini.OrmNhib.Collections
                 .ToArray();
 
                 Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphans.Length}");
+                if (orphans.Length > 0)
+                {
+                    Debugger.Break();
+                }
 
                 return orphans;
             }
@@ -55,6 +107,10 @@ namespace OnepMini.OrmNhib.Collections
             var orphanEntities = await base.GetOrphansAsync(snapshot, entityName, cancellationToken);
 
             Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphanEntities.Count}");
+            if (orphanEntities.Count > 0)
+            {
+                Debugger.Break();
+            }
 
             return orphanEntities;
         }
