@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NHibernate;
+using OnepMini.OrmNhib.Initializer;
 
 namespace OnepMini
 {
@@ -26,6 +28,15 @@ namespace OnepMini
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<INHibernateInitializer, NHibernateInitializer>();
+            services.AddSingleton(typeof(ISessionFactory), serviceProvider =>
+            {
+                var nhibernateInitializer = serviceProvider.GetService<INHibernateInitializer>();
+
+                var cfg = nhibernateInitializer.GetConfiguration();
+                return nhibernateInitializer.GetSessionFactory(cfg);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

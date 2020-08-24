@@ -13,4 +13,5 @@ OnePlanner Mini version
 		Delete default WeatherController.cs
 		Add NetworksController.cs
 		
+(#) Add initialization code for NHibernate, few Business Object classes and their HBM mappings
 
