@@ -23,7 +23,7 @@ namespace OnepMini.ETP.OnePlannerMigrations
             this._nHibernateInitializer = nHibernateInitializer ?? throw new ArgumentNullException(nameof(nHibernateInitializer));
             this._utils = utils ?? throw new ArgumentNullException(nameof(utils));
             FromVersion = string.Empty;
-            ToVersion = utils.GetCurrent1PBackendVersion();
+            ToVersion = "0.0.17.1001";
         }
 
         public override void Up()

@@ -9,13 +9,13 @@ namespace OnepMini.OrmNhib.Util
     {
         public string GetCurrent1PBackendVersion()
         {
-            var version = "0.0.17.1001";
+            var version = "0.0.17.1002";
             return version;
         }
 
         public string GetLastMigrated1PBackendVersion()
         {
-            var version = string.Empty;
+            var version = "0.0.17.1001";
             return version;
         }
     }

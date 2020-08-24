@@ -16,6 +16,8 @@
     <None Remove="OrmNhib\HBM\OnepNetwork.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepTerminationpoint.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepTopologicallink.hbm.xml" />
+    <None Remove="OrmNhib\HBM\OnepValidationresult.hbm.xml" />
+    <None Remove="OrmNhib\HBM\OnepValidochpath.hbm.xml" />
     <None Remove="OrmNhib\Migrations\HBM\NHMigrationsHistory.hbm.xml" />
   </ItemGroup>
 
@@ -24,6 +26,8 @@
     <EmbeddedResource Include="OrmNhib\HBM\OnepNetwork.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\OnepTerminationpoint.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\OnepTopologicallink.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\OnepValidationresult.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\OnepValidochpath.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\Migrations\HBM\NHMigrationsHistory.hbm.xml" />
   </ItemGroup>
 

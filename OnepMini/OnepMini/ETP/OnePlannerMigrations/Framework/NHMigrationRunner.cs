@@ -27,10 +27,10 @@ namespace OnepMini.ETP.OnePlannerMigrations.Framework
                 var m = new InitialCreate(_configuration, _nHibernateInitializer, _utils);
                 AddMigration(m);
             }
-            //{
-            //    var m = new MigrateTo_0_0_17_1002(_configuration, _nHibernateInitializer, _utils);
-            //    AddMigration(m);
-            //}
+            {
+                var m = new MigrateTo_0_0_17_1002(_configuration, _nHibernateInitializer, _utils);
+                AddMigration(m);
+            }
         }
 
         private void AddMigration(NHMigrationsBase migration)
@@ -51,9 +51,42 @@ namespace OnepMini.ETP.OnePlannerMigrations.Framework
             // If X < Y,
             //          we call Down from Y, Y-1, Y-2 until we reach X
 
-            foreach (var m in _orderedListOfMigrations)
+            Version lastExecutedVersion = new Version(_utils.GetLastMigrated1PBackendVersion()); // 0.0.17.1001
+            Version currentVersion = new Version(_utils.GetCurrent1PBackendVersion()); // 0.0.17.1002
+
+            if (currentVersion > lastExecutedVersion)
             {
-                m.Up();
+                // We need to Upgrade from whatever was last executed to current
+
+                foreach (var m in _orderedListOfMigrations)
+                {
+                    Version mVersion = new Version(m.ToVersion);
+
+                    if (mVersion > lastExecutedVersion)
+                    {
+                        m.Up();
+                    }
+                }
+            }
+            else if (currentVersion < lastExecutedVersion)
+            {
+                // TODO : Need to test this
+                // Also beware that the current version might not be in the list of executed migrations
+                // How to handle that
+
+
+                // We need to downgrade from last executed to current
+                var migrationsInReverseOrder = _orderedListOfMigrations.AsEnumerable().Reverse();
+
+                foreach (var m in migrationsInReverseOrder)
+                {
+                    Version mVersion = new Version(m.ToVersion);
+
+                    if (mVersion > currentVersion)
+                    {
+                        m.Down();
+                    }
+                }
             }
 
             var isValid = _nHibernateInitializer.ValidateSchema();
