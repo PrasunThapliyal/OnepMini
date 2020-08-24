@@ -5,12 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ETP\OnePlannerMigrations\HBM\**" />
+    <Content Remove="ETP\OnePlannerMigrations\HBM\**" />
+    <EmbeddedResource Remove="ETP\OnePlannerMigrations\HBM\**" />
+    <None Remove="ETP\OnePlannerMigrations\HBM\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="OrmNhib\HBM\OnepAmptp.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepNetwork.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepTerminationpoint.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepTopologicallink.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepValidationresult.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepValidochpath.hbm.xml" />
+    <None Remove="OrmNhib\Migrations\HBM\NHMigrationsHistory.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +28,7 @@
     <EmbeddedResource Include="OrmNhib\HBM\OnepTopologicallink.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\OnepValidationresult.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\OnepValidochpath.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\Migrations\HBM\NHMigrationsHistory.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>

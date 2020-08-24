@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NHibernate;
+using OnepMini.ETP;
+using OnepMini.ETP.OnePlannerMigrations.Framework;
+using OnepMini.OrmNhib.DBInterface;
 using OnepMini.OrmNhib.Initializer;
 
 namespace OnepMini
@@ -33,14 +36,18 @@ namespace OnepMini
             services.AddSingleton(typeof(ISessionFactory), serviceProvider =>
             {
                 var nhibernateInitializer = serviceProvider.GetService<INHibernateInitializer>();
-
-                var cfg = nhibernateInitializer.GetConfiguration();
-                return nhibernateInitializer.GetSessionFactory(cfg);
+                return nhibernateInitializer.GetSessionFactory();
             });
+
+            services.AddSingleton<INetworkDBStorageInitializer, NetworkDBStorageInitializer>();
+            services.AddSingleton<INHMigrationRunner, NHMigrationRunner>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IWebHostEnvironment env,
+            INetworkDBStorageInitializer networkDBStorageInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -57,6 +64,8 @@ namespace OnepMini
             {
                 endpoints.MapControllers();
             });
+
+            networkDBStorageInitializer.RunMigrations();
         }
     }
 }
