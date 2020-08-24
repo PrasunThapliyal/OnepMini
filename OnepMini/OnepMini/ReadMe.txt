@@ -32,3 +32,5 @@ OnePlanner Mini version
 
 			// The other thing to note is that if we dont remove the old VR from network, everything works fine
 				.. reparenting happens with no issues, except of course that the old VR is still in the network
+
+(#) Implement ObservableList
