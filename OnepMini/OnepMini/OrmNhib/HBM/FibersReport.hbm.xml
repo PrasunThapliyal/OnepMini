@@ -10,7 +10,7 @@
       <column name="mcpProjectId" index="fibers_report_mcpProjectId_idx"  sql-type="text"/>
     </property>
 
-    <bag name="Data" lazy="true" cascade="all-delete-orphan" fetch="select">
+    <bag name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
       <key column="fibersReport" ></key>
       <one-to-many class="FibersReportItem"></one-to-many>
     </bag>

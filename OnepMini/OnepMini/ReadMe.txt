@@ -43,3 +43,7 @@ OnePlanner Mini version
 		and in the db they were actually getting created as numeric(19,5) .. strange .. nh validation was failing
 	Note: Had to decorate back reference from FibersReportItem (child) to FibersReport (parent) with [JsonIgnore]
 		Otherwise leading to some json exception of infinite reference looping
+-----------
+(#) Removed the bi-deirectional relationship (child to parent reference removed)
+		This is done by commenting out the 'many-to-one' in child
+		And declaring 'inverse=false' in parent's 'one-to-many' bag definition

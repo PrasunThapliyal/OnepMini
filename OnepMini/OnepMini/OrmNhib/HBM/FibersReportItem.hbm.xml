@@ -26,6 +26,6 @@
     <property name="PmdCoefficient" column="pmdCoefficient" />
     <property name="PmdMean" column="pmdMean" />
     
-    <many-to-one name="FibersReport" column="fibersReport" class="FibersReport" />
+    <!--<many-to-one name="FibersReport" column="fibersReport" class="FibersReport" />-->
   </class>
 </hibernate-mapping>

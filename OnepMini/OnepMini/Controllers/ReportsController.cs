@@ -62,12 +62,81 @@ namespace OnepMini.Controllers
                 {
                     new FibersReportItem()
                     {
-                        Name = "FS157_1",
+                        Name = "FS157_3",
                         FiberId = "33564",
                         FiberPairString = "FS157_1;FS158_1",
                         FiberType = "TERA",
                         OnepSiteByAEndSite = "Tornillo",
                         OnepSiteByZEndSite = "West El Paso",
+                        FiberLength =  (decimal)70.60000,
+                        TotalLoss =  (decimal)17.17900,
+                        FiberLossSourceType = "FromLength",
+                        FiberLoss = (decimal)  15.17900 ,
+                        LossPerKm = (decimal)  0.21500,
+                        MarginDbPerSpan = (decimal)       1.00000,
+                        MarginDbPerKm = (decimal) 0.01416,
+                        MarginSourceType = "Manual",
+                        HeadPPL = (decimal)0.50000,
+                        TailPPL = (decimal) 0.50000 ,
+                        PmdType = "FromLength",
+                        PmdCoefficient = (decimal) 0.10000,
+                        PmdMean = (decimal) 0.84024
+
+                    },
+                    new FibersReportItem()
+                    {
+                        Name = "FS157_4",
+                        FiberId = "33565",
+                        FiberPairString = "FS157_1;FS158_1",
+                        FiberType = "TERA",
+                        OnepSiteByAEndSite = "West El Paso",
+                        OnepSiteByZEndSite = "Tornillo",
+                        FiberLength =  (decimal)70.60000,
+                        TotalLoss =  (decimal)17.17900,
+                        FiberLossSourceType = "FromLength",
+                        FiberLoss = (decimal)  15.17900 ,
+                        LossPerKm = (decimal)  0.21500,
+                        MarginDbPerSpan = (decimal)       1.00000,
+                        MarginDbPerKm = (decimal) 0.01416,
+                        MarginSourceType = "Manual",
+                        HeadPPL = (decimal)0.50000,
+                        TailPPL = (decimal) 0.50000 ,
+                        PmdType = "FromLength",
+                        PmdCoefficient = (decimal) 0.10000,
+                        PmdMean = (decimal) 0.84024
+
+                    },
+                    new FibersReportItem()
+                    {
+                        Name = "FS157_5",
+                        FiberId = "33564",
+                        FiberPairString = "FS157_1;FS158_1",
+                        FiberType = "TERA",
+                        OnepSiteByAEndSite = "Tornillo",
+                        OnepSiteByZEndSite = "West El Paso",
+                        FiberLength =  (decimal)70.60000,
+                        TotalLoss =  (decimal)17.17900,
+                        FiberLossSourceType = "FromLength",
+                        FiberLoss = (decimal)  15.17900 ,
+                        LossPerKm = (decimal)  0.21500,
+                        MarginDbPerSpan = (decimal)       1.00000,
+                        MarginDbPerKm = (decimal) 0.01416,
+                        MarginSourceType = "Manual",
+                        HeadPPL = (decimal)0.50000,
+                        TailPPL = (decimal) 0.50000 ,
+                        PmdType = "FromLength",
+                        PmdCoefficient = (decimal) 0.10000,
+                        PmdMean = (decimal) 0.84024
+
+                    },
+                    new FibersReportItem()
+                    {
+                        Name = "FS157_6",
+                        FiberId = "33565",
+                        FiberPairString = "FS157_1;FS158_1",
+                        FiberType = "TERA",
+                        OnepSiteByAEndSite = "West El Paso",
+                        OnepSiteByZEndSite = "Tornillo",
                         FiberLength =  (decimal)70.60000,
                         TotalLoss =  (decimal)17.17900,
                         FiberLossSourceType = "FromLength",

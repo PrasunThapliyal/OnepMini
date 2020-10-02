@@ -13,7 +13,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
         public virtual long Id { get; set; }
 
         //[System.Runtime.Serialization.IgnoreDataMember]
-        [JsonIgnore]
-        public virtual FibersReport FibersReport { get; set; }
+        //[JsonIgnore]
+        //public virtual FibersReport FibersReport { get; set; }
     }
 }
