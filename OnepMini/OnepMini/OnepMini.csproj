@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="OrmNhib\HBM\FibersReport.hbm.xml" />
+    <None Remove="OrmNhib\HBM\FibersReportItem.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepAmptp.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepNetwork.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepTerminationpoint.hbm.xml" />
@@ -14,12 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="OrmNhib\HBM\OnepAmptp.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\OnepNetwork.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\OnepTerminationpoint.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\OnepTopologicallink.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\OnepValidationresult.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\OnepValidochpath.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\FibersReport.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\FibersReportItem.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>

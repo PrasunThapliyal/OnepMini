@@ -1,4 +1,5 @@
 ﻿using NHibernate;
+using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using System;
 using System.Collections.Generic;
@@ -22,19 +23,35 @@ namespace OnepMini.OrmNhib.Initializer
                 return _configuration;
             }
 
+            var connectionString = "Host=localhost;Port=5432;Database=reportsmini;Username=postgres;Password=password;";
             var cfg = new NHibernate.Cfg.Configuration();
+            cfg.DataBaseIntegration((x) =>
             {
-                cfg.Configure(@"OrmNhib/NHibernateConfig/hibernate.cfg.xml");
+                x.ConnectionString = connectionString;
+                x.ConnectionProvider<NHibernate.Connection.DriverConnectionProvider>();
+                //x.Driver<NHibernate.Driver.NpgsqlDriver>();
+                //x.Dialect<NHibernate.Dialect.PostgreSQL83Dialect>();
+                x.BatchSize = 10000;
+                x.Timeout = 100;
+                x.LogSqlInConsole = true;
+                x.LogFormattedSql = true;
+            });
+            cfg.SetProperty(NHibernate.Cfg.Environment.Dialect, "OnepMini.OrmNhib.OnepPostgresSqlDialect, OnepMini");
+            cfg.SetProperty(NHibernate.Cfg.Environment.ConnectionDriver, "OnepMini.OrmNhib.OnepNpgsqlDriver, OnepMini");
+            cfg.AddAssembly("OnepMini");
+
+            //var cfg = new NHibernate.Cfg.Configuration();
+            {
+                //cfg.Configure(@"OrmNhib/NHibernateConfig/hibernate.cfg.xml");
 
                 foreach (var mapping in cfg.ClassMappings)
                 {
-                    string x = $"(1) {mapping.ClassName}, (2) {mapping.Discriminator}, (3) {mapping.DiscriminatorValue}, (4) {mapping.IsDiscriminatorValueNotNull}";
-                    System.Diagnostics.Debug.WriteLine(x);
+                    System.Diagnostics.Debug.WriteLine(mapping.ClassName);
                 }
 
                 var schemaExport = new NHibernate.Tool.hbm2ddl.SchemaExport(cfg);
                 schemaExport.SetOutputFile(@"db.Postgre.sql").Execute(
-                    useStdOut: true, execute: true, justDrop: false);
+                    useStdOut: true, execute: false, justDrop: false);
 
                 // Alternately, we can use SchemaUpdate.Execute, as in done in 1P
                 NHibernate.Tool.hbm2ddl.SchemaUpdate schemaUpdate = new NHibernate.Tool.hbm2ddl.SchemaUpdate(cfg);
@@ -47,6 +64,7 @@ namespace OnepMini.OrmNhib.Initializer
                 }
                 catch (Exception ex)
                 {
+                    Debugger.Break();
                     Debug.WriteLine($"Exception: {ex}");
                 }
 

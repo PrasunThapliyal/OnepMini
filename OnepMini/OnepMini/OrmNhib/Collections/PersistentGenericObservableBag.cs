@@ -1,7 +1,5 @@
 ﻿using NHibernate.Collection.Generic;
 using NHibernate.Engine;
-using OnepMini.OrmNhib.BusinessObjects;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,7 +28,6 @@ namespace OnepMini.OrmNhib.Collections
             {
                 var orphans = (base.GetOrphans(snapshot, entityName))
                 .Cast<T>()
-                .Where(b => ReferenceEquals(null, (b as OnepValidationresult).OnepNetwork))
                 .ToArray();
 
                 Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphans.Length}");
@@ -45,7 +42,6 @@ namespace OnepMini.OrmNhib.Collections
             {
                 var orphans = (base.GetOrphans(snapshot, entityName))
                 .Cast<T>()
-                .Where(b => ReferenceEquals(null, (b as OnepValidochpath).OnepNetwork))
                 .ToArray();
 
                 Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphans.Length}");
@@ -75,7 +71,6 @@ namespace OnepMini.OrmNhib.Collections
             {
                 var orphans = (await base.GetOrphansAsync(snapshot, entityName, cancellationToken))
                 .Cast<T>()
-                .Where(b => ReferenceEquals(null, (b as OnepValidationresult).OnepNetwork))
                 .ToArray();
 
                 Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphans.Length}");
@@ -90,7 +85,6 @@ namespace OnepMini.OrmNhib.Collections
             {
                 var orphans = (await base.GetOrphansAsync(snapshot, entityName, cancellationToken))
                 .Cast<T>()
-                .Where(b => ReferenceEquals(null, (b as OnepValidochpath).OnepNetwork))
                 .ToArray();
 
                 Debug.WriteLine($"Entity: {entityName}, snapshot count: {(snapshot as IList).Count}, orphan count = {orphans.Length}");

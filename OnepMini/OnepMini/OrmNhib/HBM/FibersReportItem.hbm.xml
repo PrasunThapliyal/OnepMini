@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "TopologyRestLibrary.V1.Etp.Reports">
+  <class name="FibersReportItem" table="fibers_report_item" lazy="true">
+    <id name = "Id" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+    <property name="Name" column="name" />
+    <property name="FiberId" column="fiberid" />
+    <property name="FiberPairString" column="fiberPairString" />
+    <property name="FiberType" column="fiberType" />
+    <property name="OnepSiteByAEndSite" column="onepSiteByAEndSite" />
+    <property name="OnepSiteByZEndSite" column="onepSiteByZEndSite" />
+    <property name="FiberLength" column="fiberLength" />
+    <property name="TotalLoss" column="totalLoss" />
+    <property name="FiberLossSourceType" column="fiberLossSourceType" />
+    <property name="FiberLoss" column="fiberLoss" />
+    <property name="LossPerKm" column="lossPerKm" />
+    <property name="MarginDbPerSpan" column="marginDbPerSpan" />
+    <property name="MarginDbPerKm" column="marginDbPerKm" />
+    <property name="MarginSourceType" column="marginSourceType" />
+    <property name="HeadPPL" column="headPPL" />
+    <property name="TailPPL" column="tailPPL" />
+    <property name="PmdType" column="pmdType" />
+    <property name="PmdCoefficient" column="pmdCoefficient" />
+    <property name="PmdMean" column="pmdMean" />
+    
+    <many-to-one name="FibersReport" column="fibersReport" class="FibersReport" />
+  </class>
+</hibernate-mapping>

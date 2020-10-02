@@ -34,3 +34,12 @@ OnePlanner Mini version
 				.. reparenting happens with no issues, except of course that the old VR is still in the network
 
 (#) Implement ObservableList
+====================================
+02 Oct 2020
+-----------
+(#) Implement a reporting db
+(#) Remove all 1P bussiness object classes, add 2 hbms to simulate fibers report in P2
+(#) Note: Had to implement custom dialect - properties of type 'decimal' were getting shown in sql log as something else,
+		and in the db they were actually getting created as numeric(19,5) .. strange .. nh validation was failing
+	Note: Had to decorate back reference from FibersReportItem (child) to FibersReport (parent) with [JsonIgnore]
+		Otherwise leading to some json exception of infinite reference looping
