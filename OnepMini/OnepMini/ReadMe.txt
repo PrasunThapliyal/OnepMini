@@ -47,3 +47,10 @@ OnePlanner Mini version
 (#) Removed the bi-deirectional relationship (child to parent reference removed)
 		This is done by commenting out the 'many-to-one' in child
 		And declaring 'inverse=false' in parent's 'one-to-many' bag definition
+-----------
+(#) Created a root element for reporting infra that'll contain all reports
+	This has 2 fold benifits - 
+	(a) My mapping files for FibersReport and FibersReportItem are similar in structure now
+	(b) I now have a fx where I can clearly specify which reports are included in the infra
+(#) Defined uni-directional one-to-one relationship (ref: https://nhibernate.info/doc/nhibernate-reference/associations.html)
+(#) Changed the unidirectional one-to-many as per recommendation here https://nhibernate.info/doc/nhibernate-reference/associations.html

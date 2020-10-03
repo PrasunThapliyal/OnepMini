@@ -10,8 +10,16 @@
       <column name="mcpProjectId" index="fibers_report_mcpProjectId_idx"  sql-type="text"/>
     </property>
 
-    <bag name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+    <!--This is a unidirectional one-to-many relationship on a foreign key, and is not recommended-->
+    <!--See https://nhibernate.info/doc/nhibernate-reference/associations.html--> 
+    <!--<bag name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
       <key column="fibersReport" ></key>
+      <one-to-many class="FibersReportItem"></one-to-many>
+    </bag>-->
+
+    <!--This is a unidirectional one-to-many relationship with join tables, and is the recommended way-->
+    <bag name="Data" lazy="true" cascade="all-delete-orphan" >
+      <key column="fibersReport" not-null="true" ></key>
       <one-to-many class="FibersReportItem"></one-to-many>
     </bag>
 

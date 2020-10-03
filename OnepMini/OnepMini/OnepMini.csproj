@@ -13,11 +13,13 @@
     <None Remove="OrmNhib\HBM\OnepTopologicallink.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepValidationresult.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepValidochpath.hbm.xml" />
+    <None Remove="OrmNhib\HBM\ReportingInfra.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="OrmNhib\HBM\FibersReport.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\FibersReportItem.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\ReportingInfra.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>

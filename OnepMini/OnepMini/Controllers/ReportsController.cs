@@ -39,16 +39,16 @@ namespace OnepMini.Controllers
                 return BadRequest("Invalid planning project ID provided");
             }
 
-            var fibersReport = _session.Query<FibersReport>().Where(p => p.McpProjectId == projectId.ToString()).FirstOrDefault();
+            var report = _session.Query<ReportingInfra>().Where(p => p.ProjectId == projectId.ToString()).FirstOrDefault();
 
-            if (fibersReport == null)
+            if (report == null || report.FibersReport == null)
             {
                 return BadRequest($"FibersReport not found for projectId: {projectId}");
             }
 
             await Task.Delay(0);
 
-            return Ok(fibersReport);
+            return Ok(report.FibersReport);
         }
 
         // POST: api/Reports/GetFibersReport
@@ -155,10 +155,16 @@ namespace OnepMini.Controllers
                 }
             };
 
+            var reportingInfra = new ReportingInfra()
+            {
+                ProjectId = projectId.ToString(),
+                FibersReport = report
+            };
+
             using var tx = _session.BeginTransaction();
             try
             {
-                await _session.SaveOrUpdateAsync(report).ConfigureAwait(false);
+                await _session.SaveOrUpdateAsync(reportingInfra).ConfigureAwait(false);
 
                 await tx.CommitAsync().ConfigureAwait(false);
             }

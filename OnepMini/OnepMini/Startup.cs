@@ -40,7 +40,8 @@ namespace OnepMini
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            INHibernateInitializer nHibernateInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -57,6 +58,9 @@ namespace OnepMini
             {
                 endpoints.MapControllers();
             });
+
+            var cfg = nHibernateInitializer.GetConfiguration();
+            nHibernateInitializer.GetSessionFactory(cfg);
         }
     }
 }
