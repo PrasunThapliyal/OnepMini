@@ -25,25 +25,17 @@ namespace OnepMini.OrmNhib.Initializer
 
             var connectionString = "Host=localhost;Port=5432;Database=reportsmini;Username=postgres;Password=password;";
             var cfg = new NHibernate.Cfg.Configuration();
-            cfg.DataBaseIntegration((x) =>
-            {
-                x.ConnectionString = connectionString;
-                x.ConnectionProvider<NHibernate.Connection.DriverConnectionProvider>();
-                //x.Driver<NHibernate.Driver.NpgsqlDriver>();
-                //x.Dialect<NHibernate.Dialect.PostgreSQL83Dialect>();
-                x.BatchSize = 10000;
-                x.Timeout = 100;
-                x.LogSqlInConsole = true;
-                x.LogFormattedSql = true;
-            });
-            cfg.SetProperty(NHibernate.Cfg.Environment.Dialect, "OnepMini.OrmNhib.OnepPostgresSqlDialect, OnepMini");
+            
+            cfg.SetProperty(NHibernate.Cfg.Environment.ConnectionString, connectionString);
+            cfg.SetProperty(NHibernate.Cfg.Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
             cfg.SetProperty(NHibernate.Cfg.Environment.ConnectionDriver, "OnepMini.OrmNhib.OnepNpgsqlDriver, OnepMini");
+            cfg.SetProperty(NHibernate.Cfg.Environment.Dialect, "OnepMini.OrmNhib.OnepPostgresSqlDialect, OnepMini");
+            cfg.SetProperty(NHibernate.Cfg.Environment.BatchSize, "0");
+            cfg.SetProperty(NHibernate.Cfg.Environment.ShowSql, "true");
+            cfg.SetProperty(NHibernate.Cfg.Environment.FormatSql, "true");
             cfg.AddAssembly("OnepMini");
 
-            //var cfg = new NHibernate.Cfg.Configuration();
             {
-                //cfg.Configure(@"OrmNhib/NHibernateConfig/hibernate.cfg.xml");
-
                 foreach (var mapping in cfg.ClassMappings)
                 {
                     System.Diagnostics.Debug.WriteLine(mapping.ClassName);
@@ -53,7 +45,7 @@ namespace OnepMini.OrmNhib.Initializer
                 schemaExport.SetOutputFile(@"db.Postgre.sql").Execute(
                     useStdOut: true, execute: true, justDrop: true);
 
-                // Alternately, we can use SchemaUpdate.Execute, as in done in 1P
+                // Alternately, we can use SchemaUpdate.Execute, as is done in 1P
                 NHibernate.Tool.hbm2ddl.SchemaUpdate schemaUpdate = new NHibernate.Tool.hbm2ddl.SchemaUpdate(cfg);
                 schemaUpdate.Execute(useStdOut: true, doUpdate: true);
 
@@ -68,22 +60,6 @@ namespace OnepMini.OrmNhib.Initializer
                     Debug.WriteLine($"Exception: {ex}");
                 }
 
-
-                // Note
-                // SchemaUpdate.Execute is way cooler than SchemaExport.Filename.Execute
-                // When I added a new property in Movie.hbm.xml (and in the .cs), SchemaUpdate automatically created statement 
-                // to tell the diff in schema, and only this got executed:
-                /*
-                    alter table Movie
-                        add column NewProp VARCHAR(255)
-                 * 
-                 * */
-                //
-                // However, it does not work as expected all the times, for eg, 
-                // if I rename a column in HBM, it just adds a new column with new name
-                // if I change the sql-type from VARCHAR(255) to VARCHAR(100), nothing is executed and the column type remains unchanged
-                // So we will need manual scripts for migration
-                //
             }
 
             _configuration = cfg;

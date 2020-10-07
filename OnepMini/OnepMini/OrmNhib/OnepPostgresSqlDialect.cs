@@ -14,6 +14,7 @@ namespace OnepMini.OrmNhib
             RegisterColumnType(System.Data.DbType.UInt32, "oid");
             RegisterColumnType(System.Data.DbType.SByte, "int2");
             RegisterColumnType(System.Data.DbType.Decimal, "float8");
+            RegisterColumnType(System.Data.DbType.DateTimeOffset, "timetz");
         }
     }
 }

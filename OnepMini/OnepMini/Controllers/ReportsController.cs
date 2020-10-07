@@ -158,6 +158,8 @@ namespace OnepMini.Controllers
             var reportingInfra = new ReportingInfra()
             {
                 ProjectId = projectId.ToString(),
+                CreationDate = DateTimeOffset.Now,
+                LastAccessedDate = DateTimeOffset.Now,
                 FibersReport = report
             };
 
@@ -180,5 +182,40 @@ namespace OnepMini.Controllers
             return Ok();
         }
 
+
+        [HttpDelete("DeleteAllReports")]
+        public async Task<IActionResult> DeleteReportingRoot(Guid projectId)
+        {
+            if (projectId == Guid.Empty)
+            {
+                return BadRequest("Invalid planning project ID provided");
+            }
+
+            var root = _session.Query<ReportingInfra>().Where(p => p.ProjectId == projectId.ToString()).FirstOrDefault();
+
+            if (root == null)
+            {
+                return BadRequest($"FibersReport not found for projectId: {projectId}");
+            }
+
+
+            using var tx = _session.BeginTransaction();
+            try
+            {
+                await _session.DeleteAsync(root).ConfigureAwait(false);
+
+                await tx.CommitAsync().ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Debugger.Break();
+                Debug.WriteLine(ex);
+
+                await tx.RollbackAsync().ConfigureAwait(false);
+                throw;
+            }
+
+            return NoContent();
+        }
     }
 }

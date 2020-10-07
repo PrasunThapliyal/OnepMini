@@ -54,3 +54,31 @@ OnePlanner Mini version
 	(b) I now have a fx where I can clearly specify which reports are included in the infra
 (#) Defined uni-directional one-to-one relationship (ref: https://nhibernate.info/doc/nhibernate-reference/associations.html)
 (#) Changed the unidirectional one-to-many as per recommendation here https://nhibernate.info/doc/nhibernate-reference/associations.html
+		Actually, the documentation might not be updated, and on another forum I read that using a foriegn key approach is better
+		(x) Unidirectonal one-to-many with foreign key
+			Causes spurious update statements to update foreign key which is already put correctly by inserts
+			Note: Turning it to bi-directional doesnt solve the spurious update
+			In fact, the insert is done with fiberid = null, and then a later update sets it correctly
+			In fact I'm lost here - now its not updating the fiberreport fk column during insert - i dont know why
+			ok ok .. we need not-null=true and then the insert will have correct fiberreport column set
+				<bag name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+				  <key column="fibersReport" not-null="true" ></key>
+				  <one-to-many class="FibersReportItem"></one-to-many>
+				</bag>
+			Further, if we have key not-null (i.e. we ensure that the foreign key column is updated during the insert), then we can avoid extra update
+			by adding this: update="false"
+				<bag name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+				  <key column="fibersReport" not-null="true" update="false" ></key>
+				  <one-to-many class="FibersReportItem"></one-to-many>
+				</bag>
+
+		(x) Unidirectonal one-to-many with join table
+			Requires new table. No spurious updates, but extra inserts into the join table
+			Fetch requires left outer join
+			Note: I didnt implement correct mapping in my earlier commit.
+			We need many-to-many with unique=true
+
+	Anyways, I dont want an extra join table, so i'll revert to first approach
+(#) DateTimeOffset
+		Using DateTimeOffset in CS file isnt straight-forward with NH and postgres
+		At the end it was just a matter of defining a conversion in Dialect

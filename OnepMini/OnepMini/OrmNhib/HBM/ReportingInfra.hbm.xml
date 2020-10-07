@@ -9,7 +9,13 @@
     <property name="ProjectId" type="StringClob">
       <column name="projectId" index="reporting_infra_projectId_idx"  sql-type="text"/>
     </property>
+
+    <property name="CreationDate" >
+      <column name="creationDate" />
+    </property>
     
+    <property name="LastAccessedDate" column="lastAccessedDate" />
+
     <!-- This is actually a one-to-one unidirectional relatioship. See https://nhibernate.info/doc/nhibernate-reference/associations.html -->
     <many-to-one name="FibersReport" column="fibersReport" unique="true" cascade="all-delete-orphan"/>
 

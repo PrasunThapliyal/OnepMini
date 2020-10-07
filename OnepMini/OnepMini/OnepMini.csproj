@@ -30,9 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="OrmNhib\NHibernateConfig\hibernate.cfg.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Folder Include="OrmNhib\NHibernateConfig\" />
   </ItemGroup>
 
 

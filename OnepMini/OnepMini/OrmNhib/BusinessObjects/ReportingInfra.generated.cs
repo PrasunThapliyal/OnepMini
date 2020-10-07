@@ -23,6 +23,8 @@ namespace TopologyRestLibrary.V1.Etp.Reports
     public partial class ReportingInfra
     {
         private string _projectId;
+        private DateTimeOffset? _creationDate;
+        private DateTimeOffset? _lastAccessedDate;
         private FibersReport _fibersReport;
 
     	/// <summary>
@@ -47,6 +49,34 @@ namespace TopologyRestLibrary.V1.Etp.Reports
                 if (_projectId != value)
                 {
                     _projectId = value; 
+                }
+            }
+        }
+
+        /// <summary>Creation date of this report</summary>
+        [JsonProperty("creationDate", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTimeOffset? CreationDate
+        {
+            get { return _creationDate; }
+            set
+            {
+                if (_creationDate != value)
+                {
+                    _creationDate = value;
+                }
+            }
+        }
+
+        /// <summary>Date when this report was last accessed</summary>
+        [JsonProperty("lastAccessedDate", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        public virtual DateTimeOffset? LastAccessedDate
+        {
+            get { return _lastAccessedDate; }
+            set
+            {
+                if (_lastAccessedDate != value)
+                {
+                    _lastAccessedDate = value;
                 }
             }
         }
