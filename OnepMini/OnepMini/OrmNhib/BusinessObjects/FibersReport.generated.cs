@@ -23,14 +23,22 @@ namespace TopologyRestLibrary.V1.Etp.Reports
     public partial class FibersReport
     {
         private IList<TopologyRestLibrary.V1.Etp.Reports.FibersReportItem> _data;
+        private IList<string> _myListOfStrings1;
+        private IList<string> _myListOfStrings2;
 
-    	/// <summary>
+        /// <summary>
         /// Initializes a new instance of the <see cref="FibersReport"/> class.
         /// </summary>
         public FibersReport()
-    	{
+        {
             _data = new List<TopologyRestLibrary.V1.Etp.Reports.FibersReportItem>();
+            _myListOfStrings1 = new List<string>();
+            _myListOfStrings2 = new List<string>();
         }
+
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [JsonIgnore]
+        public virtual long OId { get; set; }
 
 
         /// <summary>List of Fibers</summary>
@@ -47,6 +55,34 @@ namespace TopologyRestLibrary.V1.Etp.Reports
             }
         }
 
+
+        /// <summary>First list of strings</summary>
+        [JsonProperty("myListOfStrings1", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        public virtual IList<string> MyListOfStrings1
+        {
+            get { return _myListOfStrings1; }
+            set
+            {
+                if (_myListOfStrings1 != value)
+                {
+                    _myListOfStrings1 = value;
+                }
+            }
+        }
+
+        /// <summary>Second list of strings</summary>
+        [JsonProperty("myListOfStrings2", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        public virtual IList<string> MyListOfStrings2
+        {
+            get { return _myListOfStrings2; }
+            set
+            {
+                if (_myListOfStrings2 != value)
+                {
+                    _myListOfStrings2 = value;
+                }
+            }
+        }
 
     }
 }

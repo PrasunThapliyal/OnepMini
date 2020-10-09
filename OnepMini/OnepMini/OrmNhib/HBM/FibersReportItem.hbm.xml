@@ -1,13 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
    assembly = "OnepMini" namespace = "TopologyRestLibrary.V1.Etp.Reports">
-  <class name="FibersReportItem" table="fibers_report_item" lazy="true">
-    <id name = "Id" column="oid">
+
+  <class name="FibersReportItem" table="fibers_report_item" lazy="false" >
+    <id name = "OId" column="oid">
       <generator class = "hilo"/>
     </id>
 
     <property name="Name" column="name" />
-    <property name="FiberId" column="fiberid" />
+    <property name="FiberId" column="fiberId" />
     <property name="FiberPairString" column="fiberPairString" />
     <property name="FiberType" column="fiberType" />
     <property name="OnepSiteByAEndSite" column="onepSiteByAEndSite" />
@@ -25,7 +26,9 @@
     <property name="PmdType" column="pmdType" />
     <property name="PmdCoefficient" column="pmdCoefficient" />
     <property name="PmdMean" column="pmdMean" />
-    
-    <!--<many-to-one name="FibersReport" column="fibersReport" class="FibersReport" />-->
+
+
+
+
   </class>
 </hibernate-mapping>

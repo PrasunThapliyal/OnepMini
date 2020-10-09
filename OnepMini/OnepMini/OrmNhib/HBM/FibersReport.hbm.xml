@@ -1,27 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
    assembly = "OnepMini" namespace = "TopologyRestLibrary.V1.Etp.Reports">
-  <class name="FibersReport" table="fibers_report" lazy="true">
-    <id name = "Id" column="oid">
+
+  <class name="FibersReport" table="fibers_report" lazy="true" >
+    <id name = "OId" column="oid">
       <generator class = "hilo"/>
     </id>
 
-    <property name="McpProjectId" type="StringClob">
-      <column name="mcpProjectId" index="fibers_report_mcpProjectId_idx"  sql-type="text"/>
-    </property>
 
-    <!--This is a unidirectional one-to-many relationship on a foreign key, and is not recommended-->
-    <!--See https://nhibernate.info/doc/nhibernate-reference/associations.html--> 
-    <bag name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
-      <key column="fibersReport" not-null="true" update="false" ></key>
-      <one-to-many class="FibersReportItem"></one-to-many>
+    <!--This works, btw-->
+    <!--<bag name="Data" lazy="false" cascade="all-delete-orphan" fetch="select">
+        <key column="fibersReport" foreign-key="fibers_report_item_FK_fibersReport" ></key>
+        <one-to-many class="FibersReportItem"></one-to-many>
+    </bag>-->
+
+    <bag name="Data" lazy="false" cascade="all-delete-orphan"  inverse="false" fetch="select">
+        <key column="fibersReport" not-null="true" update="false" foreign-key="fibers_report_item_FK_fibersReport" ></key>
+        <one-to-many class="FibersReportItem"></one-to-many>
     </bag>
 
-    <!--This is a unidirectional one-to-many relationship with join tables, and is the recommended way-->
-    <!--<bag name="Data" lazy="true" cascade="all-delete-orphan" >
-      <key column="fibersReport" not-null="true" ></key>
-      <many-to-many class="FibersReportItem" column="dataId" unique="true"></many-to-many>
-    </bag>-->
+    <!--Mapping a list of string-->
+    <bag name="MyListOfStrings1" table="fibers_report_my_list_of_strings1">
+      <key column="fibersReport" foreign-key="fibers_report_my_list_of_strings1_FK_fibersReport" />
+      <element column="myListOfStrings1" />
+    </bag>
+
+    <bag name="MyListOfStrings2" table="fibers_report_my_list_of_strings2">
+      <key column="fibersReport" foreign-key="fibers_report_my_list_of_strings2_FK_fibersReport" />
+      <element column="myListOfStrings2" />
+    </bag>
 
   </class>
 </hibernate-mapping>

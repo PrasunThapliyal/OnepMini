@@ -42,12 +42,16 @@ namespace TopologyRestLibrary.V1.Etp.Reports
         private decimal? _pmdCoefficient;
         private decimal? _pmdMean;
 
-    	/// <summary>
+        /// <summary>
         /// Initializes a new instance of the <see cref="FibersReportItem"/> class.
         /// </summary>
         public FibersReportItem()
-    	{
+        {
         }
+
+        [System.Runtime.Serialization.IgnoreDataMember]
+        [JsonIgnore]
+        public virtual long OId { get; set; }
 
 
         /// <summary>FiberTL Name</summary>

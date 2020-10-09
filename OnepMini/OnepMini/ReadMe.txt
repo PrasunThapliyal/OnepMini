@@ -72,6 +72,24 @@ OnePlanner Mini version
 				  <one-to-many class="FibersReportItem"></one-to-many>
 				</bag>
 
+			PS: Well, this mapping also seems to work for a uni-directional one-to-many and note that 
+			I do not have inverse=false here.
+				<bag name="Data" lazy="false" cascade="all-delete-orphan" fetch="select">
+					<key column="fibersReport" ></key>
+					<one-to-many class="FibersReportItem"></one-to-many>
+				</bag>
+
+			Update: This is what I'm going to settle in for
+				<bag name="Data" lazy="false" cascade="all-delete-orphan"  inverse="false" fetch="select">
+					<key column="fibersReport" not-null="true" update="false" foreign-key="fibers_report_item_FK_fibersReport" ></key>
+					<one-to-many class="FibersReportItem"></one-to-many>
+				</bag>
+			Note: Postgres doesn't generate index on FK automatically (except where unique=true is specified, eg 1-1 object mapping)
+				So we kind of resorted to a convention based approach in HBM
+				Add a FK with a name {tableName}_FK_{columnName}
+				Then, we override a method in our dialect class and manufacture the create index statement
+
+			
 		(x) Unidirectonal one-to-many with join table
 			Requires new table. No spurious updates, but extra inserts into the join table
 			Fetch requires left outer join
@@ -82,3 +100,14 @@ OnePlanner Mini version
 (#) DateTimeOffset
 		Using DateTimeOffset in CS file isnt straight-forward with NH and postgres
 		At the end it was just a matter of defining a conversion in Dialect
+
+(#) Mapping List of Value Types
+		This isnt quite straight forward. In fact, mapping a list of strings, for example, 
+		requires creation of a new table to hold that collection. 
+		The relief is that we need not have any explicit mention of this new table in our CS classes
+
+		So, note that if we have 2 list of strings in our class, we need 2 new tables
+		And therefore, the name of these tables must be set uniquely (Wish we could reuse the same table for all list of strings)
+
+		And just like in the list of objects, since postgres doesnt create an index automatically, we needed to follow
+		a convention while declaring the FK constraint name

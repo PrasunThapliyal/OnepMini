@@ -39,16 +39,18 @@ namespace OnepMini.Controllers
                 return BadRequest("Invalid planning project ID provided");
             }
 
-            var report = _session.Query<ReportingInfra>().Where(p => p.ProjectId == projectId.ToString()).FirstOrDefault();
+            var root = _session.Query<ReportingRoot>().FirstOrDefault(p => p.ProjectId == projectId.ToString());
 
-            if (report == null || report.FibersReport == null)
+            //Debug.WriteLine($"{root.FibersReport.Data.Count}");
+
+            if (root == null || root.FibersReport == null)
             {
                 return BadRequest($"FibersReport not found for projectId: {projectId}");
             }
 
             await Task.Delay(0);
 
-            return Ok(report.FibersReport);
+            return Ok(root.FibersReport);
         }
 
         // POST: api/Reports/GetFibersReport
@@ -57,7 +59,6 @@ namespace OnepMini.Controllers
         {
             var report = new FibersReport()
             {
-                McpProjectId = projectId.ToString(),
                 Data = new List<FibersReportItem>()
                 {
                     new FibersReportItem()
@@ -152,10 +153,12 @@ namespace OnepMini.Controllers
                         PmdMean = (decimal) 0.84024
 
                     }
-                }
+                },
+                MyListOfStrings1 = new List<string> { "AA", "BB", "CC"},
+                MyListOfStrings2 = new List<string> { "DD", "EE"}
             };
 
-            var reportingInfra = new ReportingInfra()
+            var reportingRoot = new ReportingRoot()
             {
                 ProjectId = projectId.ToString(),
                 CreationDate = DateTimeOffset.Now,
@@ -166,7 +169,7 @@ namespace OnepMini.Controllers
             using var tx = _session.BeginTransaction();
             try
             {
-                await _session.SaveOrUpdateAsync(reportingInfra).ConfigureAwait(false);
+                await _session.SaveOrUpdateAsync(reportingRoot).ConfigureAwait(false);
 
                 await tx.CommitAsync().ConfigureAwait(false);
             }
@@ -191,7 +194,7 @@ namespace OnepMini.Controllers
                 return BadRequest("Invalid planning project ID provided");
             }
 
-            var root = _session.Query<ReportingInfra>().Where(p => p.ProjectId == projectId.ToString()).FirstOrDefault();
+            var root = _session.Query<ReportingRoot>().Where(p => p.ProjectId == projectId.ToString()).FirstOrDefault();
 
             if (root == null)
             {

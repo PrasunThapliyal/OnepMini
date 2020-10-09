@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "TopologyRestLibrary.V1.Etp.Reports">
+
+  <class name="ReportingRoot" table="reporting_root" lazy="true" >
+    <id name = "OId" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+    <property name="ProjectId" column="projectId" />
+    <property name="CreationDate" column="creationDate" />
+    <property name="LastAccessedDate" column="lastAccessedDate" />
+
+    <!-- This is actually a one-to-one unidirectional relatioship. See https://nhibernate.info/doc/nhibernate-reference/associations.html -->
+    <many-to-one name="FibersReport" column="fibersReport" unique="true" cascade="all-delete-orphan" lazy="no-proxy" />
+
+  </class>
+</hibernate-mapping>

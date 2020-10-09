@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// <copyright file="ReportingInfra.generated.cs" company="Ciena Corporation"\>
+// <copyright file="ReportingRoot.generated.cs" company="Ciena Corporation"\>
 //     Copyright (c) Ciena Corporation. All rights reserved.
 // </copyright\>
 //
@@ -19,27 +19,27 @@ namespace TopologyRestLibrary.V1.Etp.Reports
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>ReportingInfra</summary>
-    public partial class ReportingInfra
+    /// <summary>ReportingRoot</summary>
+    public partial class ReportingRoot
     {
         private string _projectId;
         private DateTimeOffset? _creationDate;
         private DateTimeOffset? _lastAccessedDate;
-        private FibersReport _fibersReport;
+        private TopologyRestLibrary.V1.Etp.Reports.FibersReport _fibersReport;
 
-    	/// <summary>
-        /// Initializes a new instance of the <see cref="ReportingInfra"/> class.
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReportingRoot"/> class.
         /// </summary>
-        public ReportingInfra()
-    	{
+        public ReportingRoot()
+        {
         }
 
         [System.Runtime.Serialization.IgnoreDataMember]
         [JsonIgnore]
-        public virtual long Id { get; set; }
+        public virtual long OId { get; set; }
 
 
-        /// <summary>Project Id</summary>
+        /// <summary>Project Id. Null indicates that the report is marked for delete</summary>
         [JsonProperty("projectId", Required = Required.Always)]
         public virtual string ProjectId
         {
@@ -58,11 +58,11 @@ namespace TopologyRestLibrary.V1.Etp.Reports
         public virtual DateTimeOffset? CreationDate
         {
             get { return _creationDate; }
-            set
+            set 
             {
                 if (_creationDate != value)
                 {
-                    _creationDate = value;
+                    _creationDate = value; 
                 }
             }
         }
@@ -72,18 +72,18 @@ namespace TopologyRestLibrary.V1.Etp.Reports
         public virtual DateTimeOffset? LastAccessedDate
         {
             get { return _lastAccessedDate; }
-            set
+            set 
             {
                 if (_lastAccessedDate != value)
                 {
-                    _lastAccessedDate = value;
+                    _lastAccessedDate = value; 
                 }
             }
         }
 
         /// <summary>FibersReport</summary>
         [JsonProperty("fibersReport", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual FibersReport FibersReport
+        public virtual TopologyRestLibrary.V1.Etp.Reports.FibersReport FibersReport
         {
             get { return _fibersReport; }
             set 
