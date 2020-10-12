@@ -30,5 +30,8 @@
       <element column="myListOfStrings2" />
     </bag>
 
+    <property name="AcctType" column="acct_type" not-null="true" />
+
+
   </class>
 </hibernate-mapping>

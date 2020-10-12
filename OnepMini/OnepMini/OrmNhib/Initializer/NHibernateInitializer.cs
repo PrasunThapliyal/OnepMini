@@ -43,7 +43,7 @@ namespace OnepMini.OrmNhib.Initializer
 
                 var schemaExport = new NHibernate.Tool.hbm2ddl.SchemaExport(cfg);
                 schemaExport.SetOutputFile(@"db.Postgre.sql").Execute(
-                    useStdOut: true, execute: true, justDrop: true);
+                    useStdOut: true, execute: false, justDrop: false);
 
                 // Alternately, we can use SchemaUpdate.Execute, as is done in 1P
                 NHibernate.Tool.hbm2ddl.SchemaUpdate schemaUpdate = new NHibernate.Tool.hbm2ddl.SchemaUpdate(cfg);

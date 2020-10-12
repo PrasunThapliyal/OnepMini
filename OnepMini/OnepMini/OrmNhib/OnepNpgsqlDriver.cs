@@ -12,11 +12,11 @@ namespace OnepMini.OrmNhib
 	{
 		protected override void InitializeParameter(DbParameter dbParam, string name, SqlType sqlType)
 		{
-			if (sqlType.DbType == DbType.UInt32)
-			{
+			if (sqlType.DbType == DbType.DateTimeOffset)
+            {
 				var param = dbParam as NpgsqlParameter;
 				param.ParameterName = FormatNameForParameter(name);
-				param.NpgsqlDbType = NpgsqlDbType.Oid;
+				param.NpgsqlDbType = NpgsqlDbType.TimeTz;
 			}
 			else
 			{

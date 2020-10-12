@@ -8,11 +8,16 @@
     </id>
 
     <property name="ProjectId" column="projectId" />
-    <property name="CreationDate" column="creationDate" />
-    <property name="LastAccessedDate" column="lastAccessedDate" />
+    <property name="CreationDate">
+      <column name="creationDate" />
+    </property>
+    <property name="LastAccessedDate">
+      <column name="lastAccessedDate" />
+    </property>
 
     <!-- This is actually a one-to-one unidirectional relatioship. See https://nhibernate.info/doc/nhibernate-reference/associations.html -->
     <many-to-one name="FibersReport" column="fibersReport" unique="true" cascade="all-delete-orphan" lazy="no-proxy" />
+    <many-to-one name="OchReport" column="ochReport" unique="true" cascade="all-delete-orphan" lazy="no-proxy" />
 
   </class>
 </hibernate-mapping>

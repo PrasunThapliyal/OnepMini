@@ -25,6 +25,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
         private IList<TopologyRestLibrary.V1.Etp.Reports.FibersReportItem> _data;
         private IList<string> _myListOfStrings1;
         private IList<string> _myListOfStrings2;
+        //private TypeTypes _type;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FibersReport"/> class.
@@ -34,6 +35,8 @@ namespace TopologyRestLibrary.V1.Etp.Reports
             _data = new List<TopologyRestLibrary.V1.Etp.Reports.FibersReportItem>();
             _myListOfStrings1 = new List<string>();
             _myListOfStrings2 = new List<string>();
+            //_type = TypeTypes.och;
+
         }
 
         [System.Runtime.Serialization.IgnoreDataMember]
@@ -84,5 +87,26 @@ namespace TopologyRestLibrary.V1.Etp.Reports
             }
         }
 
+        public enum AccountTypes
+        {
+#pragma warning disable 1591
+            [EnumMember(Value = "Consumer")]
+            Consumer,
+
+            [EnumMember(Value = "Business")]
+            Business,
+
+            [EnumMember(Value = "Corp")]
+            Corporate,
+
+            [EnumMember(Value = "NonProfit")]
+            NonProfit
+#pragma warning restore 1591
+        }
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty("acctType", Required = Required.Always)]
+        public virtual AccountTypes AcctType { get; set; }
     }
+
 }

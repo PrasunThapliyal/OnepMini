@@ -26,6 +26,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
         private DateTimeOffset? _creationDate;
         private DateTimeOffset? _lastAccessedDate;
         private TopologyRestLibrary.V1.Etp.Reports.FibersReport _fibersReport;
+        private TopologyRestLibrary.V1.Etp.Reports.OchReport _ochReport;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReportingRoot"/> class.
@@ -95,6 +96,19 @@ namespace TopologyRestLibrary.V1.Etp.Reports
             }
         }
 
+        /// <summary>OchReport</summary>
+        [JsonProperty("ochReport", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        public virtual TopologyRestLibrary.V1.Etp.Reports.OchReport OchReport
+        {
+            get { return _ochReport; }
+            set
+            {
+                if (_ochReport != value)
+                {
+                    _ochReport = value;
+                }
+            }
+        }
 
     }
 }

@@ -5,9 +5,11 @@ namespace OnepMini.Controllers
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using System.Reflection;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using NHibernate;
+    using OnepMini.OrmNhib.DummyReports;
     using OnepMini.OrmNhib.Initializer;
     using TopologyRestLibrary.V1.Etp.Reports;
 
@@ -57,6 +59,11 @@ namespace OnepMini.Controllers
         [HttpPost("GenerateFibersReport")]
         public async Task<IActionResult> GenerateFibersReport(Guid projectId)
         {
+            if (projectId == Guid.Empty)
+            {
+                return BadRequest("Invalid planning project ID provided");
+            }
+
             var report = new FibersReport()
             {
                 Data = new List<FibersReportItem>()
@@ -155,20 +162,130 @@ namespace OnepMini.Controllers
                     }
                 },
                 MyListOfStrings1 = new List<string> { "AA", "BB", "CC"},
-                MyListOfStrings2 = new List<string> { "DD", "EE"}
+                MyListOfStrings2 = new List<string> { "DD", "EE"},
+                AcctType = FibersReport.AccountTypes.Corporate
             };
 
-            var reportingRoot = new ReportingRoot()
+            var reportingRoot = _session.Query<ReportingRoot>()
+                .FirstOrDefault(p => p.ProjectId == projectId.ToString());
+
+            if (reportingRoot == null)
             {
-                ProjectId = projectId.ToString(),
-                CreationDate = DateTimeOffset.Now,
-                LastAccessedDate = DateTimeOffset.Now,
-                FibersReport = report
-            };
+                reportingRoot = new ReportingRoot()
+                {
+                    ProjectId = projectId.ToString(),
+                    CreationDate = DateTimeOffset.Now,
+                    LastAccessedDate = DateTimeOffset.Now,
+                    FibersReport = report
+                };
+            }
+            else
+            {
+                if (reportingRoot.FibersReport != null)
+                {
+                    using var tx1 = _session.BeginTransaction();
+                    try
+                    {
+                        await _session.DeleteAsync(reportingRoot.FibersReport).ConfigureAwait(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debugger.Break();
+                        Debug.WriteLine(ex);
+
+                        await tx1.RollbackAsync().ConfigureAwait(false);
+                        throw;
+                    }
+                }
+                //reportingRoot.LastAccessedDate = DateTimeOffset.Now;
+                reportingRoot.FibersReport = report;
+            }
 
             using var tx = _session.BeginTransaction();
             try
             {
+                await _session.SaveOrUpdateAsync(reportingRoot).ConfigureAwait(false);
+
+                await tx.CommitAsync().ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Debugger.Break();
+                Debug.WriteLine(ex);
+
+                await tx.RollbackAsync().ConfigureAwait(false);
+                throw;
+            }
+
+            return Ok();
+        }
+
+
+        // GET: api/Reports/GetOchReport
+        [HttpGet("GetOchReport")]
+        public async Task<IActionResult> GetOchReport(Guid projectId)
+        {
+            if (projectId == Guid.Empty)
+            {
+                return BadRequest("Invalid planning project ID provided");
+            }
+
+            var root = _session.Query<ReportingRoot>().FirstOrDefault(p => p.ProjectId == projectId.ToString());
+
+            if (root == null || root.OchReport == null)
+            {
+                return BadRequest($"OchReport not found for projectId: {projectId}");
+            }
+
+            await Task.Delay(0);
+
+            return Ok(root.OchReport);
+        }
+
+        // POST: api/Reports/GenerateOchReport
+        [HttpPost("GenerateOchReport")]
+        public async Task<IActionResult> GenerateOchReport(Guid projectId)
+        {
+            if (projectId == Guid.Empty)
+            {
+                return BadRequest("Invalid planning project ID provided");
+            }
+
+            OchReport report = null;
+            {
+                var assembly = GetType().GetTypeInfo().Assembly;
+                var assemblyName = assembly.GetName().Name;
+                var resourceName = $"{assemblyName}.OrmNhib.DummyReports.dummyOchReport.json";
+
+                report = JsonReader.ReadJsonDataFile<OchReport>(assembly, resourceName);
+            }
+            var reportingRoot = _session.Query<ReportingRoot>()
+                .FirstOrDefault(p => p.ProjectId == projectId.ToString());
+
+            using var tx = _session.BeginTransaction();
+            try
+            {
+                if (reportingRoot == null)
+                {
+                    reportingRoot = new ReportingRoot()
+                    {
+                        ProjectId = projectId.ToString(),
+                        CreationDate = DateTimeOffset.Now,
+                        LastAccessedDate = DateTimeOffset.Now,
+                        OchReport = report
+                    };
+                }
+                else
+                {
+                    if (reportingRoot.OchReport != null)
+                    {
+                        await _session.DeleteAsync(reportingRoot.OchReport).ConfigureAwait(false);
+                        //reportingRoot.OchReport = null; // Deleted object will be resaved, if we dont do this
+                    }
+                    reportingRoot.LastAccessedDate = DateTimeOffset.Now;
+                    reportingRoot.OchReport = report;
+                }
+
                 await _session.SaveOrUpdateAsync(reportingRoot).ConfigureAwait(false);
 
                 await tx.CommitAsync().ConfigureAwait(false);
@@ -198,7 +315,7 @@ namespace OnepMini.Controllers
 
             if (root == null)
             {
-                return BadRequest($"FibersReport not found for projectId: {projectId}");
+                return BadRequest($"No reports found for projectId: {projectId}");
             }
 
 

@@ -17,6 +17,7 @@ namespace OnepMini.OrmNhib
             RegisterColumnType(System.Data.DbType.SByte, "int2");
             RegisterColumnType(System.Data.DbType.Decimal, "float8");
             RegisterColumnType(System.Data.DbType.DateTimeOffset, "timetz");
+            //RegisterColumnType(System.Data.DbType.DateTimeOffset, "datetimeoffset");
         }
 
         public override string GetAddForeignKeyConstraintString(
