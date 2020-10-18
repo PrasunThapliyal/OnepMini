@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "TopologyRestLibrary.V1.Etp.Reports">
+
+  <class name="CSAmpProvisioningReport" table="csamp_provisioning_report" lazy="true" >
+    <id name = "OId" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+
+
+
+    <bag name="Data" lazy="false" cascade="all-delete-orphan" inverse="false" fetch="select">
+        <key column="cSAmpProvisioningReport" not-null="true" update="false" foreign-key="csamp_provisioning_report_item_FK_cSAmpProvisioningReport" ></key>
+        <one-to-many class="CSAmpProvisioningReportItem"></one-to-many>
+    </bag>
+
+
+
+  </class>
+</hibernate-mapping>

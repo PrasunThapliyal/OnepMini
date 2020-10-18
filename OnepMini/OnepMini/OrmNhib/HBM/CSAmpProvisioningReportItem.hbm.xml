@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "TopologyRestLibrary.V1.Etp.Reports">
+
+  <class name="CSAmpProvisioningReportItem" table="csamp_provisioning_report_item" lazy="true" >
+    <id name = "OId" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+    <property name="ProductType" column="productType"  />
+    <property name="Name" column="name"  />
+    <property name="Tid" column="tid"  />
+    <property name="Id" column="id"  />
+    <property name="AmpId" column="ampId"  />
+    <property name="SiteName" column="siteName"  />
+    <property name="AmpDirection" column="ampDirection"  />
+    <property name="AmpOrder" column="ampOrder"  />
+    <property name="AmpPackage" column="ampPackage"  />
+    <property name="AmpType" column="ampType"  />
+    <property name="ShelfID" column="shelfID"  />
+    <property name="Slot" column="slot"  />
+    <property name="Port" column="port"  />
+    <property name="PeakPowerMode" column="peakPowerMode"  />
+    <property name="TargetPeakPower" column="targetPeakPower"  />
+    <property name="ChannelPowerMode" column="channelPowerMode"  />
+    <property name="TargetChannelPower" column="targetChannelPower"  />
+    <property name="EstimatedPeakPower" column="estimatedPeakPower"  />
+    <property name="EstimatedMaxChannelPower" column="estimatedMaxChannelPower"  />
+    <property name="EstimatedMinChannelPower" column="estimatedMinChannelPower"  />
+    <property name="GainOffsetMode" column="gainOffsetMode"  />
+    <property name="TargetGainOffset" column="targetGainOffset"  />
+    <property name="GainMode" column="gainMode"  />
+    <property name="TargetGain" column="targetGain"  />
+    <property name="EstimatedGain" column="estimatedGain"  />
+    <property name="MaxGainAtZeroTilt" column="maxGainAtZeroTilt"  />
+    <property name="GainTiltMode" column="gainTiltMode"  />
+    <property name="TargetGainTilt" column="targetGainTilt"  />
+    <property name="EstimatedGainTilt" column="estimatedGainTilt"  />
+    <property name="MaxTotalOutputPower" column="maxTotalOutputPower"  />
+    <property name="EstimatedTotalOutputPower" column="estimatedTotalOutputPower"  />
+    <property name="TargetPfib" column="targetPfib"  />
+    <property name="VoaMode" column="voaMode"  />
+    <property name="VoaAttenuationMode" column="voaAttenuationMode"  />
+    <property name="VoaAttenuation" column="voaAttenuation"  />
+    <property name="SwitchableAmpProvisioningMode" column="switchableAmpProvisioningMode"  />
+    <property name="SwitchableAmpGainMode" column="switchableAmpGainMode"  />
+    <property name="SwitchableAmpTopOffsetMode" column="switchableAmpTopOffsetMode"  />
+    <property name="SwitchableAmpTopOffset" column="switchableAmpTopOffset"  />
+    <property name="MaxAllowedTotalPumpPower" column="maxAllowedTotalPumpPower"  />
+    <property name="TargetSpanLoss" column="targetSpanLoss"  />
+    <property name="RamanGainMode" column="ramanGainMode"  />
+    <property name="RamanFiberType" column="ramanFiberType"  />
+    <property name="RamanGainSetting" column="ramanGainSetting"  />
+    <property name="EstimateRamanGain" column="estimateRamanGain"  />
+    <property name="IsLineAmp" column="isLineAmp"  />
+    <property name="Pfg" column="pfg"  />
+    <property name="OscPfibMode" column="oscPfibMode"  />
+    <property name="OscPfibTarget" column="oscPfibTarget"  />
+    <property name="OscFECMode" column="oscFECMode"  />
+    <property name="OscFEC" column="oscFEC"  />
+    <property name="LinkPilotOutputEstimatedPower" column="linkPilotOutputEstimatedPower"  />
+    <property name="FiberTypeMode" column="fiberTypeMode"  />
+    <property name="FiberType" column="fiberType"  />
+    <property name="OscPfibEstimate" column="oscPfibEstimate"  />
+    <property name="IngressRepairMarginMode" column="ingressRepairMarginMode"  />
+    <property name="IngressRepairMargin" column="ingressRepairMargin"  />
+    <property name="FiberTypeOrLabel" column="fiberTypeOrLabel"  />
+    <property name="EdfaPfibA" column="edfaPfibA"  />
+    <property name="EdfaPfibB" column="edfaPfibB"  />
+    <property name="RamanPfibA" column="ramanPfibA"  />
+    <property name="RamanPfibB" column="ramanPfibB"  />
+    <property name="EdfaInFiberType" column="edfaInFiberType"  />
+    <property name="FiberAEff" column="fiberAEff"  />
+    <property name="FiberDispersionCoeff" column="fiberDispersionCoeff"  />
+    <property name="FiberAttenuationCoeff" column="fiberAttenuationCoeff"  />
+    <property name="OscPlacementMode" column="oscPlacementMode"  />
+    <property name="OscSFP" column="oscSFP"  />
+    <property name="OmsName" column="omsName"  />
+    <property name="EstimatedTotalPfib" column="estimatedTotalPfib"  />
+    <property name="TargetTotalPfib" column="targetTotalPfib"  />
+
+
+
+    <map name="EstimatedOutputPowerTable" table="csamp_provisioning_report_item_estimated_output_power_table" lazy="false" cascade="all-delete-orphan" >
+        <key column="OId" />
+        <index column="AttributeName" type="string" />
+        <element column="AttributeValue" type="decimal" />
+    </map>
+
+
+
+
+  </class>
+</hibernate-mapping>

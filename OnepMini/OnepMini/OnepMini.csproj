@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="OrmNhib\HBM\CSAmpProvisioningReport.hbm.xml" />
+    <None Remove="OrmNhib\HBM\CSAmpProvisioningReportItem.hbm.xml" />
     <None Remove="OrmNhib\HBM\FibersReport.hbm.xml" />
     <None Remove="OrmNhib\HBM\FibersReportItem.hbm.xml" />
     <None Remove="OrmNhib\HBM\OchReport.hbm.xml" />
@@ -26,6 +28,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="OrmNhib\DummyReports\dummyOchReport.json" />
+    <EmbeddedResource Include="OrmNhib\HBM\CSAmpProvisioningReport.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\CSAmpProvisioningReportItem.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\FibersReport.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\FibersReportItem.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\OchReport.hbm.xml" />

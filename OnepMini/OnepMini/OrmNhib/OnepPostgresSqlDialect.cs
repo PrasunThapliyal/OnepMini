@@ -39,7 +39,9 @@ namespace OnepMini.OrmNhib
                 return defaultForeignKeyConstraintString;
             }
 
-            var createIndexString = $"create index {constraintName}_idx on {tableName} ( {string.Join(", ", foreignKey)} );";
+            //var s = $"\n\nDO $$ BEGIN BEGIN \n{defaultForeignKeyConstraintString} \nEXCEPTION WHEN duplicate_object THEN RAISE NOTICE \'Table {tableName} constraint {constraintName} already exsts\'; END; END $$;\n";
+
+            var createIndexString = $"\n\n\tcreate index if not exists {constraintName}_idx on {tableName} ( {string.Join(", ", foreignKey)} );";
             var foreignKeyConstraintStringAndCreateIndexString =
                 $"{defaultForeignKeyConstraintString}; {createIndexString}";
 

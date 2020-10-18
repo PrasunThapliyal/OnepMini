@@ -9,6 +9,9 @@ namespace OnepMini.Controllers
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using NHibernate;
+    using NHibernate.Criterion;
+    using NHibernate.Linq;
+    using NHibernate.Transform;
     using OnepMini.OrmNhib.DummyReports;
     using OnepMini.OrmNhib.Initializer;
     using TopologyRestLibrary.V1.Etp.Reports;
@@ -34,14 +37,18 @@ namespace OnepMini.Controllers
 
         // GET: api/Reports/GetFibersReport
         [HttpGet("GetFibersReport")]
-        public async Task<IActionResult> GetFibersReport(Guid projectId)
+        public async Task<IActionResult> GetFibersReport(Guid projectId, int pageNumber = 0, int pageSize = 0)
         {
+            Console.WriteLine($"GetFibersReport: {projectId}, pageNumber {pageNumber}, pageSize {pageSize}");
+
             if (projectId == Guid.Empty)
             {
                 return BadRequest("Invalid planning project ID provided");
             }
 
-            var root = _session.Query<ReportingRoot>().FirstOrDefault(p => p.ProjectId == projectId.ToString());
+            var root = await _session
+                .Query<ReportingRoot>()
+                .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
 
             //Debug.WriteLine($"{root.FibersReport.Data.Count}");
 
@@ -50,7 +57,43 @@ namespace OnepMini.Controllers
                 return BadRequest($"FibersReport not found for projectId: {projectId}");
             }
 
-            await Task.Delay(0);
+            if (pageNumber > 0 && pageSize > 0)
+            {
+                // We want to return root.FibersReport
+                // Where pagination is applied to .Data
+                // Something like this, except that here .Skip and .Take are being done in user code
+
+                //root.FibersReport.Data = root.FibersReport.Data.Skip(pageNumber * pageSize).Take(pageSize).ToList();
+
+                // We want the SQL to be such that only 1 page data is fetched from root.FibersReport.Data
+                // Something like this
+
+                /*
+                 * 
+                    select * from fibers_report_item 
+	                    where fibersreport =
+		                    (select oid from fibers_report where oid = 
+			                    (select fibersreport from reporting_root where projectId='7483d4d8-6e7a-4df1-8eeb-d829ff0452bb')
+		                    )
+                    limit 1 offset 2;
+                 * 
+                 * */
+
+                // Which, btw, can be further pruned by safely removing the middle subquery
+
+                var sqlQuery =
+                    $"select * from fibers_report_item data " + 
+                    $"where fibersreport=" + 
+                    $"(select fibersreport from reporting_root where projectId=\'{projectId}\') " + 
+                    $"limit {pageSize} offset {pageSize*pageNumber};";
+
+                var data = await _session.CreateSQLQuery(sqlQuery)
+                    .AddEntity("data", typeof(FibersReportItem))
+                    .SetResultTransformer(Transformers.DistinctRootEntity)
+                    .ListAsync<FibersReportItem>();
+
+                root.FibersReport.Data = data;
+            }
 
             return Ok(root.FibersReport);
         }
@@ -223,21 +266,26 @@ namespace OnepMini.Controllers
 
         // GET: api/Reports/GetOchReport
         [HttpGet("GetOchReport")]
-        public async Task<IActionResult> GetOchReport(Guid projectId)
+        public async Task<IActionResult> GetOchReport(Guid projectId, int pageNumber = 0, int pageSize = 0)
         {
             if (projectId == Guid.Empty)
             {
                 return BadRequest("Invalid planning project ID provided");
             }
 
-            var root = _session.Query<ReportingRoot>().FirstOrDefault(p => p.ProjectId == projectId.ToString());
+            var root = await _session
+                .Query<ReportingRoot>()
+                .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
 
             if (root == null || root.OchReport == null)
             {
                 return BadRequest($"OchReport not found for projectId: {projectId}");
             }
 
-            await Task.Delay(0);
+            //if (pageNumber > 0 && pageSize > 0)
+            //{
+            //    return Ok(root.OchReport.Data.Skip(pageNumber * pageSize).Take(pageSize));
+            //}
 
             return Ok(root.OchReport);
         }
@@ -280,7 +328,6 @@ namespace OnepMini.Controllers
                     if (reportingRoot.OchReport != null)
                     {
                         await _session.DeleteAsync(reportingRoot.OchReport).ConfigureAwait(false);
-                        //reportingRoot.OchReport = null; // Deleted object will be resaved, if we dont do this
                     }
                     reportingRoot.LastAccessedDate = DateTimeOffset.Now;
                     reportingRoot.OchReport = report;

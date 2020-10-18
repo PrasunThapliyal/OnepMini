@@ -46,8 +46,23 @@ namespace OnepMini.OrmNhib.Initializer
                     useStdOut: true, execute: false, justDrop: false);
 
                 // Alternately, we can use SchemaUpdate.Execute, as is done in 1P
-                NHibernate.Tool.hbm2ddl.SchemaUpdate schemaUpdate = new NHibernate.Tool.hbm2ddl.SchemaUpdate(cfg);
-                schemaUpdate.Execute(useStdOut: true, doUpdate: true);
+                try
+                {
+                    NHibernate.Tool.hbm2ddl.SchemaUpdate schemaUpdate = new NHibernate.Tool.hbm2ddl.SchemaUpdate(cfg);
+                    schemaUpdate.Execute(useStdOut: true, doUpdate: true);
+                }
+                catch (Npgsql.PostgresException ex)
+                {
+                    Debugger.Break();
+                    if (ex.ErrorCode == 42710)
+                    {
+                        Console.WriteLine($"Ignoring exception: {ex}");
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
 
                 try
                 {

@@ -1,4 +1,10 @@
 
+    drop table if exists csamp_provisioning_report cascade
+
+    drop table if exists csamp_provisioning_report_item cascade
+
+    drop table if exists csamp_provisioning_report_item_estimated_output_power_table cascade
+
     drop table if exists fibers_report cascade
 
     drop table if exists fibers_report_my_list_of_strings1 cascade
@@ -18,6 +24,95 @@
     drop table if exists reporting_root cascade
 
     drop table if exists hibernate_unique_key cascade
+
+    create table csamp_provisioning_report (
+        oid int8 not null,
+       primary key (oid)
+    )
+
+    create table csamp_provisioning_report_item (
+        oid int8 not null,
+       productType varchar(255),
+       name varchar(255),
+       tid varchar(255),
+       id varchar(255),
+       ampId varchar(255),
+       siteName varchar(255),
+       ampDirection varchar(255),
+       ampOrder varchar(255),
+       ampPackage varchar(255),
+       ampType varchar(255),
+       shelfID varchar(255),
+       slot varchar(255),
+       port varchar(255),
+       peakPowerMode varchar(255),
+       targetPeakPower varchar(255),
+       channelPowerMode varchar(255),
+       targetChannelPower varchar(255),
+       estimatedPeakPower varchar(255),
+       estimatedMaxChannelPower varchar(255),
+       estimatedMinChannelPower varchar(255),
+       gainOffsetMode varchar(255),
+       targetGainOffset varchar(255),
+       gainMode varchar(255),
+       targetGain varchar(255),
+       estimatedGain varchar(255),
+       maxGainAtZeroTilt varchar(255),
+       gainTiltMode varchar(255),
+       targetGainTilt varchar(255),
+       estimatedGainTilt varchar(255),
+       maxTotalOutputPower varchar(255),
+       estimatedTotalOutputPower varchar(255),
+       targetPfib varchar(255),
+       voaMode varchar(255),
+       voaAttenuationMode varchar(255),
+       voaAttenuation varchar(255),
+       switchableAmpProvisioningMode varchar(255),
+       switchableAmpGainMode varchar(255),
+       switchableAmpTopOffsetMode varchar(255),
+       switchableAmpTopOffset varchar(255),
+       maxAllowedTotalPumpPower varchar(255),
+       targetSpanLoss varchar(255),
+       ramanGainMode varchar(255),
+       ramanFiberType varchar(255),
+       ramanGainSetting varchar(255),
+       estimateRamanGain varchar(255),
+       isLineAmp boolean,
+       pfg varchar(255),
+       oscPfibMode varchar(255),
+       oscPfibTarget varchar(255),
+       oscFECMode varchar(255),
+       oscFEC varchar(255),
+       linkPilotOutputEstimatedPower varchar(255),
+       fiberTypeMode varchar(255),
+       fiberType varchar(255),
+       oscPfibEstimate varchar(255),
+       ingressRepairMarginMode varchar(255),
+       ingressRepairMargin varchar(255),
+       fiberTypeOrLabel varchar(255),
+       edfaPfibA varchar(255),
+       edfaPfibB varchar(255),
+       ramanPfibA varchar(255),
+       ramanPfibB varchar(255),
+       edfaInFiberType varchar(255),
+       fiberAEff varchar(255),
+       fiberDispersionCoeff varchar(255),
+       fiberAttenuationCoeff varchar(255),
+       oscPlacementMode varchar(255),
+       oscSFP varchar(255),
+       omsName varchar(255),
+       estimatedTotalPfib varchar(255),
+       targetTotalPfib varchar(255),
+       cSAmpProvisioningReport int8 not null,
+       primary key (oid)
+    )
+
+    create table csamp_provisioning_report_item_estimated_output_power_table (
+        OId int8 not null,
+       AttributeValue float8,
+       AttributeName varchar(255) not null,
+       primary key (OId, AttributeName)
+    )
 
     create table fibers_report (
         oid int8 not null,
@@ -162,22 +257,41 @@
        primary key (oid)
     )
 
+    alter table csamp_provisioning_report_item 
+        add constraint csamp_provisioning_report_item_FK_cSAmpProvisioningReport 
+        foreign key (cSAmpProvisioningReport) 
+        references csamp_provisioning_report; 
+
+	create index if not exists csamp_provisioning_report_item_FK_cSAmpProvisioningReport_idx 
+        on csamp_provisioning_report_item ( cSAmpProvisioningReport );
+
+    alter table csamp_provisioning_report_item_estimated_output_power_table 
+        add constraint FK_2EA3CBA 
+        foreign key (OId) 
+        references csamp_provisioning_report_item
+
     alter table fibers_report_my_list_of_strings1 
         add constraint fibers_report_my_list_of_strings1_FK_fibersReport 
         foreign key (fibersReport) 
-        references fibers_report; create index fibers_report_my_list_of_strings1_FK_fibersReport_idx 
+        references fibers_report; 
+
+	create index if not exists fibers_report_my_list_of_strings1_FK_fibersReport_idx 
         on fibers_report_my_list_of_strings1 ( fibersReport );
 
     alter table fibers_report_my_list_of_strings2 
         add constraint fibers_report_my_list_of_strings2_FK_fibersReport 
         foreign key (fibersReport) 
-        references fibers_report; create index fibers_report_my_list_of_strings2_FK_fibersReport_idx 
+        references fibers_report; 
+
+	create index if not exists fibers_report_my_list_of_strings2_FK_fibersReport_idx 
         on fibers_report_my_list_of_strings2 ( fibersReport );
 
     alter table fibers_report_item 
         add constraint fibers_report_item_FK_fibersReport 
         foreign key (fibersReport) 
-        references fibers_report; create index fibers_report_item_FK_fibersReport_idx 
+        references fibers_report; 
+
+	create index if not exists fibers_report_item_FK_fibersReport_idx 
         on fibers_report_item ( fibersReport );
 
     alter table och_report_data 
@@ -188,13 +302,17 @@
     alter table och_report_data 
         add constraint och_report_data_FK_ochReport 
         foreign key (ochReport) 
-        references och_report; create index och_report_data_FK_ochReport_idx 
+        references och_report; 
+
+	create index if not exists och_report_data_FK_ochReport_idx 
         on och_report_data ( ochReport );
 
     alter table optical_channels_report_item_failure_reason_ids 
         add constraint optical_channels_report_item_failure_reason_ids_FK_opticalChannelsReportItem 
         foreign key (opticalChannelsReportItem) 
-        references optical_channels_report_item; create index optical_channels_report_item_failure_reason_ids_FK_opticalChannelsReportItem_idx 
+        references optical_channels_report_item; 
+
+	create index if not exists optical_channels_report_item_failure_reason_ids_FK_opticalChannelsReportItem_idx 
         on optical_channels_report_item_failure_reason_ids ( opticalChannelsReportItem );
 
     alter table reporting_root 
