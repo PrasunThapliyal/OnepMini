@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "TopologyRestLibrary.V1.Etp.Common">
+
+  <class name="ReportingMetaInfo" table="reporting_meta_info" lazy="true" >
+    <id name = "OId" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+    <property name="PageSize" column="pageSize"  />
+    <property name="PageNumber" column="pageNumber"  />
+    <property name="TotalRecordsInReport" column="totalRecordsInReport"  />
+    <property name="TotalRecordsInDB" column="totalRecordsInDB"  />
+
+
+
+
+
+
+  </class>
+</hibernate-mapping>

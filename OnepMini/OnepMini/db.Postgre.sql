@@ -1,4 +1,6 @@
 
+    drop table if exists reporting_meta_info cascade
+
     drop table if exists csamp_provisioning_report cascade
 
     drop table if exists csamp_provisioning_report_item cascade
@@ -6,10 +8,6 @@
     drop table if exists csamp_provisioning_report_item_estimated_output_power_table cascade
 
     drop table if exists fibers_report cascade
-
-    drop table if exists fibers_report_my_list_of_strings1 cascade
-
-    drop table if exists fibers_report_my_list_of_strings2 cascade
 
     drop table if exists fibers_report_item cascade
 
@@ -23,10 +21,23 @@
 
     drop table if exists reporting_root cascade
 
+    drop table if exists url_parameter cascade
+
     drop table if exists hibernate_unique_key cascade
+
+    create table reporting_meta_info (
+        oid int8 not null,
+       pageSize int8,
+       pageNumber int8,
+       totalRecordsInReport int8,
+       totalRecordsInDB int8,
+       primary key (oid)
+    )
 
     create table csamp_provisioning_report (
         oid int8 not null,
+       reportingMetaInfo int8 unique,
+       reportingRoot int8,
        primary key (oid)
     )
 
@@ -103,7 +114,10 @@
        omsName varchar(255),
        estimatedTotalPfib varchar(255),
        targetTotalPfib varchar(255),
-       cSAmpProvisioningReport int8 not null,
+       workingBandType varchar(255),
+       parentEquipmentBandType varchar(255),
+       correspondingWorkingBandId varchar(255),
+       cSAmpProvisioningReport int8,
        primary key (oid)
     )
 
@@ -116,18 +130,9 @@
 
     create table fibers_report (
         oid int8 not null,
-       acct_type int4 not null,
+       reportingMetaInfo int8 unique,
+       reportingRoot int8,
        primary key (oid)
-    )
-
-    create table fibers_report_my_list_of_strings1 (
-        fibersReport int8 not null,
-       myListOfStrings1 varchar(255)
-    )
-
-    create table fibers_report_my_list_of_strings2 (
-        fibersReport int8 not null,
-       myListOfStrings2 varchar(255)
     )
 
     create table fibers_report_item (
@@ -151,12 +156,14 @@
        pmdType varchar(255),
        pmdCoefficient float8,
        pmdMean float8,
-       fibersReport int8 not null,
+       fibersReport int8,
        primary key (oid)
     )
 
     create table och_report (
         oid int8 not null,
+       reportingMetaInfo int8 unique,
+       reportingRoot int8,
        primary key (oid)
     )
 
@@ -165,7 +172,7 @@
        id varchar(255),
        type int4 not null,
        attributes int8 unique,
-       ochReport int8 not null,
+       ochReport int8,
        primary key (oid)
     )
 
@@ -252,10 +259,31 @@
        projectId varchar(255),
        creationDate timetz,
        lastAccessedDate timetz,
-       fibersReport int8 unique,
-       ochReport int8 unique,
        primary key (oid)
     )
+
+    create table url_parameter (
+        oid int8 not null,
+       name varchar(255),
+       value varchar(255),
+       cSAmpProvisioningReport int8,
+       fibersReport int8,
+       ochReport int8,
+       primary key (oid)
+    )
+
+    alter table csamp_provisioning_report 
+        add constraint FK_A18E77C3 
+        foreign key (reportingMetaInfo) 
+        references reporting_meta_info
+
+    alter table csamp_provisioning_report 
+        add constraint csamp_provisioning_report_FK_reportingRoot 
+        foreign key (reportingRoot) 
+        references reporting_root; 
+
+	create index if not exists csamp_provisioning_report_FK_reportingRoot_idx 
+        on csamp_provisioning_report ( reportingRoot );
 
     alter table csamp_provisioning_report_item 
         add constraint csamp_provisioning_report_item_FK_cSAmpProvisioningReport 
@@ -270,21 +298,18 @@
         foreign key (OId) 
         references csamp_provisioning_report_item
 
-    alter table fibers_report_my_list_of_strings1 
-        add constraint fibers_report_my_list_of_strings1_FK_fibersReport 
-        foreign key (fibersReport) 
-        references fibers_report; 
+    alter table fibers_report 
+        add constraint FK_7D15EF10 
+        foreign key (reportingMetaInfo) 
+        references reporting_meta_info
 
-	create index if not exists fibers_report_my_list_of_strings1_FK_fibersReport_idx 
-        on fibers_report_my_list_of_strings1 ( fibersReport );
+    alter table fibers_report 
+        add constraint fibers_report_FK_reportingRoot 
+        foreign key (reportingRoot) 
+        references reporting_root; 
 
-    alter table fibers_report_my_list_of_strings2 
-        add constraint fibers_report_my_list_of_strings2_FK_fibersReport 
-        foreign key (fibersReport) 
-        references fibers_report; 
-
-	create index if not exists fibers_report_my_list_of_strings2_FK_fibersReport_idx 
-        on fibers_report_my_list_of_strings2 ( fibersReport );
+	create index if not exists fibers_report_FK_reportingRoot_idx 
+        on fibers_report ( reportingRoot );
 
     alter table fibers_report_item 
         add constraint fibers_report_item_FK_fibersReport 
@@ -293,6 +318,19 @@
 
 	create index if not exists fibers_report_item_FK_fibersReport_idx 
         on fibers_report_item ( fibersReport );
+
+    alter table och_report 
+        add constraint FK_D9DDF894 
+        foreign key (reportingMetaInfo) 
+        references reporting_meta_info
+
+    alter table och_report 
+        add constraint och_report_FK_reportingRoot 
+        foreign key (reportingRoot) 
+        references reporting_root; 
+
+	create index if not exists och_report_FK_reportingRoot_idx 
+        on och_report ( reportingRoot );
 
     alter table och_report_data 
         add constraint FK_44E486B3 
@@ -315,15 +353,29 @@
 	create index if not exists optical_channels_report_item_failure_reason_ids_FK_opticalChannelsReportItem_idx 
         on optical_channels_report_item_failure_reason_ids ( opticalChannelsReportItem );
 
-    alter table reporting_root 
-        add constraint FK_4F5D32D1 
-        foreign key (fibersReport) 
-        references fibers_report
+    alter table url_parameter 
+        add constraint url_parameter_FK_cSAmpProvisioningReport 
+        foreign key (cSAmpProvisioningReport) 
+        references csamp_provisioning_report; 
 
-    alter table reporting_root 
-        add constraint FK_53F3029B 
+	create index if not exists url_parameter_FK_cSAmpProvisioningReport_idx 
+        on url_parameter ( cSAmpProvisioningReport );
+
+    alter table url_parameter 
+        add constraint url_parameter_FK_fibersReport 
+        foreign key (fibersReport) 
+        references fibers_report; 
+
+	create index if not exists url_parameter_FK_fibersReport_idx 
+        on url_parameter ( fibersReport );
+
+    alter table url_parameter 
+        add constraint url_parameter_FK_ochReport 
         foreign key (ochReport) 
-        references och_report
+        references och_report; 
+
+	create index if not exists url_parameter_FK_ochReport_idx 
+        on url_parameter ( ochReport );
 
     create table hibernate_unique_key (
          next_hi int8 

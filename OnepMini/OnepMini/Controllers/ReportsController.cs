@@ -35,6 +35,155 @@ namespace OnepMini.Controllers
             _configuration = _nHibernateInitializer.GetConfiguration();
         }
 
+
+        // POST: api/Reports/GenerateCSAmpProvisioningReport
+        [HttpPost("GenerateCSAmpProvisioningReport")]
+        public async Task<IActionResult> GenerateCSAmpProvisioningReport(Guid projectId)
+        {
+            CSAmpProvisioningReport report = null;
+            {
+                var assembly = GetType().GetTypeInfo().Assembly;
+                var assemblyName = assembly.GetName().Name;
+                var resourceName = $"{assemblyName}.OrmNhib.DummyReports.dummyCSAmpProvReport.json";
+
+                report = JsonReader.ReadJsonDataFile<CSAmpProvisioningReport>(assembly, resourceName);
+            }
+
+            ReportingRoot reportingRoot = new ReportingRoot()
+            {
+                ProjectId = projectId.ToString(),
+                CreationDate = DateTimeOffset.Now,
+                LastAccessedDate = DateTimeOffset.Now
+            };
+            reportingRoot.CsAmpProvisioningReport.Add(report);
+
+            using var tx = _session.BeginTransaction();
+            try
+            {
+                await _session.SaveOrUpdateAsync(reportingRoot).ConfigureAwait(false);
+
+                await tx.CommitAsync().ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Debugger.Break();
+                Debug.WriteLine(ex);
+
+                await tx.RollbackAsync().ConfigureAwait(false);
+                throw;
+            }
+
+            return Ok();
+        }
+
+
+        // GET: api/Reports/GetCSAmpProvisioningReport
+        [HttpGet("GetCSAmpProvisioningReport")]
+        public async Task<IActionResult> GetCSAmpProvisioningReport(Guid projectId, bool includePowerTable = false, string type = "json", int pageNumber = 0, int pageSize = 0)
+        {
+            var reportingRoot = await _session.Query<ReportingRoot>()
+                .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
+            /*
+                NHibernate:
+                    select
+                        reportingr0_.oid as oid1_10_,
+                        reportingr0_.projectId as projectid2_10_,
+                        reportingr0_.creationDate as creationdate3_10_,
+                        reportingr0_.lastAccessedDate as lastaccesseddate4_10_
+                    from
+                        reporting_root reportingr0_
+                    where
+                        reportingr0_.projectId=:p0 limit 1;
+                    :p0 = 'a71353de-47e8-47dd-9e09-a45a19e220c3' [Type: String (0:0:0)]
+             * 
+             * */
+
+
+            if (reportingRoot == null)
+                return null;
+
+            var requiredParams = new List<UrlParameter>
+            {
+                new UrlParameter { Name= "includePowerTable", Value = $"{includePowerTable}" },
+                new UrlParameter { Name= "type", Value = $"{type}" }
+            };
+
+            CSAmpProvisioningReport cSAmpProvisioningReport = 
+                reportingRoot.CsAmpProvisioningReport.FirstOrDefault(
+                    report => report.Parameters.All(
+                        reportParam => requiredParams.Any(
+                            requireParam => requireParam.Name == reportParam.Name && requireParam.Value == reportParam.Value)
+                        ));
+            /*
+                NHibernate:
+                    SELECT
+                        csampprovi0_.reportingRoot as reportingroot3_1_1_,
+                        csampprovi0_.oid as oid1_1_1_,
+                        csampprovi0_.oid as oid1_1_0_,
+                        csampprovi0_.reportingMetaInfo as reportingmetainfo2_1_0_
+                    FROM
+                        csamp_provisioning_report csampprovi0_
+                    WHERE
+                        csampprovi0_.reportingRoot=:p0;
+                    :p0 = 32768 [Type: Int64 (0:0:0)]
+                NHibernate:
+                    SELECT
+                        parameters0_.cSAmpProvisioningReport as csampprovisioningreport4_11_1_,
+                        parameters0_.oid as oid1_11_1_,
+                        parameters0_.oid as oid1_11_0_,
+                        parameters0_.name as name2_11_0_,
+                        parameters0_.value as value3_11_0_
+                    FROM
+                        url_parameter parameters0_
+                    WHERE
+                        parameters0_.cSAmpProvisioningReport=:p0;
+                    :p0 = 65536 [Type: Int64 (0:0:0)]
+             * 
+             * */
+
+            var csAmpProvOID = cSAmpProvisioningReport.OId;
+
+            // Filtering, Sorting, Pagination should be applied in this order
+
+            var filterColumn = "sitename";
+            var filterType = "like";
+            var filterText = "Site";
+
+            var orderByColumn = "ampdirection";
+            var orderDirection = "asc";
+
+            var sqlQuery =
+                $"select * from csamp_provisioning_report_item data " +
+                $"where csampprovisioningreport = {csAmpProvOID} " +
+                $"and data.{filterColumn} {filterType} \'%{filterText}%\' " + // Filter
+                $"order by {orderByColumn} {orderDirection} " + // Sort
+                $"limit {pageSize} offset {pageSize * (pageNumber - 1)};"; // Paging
+
+            var data = await _session.CreateSQLQuery(sqlQuery)
+                .AddEntity("data", typeof(CSAmpProvisioningReportItem))
+                .SetResultTransformer(Transformers.DistinctRootEntity)
+                .ListAsync<CSAmpProvisioningReportItem>();
+
+            /*
+                NHibernate:
+                    select
+                        *
+                    from
+                        csamp_provisioning_report_item data
+                    where
+                        csampprovisioningreport = 65536
+                        and data.sitename like '%Site%' limit 1 offset 0;
+             * 
+             * */
+
+            cSAmpProvisioningReport.Data = data;
+
+            return Ok(cSAmpProvisioningReport);
+        }
+
+
+#if DONT_COMPILE
+
         // GET: api/Reports/GetFibersReport
         [HttpGet("GetFibersReport")]
         public async Task<IActionResult> GetFibersReport(Guid projectId, int pageNumber = 0, int pageSize = 0)
@@ -384,5 +533,8 @@ namespace OnepMini.Controllers
 
             return NoContent();
         }
+
+#endif
+
     }
 }

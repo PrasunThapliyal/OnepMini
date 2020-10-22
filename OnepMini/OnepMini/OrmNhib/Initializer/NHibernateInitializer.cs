@@ -63,6 +63,11 @@ namespace OnepMini.OrmNhib.Initializer
                         throw;
                     }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{ex}");
+                    throw;
+                }
 
                 try
                 {

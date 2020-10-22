@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "TopologyRestLibrary.V1.Etp.Reports">
+
+  <class name="FibersReport" table="fibers_report" lazy="true" >
+    <id name = "OId" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+
+    <many-to-one name="ReportingMetaInfo" column="reportingMetaInfo" unique="true" cascade="all-delete-orphan" lazy="no-proxy" />
+
+
+
+    <bag name="Parameters" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+        <key column="fibersReport" update="true" foreign-key="url_parameter_FK_fibersReport" ></key>
+        <one-to-many class="UrlParameter"></one-to-many>
+    </bag>
+    <bag name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+        <key column="fibersReport" update="true" foreign-key="fibers_report_item_FK_fibersReport" ></key>
+        <one-to-many class="FibersReportItem"></one-to-many>
+    </bag>
+
+
+
+  </class>
+</hibernate-mapping>
