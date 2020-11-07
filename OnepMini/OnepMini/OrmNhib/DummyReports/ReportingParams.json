@@ -1,0 +1,62 @@
+{
+  "old": {
+    "startRow": 0,
+    "endRow": 100,
+    "rowGroupCols": [],
+    "valueCols": [],
+    "pivotCols": [],
+    "pivotMode": false,
+    "groupKeys": [],
+    "filterModel": {
+      "country": {
+        "values": [ "Afghanistan", "Algeria", "Argentina" ],
+        "filterType": "set"
+      },
+      "sport": {
+        "values": [ "Athletics", "Basketball" ],
+        "filterType": "set"
+      }
+    },
+    "sortModel": [
+      {
+        "colId": "sport",
+        "sort": "desc"
+      },
+      {
+        "colId": "athlete",
+        "sort": "asc"
+      }
+    ]
+  },
+  "new": {
+    "pageSize": 100,
+    "pageNumber": 2,
+    "rowGroupCols - What's this - Remove/TBD": [],
+    "valueCols - What's this - Remove/TBD": [],
+    "pivotCols - What's this - Remove/TBD": [],
+    "pivotMode - What's this - Remove/TBD": false,
+    "groupKeys - TBD": [],
+    "filterModel": [
+      {
+        "column": "country",
+        "values": [ "Afghanistan", "Algeria", "Argentina" ],
+        "filterType": "set"
+      },     
+      {
+        "column": "sport",
+        "values": [ "Athletics", "Basketball" ],
+        "filterType": "set"
+      }
+    ],
+    "sortModel": [
+      {
+        "column": "sport",
+        "sort": "desc"
+      },
+      {
+        "column": "athlete",
+        "sort": "asc"
+      }
+    ]
+  }
+}

@@ -8,6 +8,7 @@ namespace OnepMini.Controllers
     using System.Reflection;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
+    //using Newtonsoft.Json;
     using NHibernate;
     using NHibernate.Criterion;
     using NHibernate.Linq;
@@ -79,8 +80,10 @@ namespace OnepMini.Controllers
 
         // GET: api/Reports/GetCSAmpProvisioningReport
         [HttpGet("GetCSAmpProvisioningReport")]
-        public async Task<IActionResult> GetCSAmpProvisioningReport(Guid projectId, bool includePowerTable = false, string type = "json", int pageNumber = 0, int pageSize = 0)
+        public async Task<IActionResult> GetCSAmpProvisioningReport(Guid projectId, bool includePowerTable = false, string type = "json", string reportingParams = null)
         {
+            var reportingParamsOject = Newtonsoft.Json.JsonConvert.DeserializeObject<ReportingParams>(reportingParams);
+
             var reportingRoot = await _session.Query<ReportingRoot>()
                 .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
             /*
@@ -108,7 +111,7 @@ namespace OnepMini.Controllers
                 new UrlParameter { Name= "type", Value = $"{type}" }
             };
 
-            CSAmpProvisioningReport cSAmpProvisioningReport = 
+            CSAmpProvisioningReport cSAmpProvisioningReport =
                 reportingRoot.CsAmpProvisioningReport.FirstOrDefault(
                     report => report.Parameters.All(
                         reportParam => requiredParams.Any(
@@ -152,6 +155,12 @@ namespace OnepMini.Controllers
             var orderByColumn = "ampdirection";
             var orderDirection = "asc";
 
+            var pageSize = reportingParamsOject.pageSize;
+            var pageNumber = reportingParamsOject.pageNumber;
+
+            pageSize = 2;
+            pageNumber = 1;
+
             var sqlQuery =
                 $"select * from csamp_provisioning_report_item data " +
                 $"where csampprovisioningreport = {csAmpProvOID} " +
@@ -163,6 +172,12 @@ namespace OnepMini.Controllers
                 .AddEntity("data", typeof(CSAmpProvisioningReportItem))
                 .SetResultTransformer(Transformers.DistinctRootEntity)
                 .ListAsync<CSAmpProvisioningReportItem>();
+
+
+            var x = await _session.CreateSQLQuery(
+                "select sitename, count(*) from csamp_provisioning_report_item data where csampprovisioningreport = 65536 group by sitename; ").ListAsync<object>();
+
+            var xString = Newtonsoft.Json.JsonConvert.SerializeObject(x);
 
             /*
                 NHibernate:
@@ -537,4 +552,27 @@ namespace OnepMini.Controllers
 #endif
 
     }
+
+
+    public class ReportingParams
+    {
+        public int pageSize { get; set; }
+        public int pageNumber { get; set; }
+        public List<Filtermodel> filterModel { get; set; }
+        public List<Sortmodel> sortModel { get; set; }
+    }
+
+    public class Filtermodel
+    {
+        public string Column { get; set; }
+        public List<string> Values { get; set; }
+        public string FilterType { get; set; }
+    }
+
+    public class Sortmodel
+    {
+        public string Column { get; set; }
+        public string Sort { get; set; }
+    }
+
 }
