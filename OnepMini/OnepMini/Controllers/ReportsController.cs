@@ -88,14 +88,11 @@ namespace OnepMini.Controllers
             EquipmentReport report =
                 reportingRoot.EquipmentReports.FirstOrDefault();
 
-            //var x = Newtonsoft.Json.JsonConvert.SerializeObject(report, 
-            //    new Newtonsoft.Json.JsonSerializerSettings() 
-            //    { 
-            //        ContractResolver = new CamelCasePropertyNamesContractResolver() 
-            //    });
-        
+            var x = System.Text.Json.JsonSerializer.Serialize<EquipmentReport>(report);
+            var y = System.Text.Json.JsonSerializer.Deserialize<EquipmentReport>(x);
 
-            return Ok(report);
+
+            return Ok(y);
         }
 
 #if DONT_COMPILE
