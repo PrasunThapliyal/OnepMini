@@ -7,7 +7,7 @@
 //
 //-----------------------------------------------------------------------------
 
-namespace TopologyRestLibrary.V1.Etp.Reports
+namespace OnepMini.V1.Etp.Reports
 {
     using System;
     using System.Collections.ObjectModel;
@@ -68,7 +68,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
         private string _ramanGainSetting;
         private string _estimateRamanGain;
         private bool? _isLineAmp;
-        private IDictionary<string, decimal> _estimatedOutputPowerTable;
+        private Dictionary<string, decimal> _estimatedOutputPowerTable;
         private string _pfg;
         private string _oscPfibMode;
         private string _oscPfibTarget;
@@ -98,21 +98,17 @@ namespace TopologyRestLibrary.V1.Etp.Reports
         private string _parentEquipmentBandType;
         private string _correspondingWorkingBandId;
 
-        /// <summary>
+    	/// <summary>
         /// Initializes a new instance of the <see cref="CSAmpProvisioningReportItem"/> class.
         /// </summary>
         public CSAmpProvisioningReportItem()
-        {
+    	{
         }
-
-        [System.Runtime.Serialization.IgnoreDataMember]
-        [JsonIgnore]
-        public virtual long OId { get; set; }
 
 
         /// <summary>productType</summary>
         [JsonProperty("productType", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string ProductType
+        public string ProductType
         {
             get { return _productType; }
             set 
@@ -126,7 +122,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Name</summary>
         [JsonProperty("name", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string Name
+        public string Name
         {
             get { return _name; }
             set 
@@ -140,7 +136,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Tid</summary>
         [JsonProperty("tid", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string Tid
+        public string Tid
         {
             get { return _tid; }
             set 
@@ -154,7 +150,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Id</summary>
         [JsonProperty("id", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string Id
+        public string Id
         {
             get { return _id; }
             set 
@@ -168,7 +164,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Amp Id</summary>
         [JsonProperty("ampId", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string AmpId
+        public string AmpId
         {
             get { return _ampId; }
             set 
@@ -182,7 +178,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Site Name</summary>
         [JsonProperty("siteName", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string SiteName
+        public string SiteName
         {
             get { return _siteName; }
             set 
@@ -196,7 +192,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Amp Direction</summary>
         [JsonProperty("ampDirection", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string AmpDirection
+        public string AmpDirection
         {
             get { return _ampDirection; }
             set 
@@ -210,7 +206,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Amp Order</summary>
         [JsonProperty("ampOrder", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string AmpOrder
+        public string AmpOrder
         {
             get { return _ampOrder; }
             set 
@@ -224,7 +220,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Amp Package</summary>
         [JsonProperty("ampPackage", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string AmpPackage
+        public string AmpPackage
         {
             get { return _ampPackage; }
             set 
@@ -238,7 +234,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Amp Type</summary>
         [JsonProperty("ampType", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string AmpType
+        public string AmpType
         {
             get { return _ampType; }
             set 
@@ -252,7 +248,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Shelf ID</summary>
         [JsonProperty("shelfID", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string ShelfID
+        public string ShelfID
         {
             get { return _shelfID; }
             set 
@@ -266,7 +262,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Slot</summary>
         [JsonProperty("slot", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string Slot
+        public string Slot
         {
             get { return _slot; }
             set 
@@ -280,7 +276,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Port</summary>
         [JsonProperty("port", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string Port
+        public string Port
         {
             get { return _port; }
             set 
@@ -294,7 +290,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Peak Power Mode</summary>
         [JsonProperty("peakPowerMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string PeakPowerMode
+        public string PeakPowerMode
         {
             get { return _peakPowerMode; }
             set 
@@ -308,7 +304,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Target Peak Power (dBm)</summary>
         [JsonProperty("targetPeakPower", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string TargetPeakPower
+        public string TargetPeakPower
         {
             get { return _targetPeakPower; }
             set 
@@ -322,7 +318,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Channel Power Mode</summary>
         [JsonProperty("channelPowerMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string ChannelPowerMode
+        public string ChannelPowerMode
         {
             get { return _channelPowerMode; }
             set 
@@ -336,7 +332,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Target Channel Power (dBm)</summary>
         [JsonProperty("targetChannelPower", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string TargetChannelPower
+        public string TargetChannelPower
         {
             get { return _targetChannelPower; }
             set 
@@ -350,7 +346,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Estiated Peak Power (dBm)</summary>
         [JsonProperty("estimatedPeakPower", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EstimatedPeakPower
+        public string EstimatedPeakPower
         {
             get { return _estimatedPeakPower; }
             set 
@@ -364,7 +360,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Estimated Max Channel Power (dBm)</summary>
         [JsonProperty("estimatedMaxChannelPower", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EstimatedMaxChannelPower
+        public string EstimatedMaxChannelPower
         {
             get { return _estimatedMaxChannelPower; }
             set 
@@ -378,7 +374,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Estimated Min Channel Power (dBm)</summary>
         [JsonProperty("estimatedMinChannelPower", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EstimatedMinChannelPower
+        public string EstimatedMinChannelPower
         {
             get { return _estimatedMinChannelPower; }
             set 
@@ -392,7 +388,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Gain Offset Mode</summary>
         [JsonProperty("gainOffsetMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string GainOffsetMode
+        public string GainOffsetMode
         {
             get { return _gainOffsetMode; }
             set 
@@ -406,7 +402,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Target Gain Offset (dB)</summary>
         [JsonProperty("targetGainOffset", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string TargetGainOffset
+        public string TargetGainOffset
         {
             get { return _targetGainOffset; }
             set 
@@ -420,7 +416,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Gain Mode</summary>
         [JsonProperty("gainMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string GainMode
+        public string GainMode
         {
             get { return _gainMode; }
             set 
@@ -434,7 +430,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Target Gain (dB)</summary>
         [JsonProperty("targetGain", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string TargetGain
+        public string TargetGain
         {
             get { return _targetGain; }
             set 
@@ -448,7 +444,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Estimated Gain (dB)</summary>
         [JsonProperty("estimatedGain", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EstimatedGain
+        public string EstimatedGain
         {
             get { return _estimatedGain; }
             set 
@@ -462,7 +458,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Max Gain At Zero Tilt (dB)</summary>
         [JsonProperty("maxGainAtZeroTilt", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string MaxGainAtZeroTilt
+        public string MaxGainAtZeroTilt
         {
             get { return _maxGainAtZeroTilt; }
             set 
@@ -476,7 +472,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Gain Tilt Mode</summary>
         [JsonProperty("gainTiltMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string GainTiltMode
+        public string GainTiltMode
         {
             get { return _gainTiltMode; }
             set 
@@ -490,7 +486,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Target Gain Tilt (dB)</summary>
         [JsonProperty("targetGainTilt", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string TargetGainTilt
+        public string TargetGainTilt
         {
             get { return _targetGainTilt; }
             set 
@@ -504,7 +500,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Estimated Gain Tilt (dB)</summary>
         [JsonProperty("estimatedGainTilt", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EstimatedGainTilt
+        public string EstimatedGainTilt
         {
             get { return _estimatedGainTilt; }
             set 
@@ -518,7 +514,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Max Total Output Power (dBm)</summary>
         [JsonProperty("maxTotalOutputPower", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string MaxTotalOutputPower
+        public string MaxTotalOutputPower
         {
             get { return _maxTotalOutputPower; }
             set 
@@ -532,7 +528,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Estimated Total Output Power (dBm)</summary>
         [JsonProperty("estimatedTotalOutputPower", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EstimatedTotalOutputPower
+        public string EstimatedTotalOutputPower
         {
             get { return _estimatedTotalOutputPower; }
             set 
@@ -546,7 +542,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Target PFib (dBm)</summary>
         [JsonProperty("targetPfib", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string TargetPfib
+        public string TargetPfib
         {
             get { return _targetPfib; }
             set 
@@ -560,7 +556,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>VOA Mode</summary>
         [JsonProperty("voaMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string VoaMode
+        public string VoaMode
         {
             get { return _voaMode; }
             set 
@@ -574,7 +570,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>VOA Attenuation Mode</summary>
         [JsonProperty("voaAttenuationMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string VoaAttenuationMode
+        public string VoaAttenuationMode
         {
             get { return _voaAttenuationMode; }
             set 
@@ -588,7 +584,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>VOA Attenuation</summary>
         [JsonProperty("voaAttenuation", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string VoaAttenuation
+        public string VoaAttenuation
         {
             get { return _voaAttenuation; }
             set 
@@ -602,7 +598,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Switchable Amp Provisioning Mode</summary>
         [JsonProperty("switchableAmpProvisioningMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string SwitchableAmpProvisioningMode
+        public string SwitchableAmpProvisioningMode
         {
             get { return _switchableAmpProvisioningMode; }
             set 
@@ -616,7 +612,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Switchable Amp Gain Mode</summary>
         [JsonProperty("switchableAmpGainMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string SwitchableAmpGainMode
+        public string SwitchableAmpGainMode
         {
             get { return _switchableAmpGainMode; }
             set 
@@ -630,7 +626,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Switchable Amp Top Offset Mode</summary>
         [JsonProperty("switchableAmpTopOffsetMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string SwitchableAmpTopOffsetMode
+        public string SwitchableAmpTopOffsetMode
         {
             get { return _switchableAmpTopOffsetMode; }
             set 
@@ -644,7 +640,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Switchable Amp Top Offset</summary>
         [JsonProperty("switchableAmpTopOffset", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string SwitchableAmpTopOffset
+        public string SwitchableAmpTopOffset
         {
             get { return _switchableAmpTopOffset; }
             set 
@@ -658,7 +654,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Max Allowed Total Pump Power</summary>
         [JsonProperty("maxAllowedTotalPumpPower", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string MaxAllowedTotalPumpPower
+        public string MaxAllowedTotalPumpPower
         {
             get { return _maxAllowedTotalPumpPower; }
             set 
@@ -672,7 +668,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Target Span Loss</summary>
         [JsonProperty("targetSpanLoss", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string TargetSpanLoss
+        public string TargetSpanLoss
         {
             get { return _targetSpanLoss; }
             set 
@@ -686,7 +682,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Raman Gain Mode</summary>
         [JsonProperty("ramanGainMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string RamanGainMode
+        public string RamanGainMode
         {
             get { return _ramanGainMode; }
             set 
@@ -700,7 +696,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Raman Fiber Type</summary>
         [JsonProperty("ramanFiberType", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string RamanFiberType
+        public string RamanFiberType
         {
             get { return _ramanFiberType; }
             set 
@@ -714,7 +710,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Raman Gain Setting</summary>
         [JsonProperty("ramanGainSetting", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string RamanGainSetting
+        public string RamanGainSetting
         {
             get { return _ramanGainSetting; }
             set 
@@ -728,7 +724,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Estimate Raman Gain</summary>
         [JsonProperty("estimateRamanGain", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EstimateRamanGain
+        public string EstimateRamanGain
         {
             get { return _estimateRamanGain; }
             set 
@@ -742,7 +738,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Is Line Amp</summary>
         [JsonProperty("isLineAmp", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual bool? IsLineAmp
+        public bool? IsLineAmp
         {
             get { return _isLineAmp; }
             set 
@@ -756,7 +752,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>estimatedOutputPowerTable</summary>
         [JsonProperty("estimatedOutputPowerTable", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IDictionary<string, decimal> EstimatedOutputPowerTable
+        public Dictionary<string, decimal> EstimatedOutputPowerTable
         {
             get { return _estimatedOutputPowerTable; }
             set 
@@ -770,7 +766,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>PFG</summary>
         [JsonProperty("pfg", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string Pfg
+        public string Pfg
         {
             get { return _pfg; }
             set 
@@ -784,7 +780,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>OSC Pfib Mode</summary>
         [JsonProperty("oscPfibMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string OscPfibMode
+        public string OscPfibMode
         {
             get { return _oscPfibMode; }
             set 
@@ -798,7 +794,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>OSC Pfib Target</summary>
         [JsonProperty("oscPfibTarget", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string OscPfibTarget
+        public string OscPfibTarget
         {
             get { return _oscPfibTarget; }
             set 
@@ -812,7 +808,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>OSC FEC Mode</summary>
         [JsonProperty("oscFECMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string OscFECMode
+        public string OscFECMode
         {
             get { return _oscFECMode; }
             set 
@@ -826,7 +822,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>OSC FEC</summary>
         [JsonProperty("oscFEC", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string OscFEC
+        public string OscFEC
         {
             get { return _oscFEC; }
             set 
@@ -840,7 +836,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Link Pilot output estimated power</summary>
         [JsonProperty("linkPilotOutputEstimatedPower", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string LinkPilotOutputEstimatedPower
+        public string LinkPilotOutputEstimatedPower
         {
             get { return _linkPilotOutputEstimatedPower; }
             set 
@@ -854,7 +850,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Fiber type mode</summary>
         [JsonProperty("fiberTypeMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string FiberTypeMode
+        public string FiberTypeMode
         {
             get { return _fiberTypeMode; }
             set 
@@ -868,7 +864,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Fiber type</summary>
         [JsonProperty("fiberType", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string FiberType
+        public string FiberType
         {
             get { return _fiberType; }
             set 
@@ -882,7 +878,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>OSC Pfib Estimate</summary>
         [JsonProperty("oscPfibEstimate", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string OscPfibEstimate
+        public string OscPfibEstimate
         {
             get { return _oscPfibEstimate; }
             set 
@@ -896,7 +892,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Ingress Repair Margin mode</summary>
         [JsonProperty("ingressRepairMarginMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string IngressRepairMarginMode
+        public string IngressRepairMarginMode
         {
             get { return _ingressRepairMarginMode; }
             set 
@@ -910,7 +906,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Ingress Repair Margin</summary>
         [JsonProperty("ingressRepairMargin", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string IngressRepairMargin
+        public string IngressRepairMargin
         {
             get { return _ingressRepairMargin; }
             set 
@@ -924,7 +920,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Fiber Type or Label</summary>
         [JsonProperty("fiberTypeOrLabel", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string FiberTypeOrLabel
+        public string FiberTypeOrLabel
         {
             get { return _fiberTypeOrLabel; }
             set 
@@ -938,7 +934,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>EDFA Pfib_a</summary>
         [JsonProperty("edfaPfibA", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EdfaPfibA
+        public string EdfaPfibA
         {
             get { return _edfaPfibA; }
             set 
@@ -952,7 +948,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>EDFA Pfib_b</summary>
         [JsonProperty("edfaPfibB", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EdfaPfibB
+        public string EdfaPfibB
         {
             get { return _edfaPfibB; }
             set 
@@ -966,7 +962,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Raman Pfib_a</summary>
         [JsonProperty("ramanPfibA", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string RamanPfibA
+        public string RamanPfibA
         {
             get { return _ramanPfibA; }
             set 
@@ -980,7 +976,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Raman Pfib_b</summary>
         [JsonProperty("ramanPfibB", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string RamanPfibB
+        public string RamanPfibB
         {
             get { return _ramanPfibB; }
             set 
@@ -994,7 +990,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>EDFA-in FIber Type</summary>
         [JsonProperty("edfaInFiberType", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EdfaInFiberType
+        public string EdfaInFiberType
         {
             get { return _edfaInFiberType; }
             set 
@@ -1008,7 +1004,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Fiber A_eff</summary>
         [JsonProperty("fiberAEff", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string FiberAEff
+        public string FiberAEff
         {
             get { return _fiberAEff; }
             set 
@@ -1022,7 +1018,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Fiber Dispersion Coefficient</summary>
         [JsonProperty("fiberDispersionCoeff", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string FiberDispersionCoeff
+        public string FiberDispersionCoeff
         {
             get { return _fiberDispersionCoeff; }
             set 
@@ -1036,7 +1032,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Fiber Attenuation Coefficient</summary>
         [JsonProperty("fiberAttenuationCoeff", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string FiberAttenuationCoeff
+        public string FiberAttenuationCoeff
         {
             get { return _fiberAttenuationCoeff; }
             set 
@@ -1050,7 +1046,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>OSC Placement mode</summary>
         [JsonProperty("oscPlacementMode", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string OscPlacementMode
+        public string OscPlacementMode
         {
             get { return _oscPlacementMode; }
             set 
@@ -1064,7 +1060,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>OSC SFP</summary>
         [JsonProperty("oscSFP", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string OscSFP
+        public string OscSFP
         {
             get { return _oscSFP; }
             set 
@@ -1078,7 +1074,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>OMS Name</summary>
         [JsonProperty("omsName", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string OmsName
+        public string OmsName
         {
             get { return _omsName; }
             set 
@@ -1092,7 +1088,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Estimated Total Pfib</summary>
         [JsonProperty("estimatedTotalPfib", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string EstimatedTotalPfib
+        public string EstimatedTotalPfib
         {
             get { return _estimatedTotalPfib; }
             set 
@@ -1106,7 +1102,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Target Total Pfib</summary>
         [JsonProperty("targetTotalPfib", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string TargetTotalPfib
+        public string TargetTotalPfib
         {
             get { return _targetTotalPfib; }
             set 
@@ -1120,7 +1116,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>working band of ampTp ex- C-Band/L-Band</summary>
         [JsonProperty("workingBandType", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string WorkingBandType
+        public string WorkingBandType
         {
             get { return _workingBandType; }
             set 
@@ -1134,7 +1130,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>band type of parent equipment</summary>
         [JsonProperty("parentEquipmentBandType", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string ParentEquipmentBandType
+        public string ParentEquipmentBandType
         {
             get { return _parentEquipmentBandType; }
             set 
@@ -1148,7 +1144,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Corresponding working band default id</summary>
         [JsonProperty("correspondingWorkingBandId", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string CorrespondingWorkingBandId
+        public string CorrespondingWorkingBandId
         {
             get { return _correspondingWorkingBandId; }
             set 

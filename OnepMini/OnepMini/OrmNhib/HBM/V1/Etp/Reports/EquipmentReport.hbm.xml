@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
-   assembly = "OnepMini" namespace = "TopologyRestLibrary.V1.Etp.Reports">
+   assembly = "OnepMini" namespace = "OnepMini.V1.Etp.Reports">
 
-  <class name="FibersReport" table="fibers_report" lazy="true" >
+  <class name="EquipmentReport" table="equipment_report" lazy="true" >
     <id name = "OId" column="oid">
       <generator class = "hilo"/>
     </id>
@@ -13,12 +13,12 @@
 
 
     <bag name="Parameters" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
-        <key column="fibersReport" update="true" foreign-key="url_parameter_FK_fibersReport" ></key>
+        <key column="equipmentReport" update="true" foreign-key="url_parameter_FK_equipmentReport" ></key>
         <one-to-many class="UrlParameter"></one-to-many>
     </bag>
     <bag name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
-        <key column="fibersReport" update="true" foreign-key="fibers_report_item_FK_fibersReport" ></key>
-        <one-to-many class="FibersReportItem"></one-to-many>
+        <key column="equipmentReport" update="true" foreign-key="equipment_report_item_FK_equipmentReport" ></key>
+        <one-to-many class="EquipmentReportItem"></one-to-many>
     </bag>
 
 

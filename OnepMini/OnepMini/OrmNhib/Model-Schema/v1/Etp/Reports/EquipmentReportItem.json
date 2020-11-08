@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "EquipmentReportItem",
+  "description": "Describes the change for an equipment",
+  "type": "object",
+  "properties": {
+    "node": {
+      "description": "The node equipment belongs to",
+      "type": "object",
+      "$ref": "../../Common/NodeIdentity.json"
+    },
+    "equipmentSpec": {
+      "description": "Equipment spec.",
+      "type": "object",
+      "$ref": "../../Common/EquipmentSpec.json"
+    },
+    "location": {
+      "description": "Location of the equipment",
+      "type": "object",
+      "$ref": "../../Common/Location.json"
+    },
+    "changeType": {
+      "description": "The type of change",
+      "type": "string",
+      "enum": [
+        "Added",
+        "Removed",
+        "Modified",
+        "Undefined"
+      ],
+      "default": "Undefined"
+    },
+    "id": {
+      "description": "Equipment Id",
+      "type": "string"
+    },
+    "width": {
+      "description": "Equipment width",
+      "type": "number"
+    },
+    "canReslot": {
+      "description": "Can reslot this equipment",
+      "type": "boolean"
+    },
+    "eligibleShelves": {
+      "description": "Eligible Shelves",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eligibleNEs": {
+      "description": "Eligible NEs",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "EligibleNE.json"
+      }
+    },
+    "equipmentGroupKey": {
+      "description": "Unique key for each parent-child(equipment and it's pluggable) equipment",
+      "type": "string"
+    },
+    "planningState": {
+      "description": "Planning state properties",
+      "type": "object",
+      "$ref": "../Common/PlanningState.json"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "equipmentSpec",
+    "location",
+    "changeType"
+  ]
+}

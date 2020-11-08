@@ -23,13 +23,14 @@ namespace OnepMini.OrmNhib.Initializer
                 return _configuration;
             }
 
-            var connectionString = "Host=localhost;Port=5432;Database=reportsmini;Username=postgres;Password=password;";
+            var connectionString = "Host=localhost;Port=5432;Database=reportsmini2;Username=postgres;Password=password;";
             var cfg = new NHibernate.Cfg.Configuration();
             
             cfg.SetProperty(NHibernate.Cfg.Environment.ConnectionString, connectionString);
             cfg.SetProperty(NHibernate.Cfg.Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
             cfg.SetProperty(NHibernate.Cfg.Environment.ConnectionDriver, "OnepMini.OrmNhib.OnepNpgsqlDriver, OnepMini");
             cfg.SetProperty(NHibernate.Cfg.Environment.Dialect, "OnepMini.OrmNhib.OnepPostgresSqlDialect, OnepMini");
+            cfg.SetProperty(NHibernate.Cfg.Environment.Hbm2ddlKeyWords, "auto-quote");
             cfg.SetProperty(NHibernate.Cfg.Environment.BatchSize, "0");
             cfg.SetProperty(NHibernate.Cfg.Environment.ShowSql, "true");
             cfg.SetProperty(NHibernate.Cfg.Environment.FormatSql, "true");

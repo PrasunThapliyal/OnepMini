@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ReportingRoot",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "description": "Project Id. Null indicates that the report is marked for delete",
+      "type": "string"
+    },
+    "creationDate": {
+      "description": "Creation date of this report",
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastAccessedDate": {
+      "description": "Date when this report was last accessed",
+      "type": "string",
+      "format": "date-time"
+    },
+    "equipmentReports": {
+      "description": "EquipmentReport",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "EquipmentReport.json"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "projectId"
+  ]
+}
+

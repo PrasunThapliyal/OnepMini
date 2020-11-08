@@ -9,13 +9,14 @@ namespace OnepMini.Controllers
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     //using Newtonsoft.Json;
+    //using Newtonsoft.Json;
     using NHibernate;
     using NHibernate.Criterion;
     using NHibernate.Linq;
     using NHibernate.Transform;
     using OnepMini.OrmNhib.DummyReports;
     using OnepMini.OrmNhib.Initializer;
-    using TopologyRestLibrary.V1.Etp.Reports;
+    using OnepMini.V1.Etp.Reports;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -36,6 +37,68 @@ namespace OnepMini.Controllers
             _configuration = _nHibernateInitializer.GetConfiguration();
         }
 
+        [HttpPost("GenerateEquipmentReport")]
+        public async Task<IActionResult> GenerateEquipmentReport(Guid projectId)
+        {
+            EquipmentReport report = null;
+            {
+                var assembly = GetType().GetTypeInfo().Assembly;
+                var assemblyName = assembly.GetName().Name;
+                var resourceName = $"{assemblyName}.OrmNhib.DummyReports.dummyEquipmentReport.json";
+
+                report = JsonReader.ReadJsonDataFile<EquipmentReport>(assembly, resourceName);
+            }
+
+            ReportingRoot reportingRoot = new ReportingRoot()
+            {
+                ProjectId = projectId.ToString(),
+                CreationDate = DateTimeOffset.Now,
+                LastAccessedDate = DateTimeOffset.Now
+            };
+            reportingRoot.EquipmentReports.Add(report);
+
+
+
+            using var tx = _session.BeginTransaction();
+            try
+            {
+                await _session.SaveOrUpdateAsync(reportingRoot).ConfigureAwait(false);
+
+                await tx.CommitAsync().ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Debugger.Break();
+                Debug.WriteLine(ex);
+
+                await tx.RollbackAsync().ConfigureAwait(false);
+                throw;
+            }
+
+            return Ok();
+        }
+
+        [HttpGet("GetEquipmentReport")]
+        public async Task<IActionResult> GetEquipmentReport(Guid projectId)
+        {
+
+            var reportingRoot = await _session.Query<ReportingRoot>() 
+                .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
+
+            EquipmentReport report =
+                reportingRoot.EquipmentReports.FirstOrDefault();
+
+            //var x = Newtonsoft.Json.JsonConvert.SerializeObject(report, 
+            //    new Newtonsoft.Json.JsonSerializerSettings() 
+            //    { 
+            //        ContractResolver = new CamelCasePropertyNamesContractResolver() 
+            //    });
+        
+
+            return Ok(report);
+        }
+
+#if DONT_COMPILE
 
         // POST: api/Reports/GenerateCSAmpProvisioningReport
         [HttpPost("GenerateCSAmpProvisioningReport")]
@@ -56,7 +119,7 @@ namespace OnepMini.Controllers
                 CreationDate = DateTimeOffset.Now,
                 LastAccessedDate = DateTimeOffset.Now
             };
-            reportingRoot.CsAmpProvisioningReport.Add(report);
+            reportingRoot.CsAmpProvisioningReports.Add(report);
 
             using var tx = _session.BeginTransaction();
             try
@@ -112,7 +175,7 @@ namespace OnepMini.Controllers
             };
 
             CSAmpProvisioningReport cSAmpProvisioningReport =
-                reportingRoot.CsAmpProvisioningReport.FirstOrDefault(
+                reportingRoot.CsAmpProvisioningReports.FirstOrDefault(
                     report => report.Parameters.All(
                         reportParam => requiredParams.Any(
                             requireParam => requireParam.Name == reportParam.Name && requireParam.Value == reportParam.Value)
@@ -196,8 +259,6 @@ namespace OnepMini.Controllers
             return Ok(cSAmpProvisioningReport);
         }
 
-
-#if DONT_COMPILE
 
         // GET: api/Reports/GetFibersReport
         [HttpGet("GetFibersReport")]

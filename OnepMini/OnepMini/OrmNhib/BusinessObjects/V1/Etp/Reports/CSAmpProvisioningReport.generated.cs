@@ -7,7 +7,7 @@
 //
 //-----------------------------------------------------------------------------
 
-namespace TopologyRestLibrary.V1.Etp.Reports
+namespace OnepMini.V1.Etp.Reports
 {
     using System;
     using System.Collections.ObjectModel;
@@ -22,27 +22,23 @@ namespace TopologyRestLibrary.V1.Etp.Reports
     /// <summary>CSAmpProvisioningReport</summary>
     public partial class CSAmpProvisioningReport
     {
-        private TopologyRestLibrary.V1.Etp.Common.ReportingMetaInfo _reportingMetaInfo;
-        private IList<TopologyRestLibrary.V1.Etp.Reports.UrlParameter> _parameters;
-        private IList<TopologyRestLibrary.V1.Etp.Reports.CSAmpProvisioningReportItem> _data;
+        private OnepMini.V1.Etp.Common.ReportingMetaInfo _reportingMetaInfo;
+        private List<OnepMini.V1.Etp.Reports.UrlParameter> _parameters;
+        private List<OnepMini.V1.Etp.Reports.CSAmpProvisioningReportItem> _data;
 
-        /// <summary>
+    	/// <summary>
         /// Initializes a new instance of the <see cref="CSAmpProvisioningReport"/> class.
         /// </summary>
         public CSAmpProvisioningReport()
-        {
-            _parameters = new List<TopologyRestLibrary.V1.Etp.Reports.UrlParameter>();
-            _data = new List<TopologyRestLibrary.V1.Etp.Reports.CSAmpProvisioningReportItem>();
+    	{
+            _parameters = new List<OnepMini.V1.Etp.Reports.UrlParameter>();
+            _data = new List<OnepMini.V1.Etp.Reports.CSAmpProvisioningReportItem>();
         }
-
-        [System.Runtime.Serialization.IgnoreDataMember]
-        [JsonIgnore]
-        public virtual long OId { get; set; }
 
 
         /// <summary>reportingMetaInfo</summary>
         [JsonProperty("reportingMetaInfo", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual TopologyRestLibrary.V1.Etp.Common.ReportingMetaInfo ReportingMetaInfo
+        public OnepMini.V1.Etp.Common.ReportingMetaInfo ReportingMetaInfo
         {
             get { return _reportingMetaInfo; }
             set 
@@ -56,7 +52,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Stringified list of Url parameters</summary>
         [JsonProperty("parameters", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<TopologyRestLibrary.V1.Etp.Reports.UrlParameter> Parameters
+        public List<OnepMini.V1.Etp.Reports.UrlParameter> Parameters
         {
             get { return _parameters; }
             set 
@@ -70,7 +66,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>CS Amp Provisioning Report</summary>
         [JsonProperty("data", Required = Required.Always)]
-        public virtual IList<TopologyRestLibrary.V1.Etp.Reports.CSAmpProvisioningReportItem> Data
+        public List<OnepMini.V1.Etp.Reports.CSAmpProvisioningReportItem> Data
         {
             get { return _data; }
             set 

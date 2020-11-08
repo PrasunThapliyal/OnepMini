@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "OnepMini.V1.Common">
+
+  <class name="Location" table="location" lazy="true" >
+    <id name = "OId" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+    <property name="MgmtAccess" column="mgmtAccess"  not-null="true"  />
+
+
+
+
+    <bag name="Address" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+        <key column="location" update="true" foreign-key="location_address_FK_location" ></key>
+        <one-to-many class="LocationAddress"></one-to-many>
+    </bag>
+
+
+
+  </class>
+</hibernate-mapping>

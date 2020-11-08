@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ReportingMetaInfo",
+  "description": "Metainfo for reporting APIs",
+  "type": "object",
+  "properties": {
+    "pageSize": {
+      "description": "Number of records in one page of report",
+      "type": "integer"
+    },
+    "pageNumber": {
+      "description": "Page number for this report",
+      "type": "integer"
+    },
+    "totalRecordsInReport": {
+      "description": "The total number of records in this page",
+      "type": "integer"
+    },
+    "totalRecordsInDB": {
+      "description": "The total number of records in the database",
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false
+}

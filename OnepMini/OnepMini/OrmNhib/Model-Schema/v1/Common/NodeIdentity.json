@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "NodeIdentity",
+    "type": "object",
+  "properties": {
+    "clli": {
+      "description": "Common language location identifier.",
+      "type": "string"
+    },
+    "nodeId": {
+      "description": "ROADM node id.",
+      "type": "integer"
+    },
+    "tid": {
+      "description": "Unique NE name.",
+      "type": "string"
+    },
+    "siteName": {
+      "description": "Site Name",
+      "type": "string"
+    },
+    "ncId": {
+      "description": "Network construct Id.",
+      "type": "string"
+    },
+    "productType": {
+      "description": "Product Type, eg 6500",
+      "type": "string"
+    },
+    "siteId": {
+      "description": "Site id",
+      "type": "string"
+    },
+    "siteAddress": {
+      "description": "Site address",
+      "type": "string"
+    }
+  },
+    "additionalProperties": false
+}

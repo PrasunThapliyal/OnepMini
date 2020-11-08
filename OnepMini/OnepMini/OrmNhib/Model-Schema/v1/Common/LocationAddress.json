@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "LocationAddress",
+    "type": "object",
+    "properties": {
+        "key": {
+            "description": "Location attribute type",
+            "type": "string",
+            "enum": [
+                "RACK",
+                "SHELF",
+                "PHYSICAL_SHELF",
+                "SLOT",
+                "SUBSLOT",
+                "SUBSUBSLOT",
+                "PORT",
+                "SUBPORT"
+            ]
+        },
+        "value": {
+            "type": "string"
+        },
+        "pattern": {
+            "description": "Optional regex or delimiter value to parse multi-valued subslot string",
+            "type": "string"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "key", "value"
+    ]
+}

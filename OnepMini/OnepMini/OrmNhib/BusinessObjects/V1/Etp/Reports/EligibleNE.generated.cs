@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// <copyright file="UrlParameter.generated.cs" company="Ciena Corporation"\>
+// <copyright file="EligibleNE.generated.cs" company="Ciena Corporation"\>
 //     Copyright (c) Ciena Corporation. All rights reserved.
 // </copyright\>
 //
@@ -19,17 +19,18 @@ namespace OnepMini.V1.Etp.Reports
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>UrlParameter</summary>
-    public partial class UrlParameter
+    /// <summary>EligibleNE</summary>
+    public partial class EligibleNE
     {
-        private string _name;
-        private string _value;
+        private string _tid;
+        private IList<string> _eligibleShelves;
 
     	/// <summary>
-        /// Initializes a new instance of the <see cref="UrlParameter"/> class.
+        /// Initializes a new instance of the <see cref="EligibleNE"/> class.
         /// </summary>
-        public UrlParameter()
+        public EligibleNE()
     	{
+            _eligibleShelves = new List<string>();
         }
 
         [System.Runtime.Serialization.IgnoreDataMember]
@@ -37,30 +38,30 @@ namespace OnepMini.V1.Etp.Reports
         public virtual long OId { get; set; }
 
 
-        /// <summary>Parameter name.</summary>
-        [JsonProperty("name", Required = Required.Always)]
-        public virtual string Name
+        /// <summary>NE tid</summary>
+        [JsonProperty("tid", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        public virtual string Tid
         {
-            get { return _name; }
+            get { return _tid; }
             set 
             {
-                if (_name != value)
+                if (_tid != value)
                 {
-                    _name = value; 
+                    _tid = value; 
                 }
             }
         }
 
-        /// <summary>Parameter value.</summary>
-        [JsonProperty("value", Required = Required.Always)]
-        public virtual string Value
+        /// <summary>Eligible shelves for NE</summary>
+        [JsonProperty("eligibleShelves", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        public virtual IList<string> EligibleShelves
         {
-            get { return _value; }
+            get { return _eligibleShelves; }
             set 
             {
-                if (_value != value)
+                if (_eligibleShelves != value)
                 {
-                    _value = value; 
+                    _eligibleShelves = value; 
                 }
             }
         }

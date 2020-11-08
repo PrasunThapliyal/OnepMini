@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Planning Phase",
+  "description": "Planning Phase",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "PlanningPhase Identifier",
+      "type": "string"
+    },
+    "name": {
+      "description": "PlanningPhase Name",
+      "type": "string"
+    },
+    "order": {
+      "description": "PlanningPhase Order (baseline:1 , Phase1:2)",      
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "OnepMini.V1.Common">
+
+  <class name="NodeIdentity" table="node_identity" lazy="true" >
+    <id name = "OId" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+    <property name="Clli" column="clli"  />
+    <property name="NodeId" column="nodeId"  />
+    <property name="Tid" column="tid"  />
+    <property name="SiteName" column="siteName"  />
+    <property name="NcId" column="ncId"  />
+    <property name="ProductType" column="productType"  />
+    <property name="SiteId" column="siteId"  />
+    <property name="SiteAddress" column="siteAddress"  />
+
+
+
+
+
+
+  </class>
+</hibernate-mapping>

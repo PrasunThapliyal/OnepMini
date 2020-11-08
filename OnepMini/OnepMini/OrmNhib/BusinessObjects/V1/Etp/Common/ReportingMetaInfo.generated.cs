@@ -7,7 +7,7 @@
 //
 //-----------------------------------------------------------------------------
 
-namespace TopologyRestLibrary.V1.Etp.Common
+namespace OnepMini.V1.Etp.Common
 {
     using System;
     using System.Collections.ObjectModel;
@@ -27,11 +27,11 @@ namespace TopologyRestLibrary.V1.Etp.Common
         private long? _totalRecordsInReport;
         private long? _totalRecordsInDB;
 
-        /// <summary>
+    	/// <summary>
         /// Initializes a new instance of the <see cref="ReportingMetaInfo"/> class.
         /// </summary>
         public ReportingMetaInfo()
-        {
+    	{
         }
 
         [System.Runtime.Serialization.IgnoreDataMember]

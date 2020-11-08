@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "OnepMini.V1.Common">
+
+  <class name="EquipmentSpec" table="equipment_spec" lazy="true" >
+    <id name = "OId" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+    <property name="PartNumber" column="partNumber"  />
+    <property name="Description" column="description"  />
+    <property name="ShortDescription" column="shortDescription"  />
+    <property name="ReleaseMin" column="releaseMin"  />
+    <property name="AidType" column="aidType"  />
+    <property name="GroupId" column="groupId"  />
+    <property name="ModellingStatus" column="modellingStatus"  not-null="true"  />
+    <property name="SerialNumber" column="serialNumber"  />
+    <property name="ManufacturingDate" column="manufacturingDate"  />
+    <property name="Age" column="age"  />
+    <property name="IsExcludedFromDefaultProfile" column="isExcludedFromDefaultProfile"  />
+
+
+
+
+
+
+  </class>
+</hibernate-mapping>

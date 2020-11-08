@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
+   assembly = "OnepMini" namespace = "OnepMini.V1.Etp.Reports">
+
+  <class name="EligibleNE" table="eligible_ne" lazy="true" >
+    <id name = "OId" column="oid">
+      <generator class = "hilo"/>
+    </id>
+
+    <property name="Tid" column="tid"  />
+
+
+
+
+
+    <bag name="EligibleShelves" table="eligible_ne_eligible_shelves" >
+        <key column="eligibleNE" foreign-key="eligible_ne_eligible_shelves_FK_eligibleNE" ></key>
+        <element column="eligibleShelves" />
+    </bag>
+
+
+  </class>
+</hibernate-mapping>

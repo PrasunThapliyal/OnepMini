@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns = "urn:nhibernate-mapping-2.2"
-   assembly = "OnepMini" namespace = "OnepMini.V1.Etp.Reports">
+   assembly = "OnepMini" namespace = "OnepMini.V1.Common">
 
-  <class name="UrlParameter" table="url_parameter" lazy="true" >
+  <class name="LocationAddress" table="location_address" lazy="true" >
     <id name = "OId" column="oid">
       <generator class = "hilo"/>
     </id>
 
-    <property name="Name" column="name"  />
+    <property name="Key" column="key"  not-null="true"  />
     <property name="Value" column="value"  />
+    <property name="Pattern" column="pattern"  />
 
 
 

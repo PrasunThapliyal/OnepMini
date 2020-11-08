@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Eligible NE",
+  "type": "object",
+  "properties": {
+    "tid": {
+      "description": "NE tid",
+      "type": "string"
+    },
+    "eligibleShelves": {
+      "description": "Eligible shelves for NE",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

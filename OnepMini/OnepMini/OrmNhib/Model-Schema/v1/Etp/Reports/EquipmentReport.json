@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "EquipmentReport",
+  "type": "object",
+  "properties": {
+    "reportingMetaInfo": {
+      "type": "object",
+      "$ref": "../Common/ReportingMetaInfo.json"
+    },
+    "parameters": {
+      "description": "Stringified list of Url parameters",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "UrlParameter.json"
+      }
+    },
+    "data": {
+      "description": "List of equipment",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "EquipmentReportItem.json"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "data"
+  ]
+}

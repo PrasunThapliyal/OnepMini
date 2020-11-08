@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "EquipmentSpec",
+  "type": "object",
+  "properties": {
+    "partNumber": {
+      "description": "Equipment PEC code.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Equipment description.",
+      "type": "string"
+    },
+    "shortDescription": {
+      "description": "Equipment short description.",
+      "type": "string"
+    },
+    "releaseMin": {
+      "description": "Release Min.",
+      "type": "string"
+    },
+    "aidType": {
+      "description": "Equipment AID type.",
+      "type": "string"
+    },
+    "groupId": {
+      "description": "Equipments grouped based on this Id",
+      "type": "string"
+    },
+    "modellingStatus": {
+      "description": "Modelling status of equipment",
+      "type": "object",
+      "$ref": "ModellingStatus.json"
+    },
+    "serialNumber": {
+      "description": "Serial Number",
+      "type": "string"
+    },
+    "manufacturingDate": {
+      "description": "Manufacturing Date",
+      "type": "string"
+    },
+    "age": {
+      "description": "Age",
+      "type": "string"
+    },
+    "isExcludedFromDefaultProfile": {
+      "description": "IsExcludedFromDefaultProfile",
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "partNumber"
+  ]
+}

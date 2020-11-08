@@ -1,0 +1,314 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CSAmpProvisioningReportItem",
+  "description": "CS Amp Provisioning Report Item",
+  "type": "object",
+  "properties": {
+    "productType": {
+      "description": "productType",
+      "type": "string"
+    },
+    "name": {
+      "description": "Name",
+      "type": "string"
+    },
+    "tid": {
+      "description": "Tid",
+      "type": "string"
+    },
+    "id": {
+      "description": "Id",
+      "type": "string"
+    },
+    "ampId": {
+      "description": "Amp Id",
+      "type": "string"
+    },
+    "siteName": {
+      "description": "Site Name",
+      "type": "string"
+    },
+    "ampDirection": {
+      "description": "Amp Direction",
+      "type": "string"
+    },
+    "ampOrder": {
+      "description": "Amp Order",
+      "type": "string"
+    },
+    "ampPackage": {
+      "description": "Amp Package",
+      "type": "string"
+    },
+    "ampType": {
+      "description": "Amp Type",
+      "type": "string"
+    },
+    "shelfID": {
+      "description": "Shelf ID",
+      "type": "string"
+    },
+    "slot": {
+      "description": "Slot",
+      "type": "string"
+    },
+    "port": {
+      "description": "Port",
+      "type": "string"
+    },
+    "peakPowerMode": {
+      "description": "Peak Power Mode",
+      "type": "string"
+    },
+    "targetPeakPower": {
+      "description": "Target Peak Power (dBm)",
+      "type": "string"
+    },
+    "channelPowerMode": {
+      "description": "Channel Power Mode",
+      "type": "string"
+    },
+    "targetChannelPower": {
+      "description": "Target Channel Power (dBm)",
+      "type": "string"
+    },
+    "estimatedPeakPower": {
+      "description": "Estiated Peak Power (dBm)",
+      "type": "string"
+    },
+    "estimatedMaxChannelPower": {
+      "description": "Estimated Max Channel Power (dBm)",
+      "type": "string"
+    },
+    "estimatedMinChannelPower": {
+      "description": "Estimated Min Channel Power (dBm)",
+      "type": "string"
+    },
+    "gainOffsetMode": {
+      "description": "Gain Offset Mode",
+      "type": "string"
+    },
+    "targetGainOffset": {
+      "description": "Target Gain Offset (dB)",
+      "type": "string"
+    },
+    "gainMode": {
+      "description": "Gain Mode",
+      "type": "string"
+    },
+    "targetGain": {
+      "description": "Target Gain (dB)",
+      "type": "string"
+    },
+    "estimatedGain": {
+      "description": "Estimated Gain (dB)",
+      "type": "string"
+    },
+    "maxGainAtZeroTilt": {
+      "description": "Max Gain At Zero Tilt (dB)",
+      "type": "string"
+    },
+    "gainTiltMode": {
+      "description": "Gain Tilt Mode",
+      "type": "string"
+    },
+    "targetGainTilt": {
+      "description": "Target Gain Tilt (dB)",
+      "type": "string"
+    },
+    "estimatedGainTilt": {
+      "description": "Estimated Gain Tilt (dB)",
+      "type": "string"
+    },
+    "maxTotalOutputPower": {
+      "description": "Max Total Output Power (dBm)",
+      "type": "string"
+    },
+    "estimatedTotalOutputPower": {
+      "description": "Estimated Total Output Power (dBm)",
+      "type": "string"
+    },
+    "targetPfib": {
+      "description": "Target PFib (dBm)",
+      "type": "string"
+    },
+    "voaMode": {
+      "description": "VOA Mode",
+      "type": "string"
+    },
+    "voaAttenuationMode": {
+      "description": "VOA Attenuation Mode",
+      "type": "string"
+    },
+    "voaAttenuation": {
+      "description": "VOA Attenuation",
+      "type": "string"
+    },
+    "switchableAmpProvisioningMode": {
+      "description": "Switchable Amp Provisioning Mode",
+      "type": "string"
+    },
+    "switchableAmpGainMode": {
+      "description": "Switchable Amp Gain Mode",
+      "type": "string"
+    },
+    "switchableAmpTopOffsetMode": {
+      "description": "Switchable Amp Top Offset Mode",
+      "type": "string"
+    },
+    "switchableAmpTopOffset": {
+      "description": "Switchable Amp Top Offset",
+      "type": "string"
+    },
+    "maxAllowedTotalPumpPower": {
+      "description": "Max Allowed Total Pump Power",
+      "type": "string"
+    },
+    "targetSpanLoss": {
+      "description": "Target Span Loss",
+      "type": "string"
+    },
+    "ramanGainMode": {
+      "description": "Raman Gain Mode",
+      "type": "string"
+    },
+    "ramanFiberType": {
+      "description": "Raman Fiber Type",
+      "type": "string"
+    },
+    "ramanGainSetting": {
+      "description": "Raman Gain Setting",
+      "type": "string"
+    },
+    "estimateRamanGain": {
+      "description": "Estimate Raman Gain",
+      "type": "string"
+    },
+    "isLineAmp": {
+      "description": "Is Line Amp",
+      "type": "boolean"
+    },
+    "estimatedOutputPowerTable": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "pfg": {
+      "description": "PFG",
+      "type": "string"
+    },
+    "oscPfibMode": {
+      "description": "OSC Pfib Mode",
+      "type": "string"
+    },
+    "oscPfibTarget": {
+      "description": "OSC Pfib Target",
+      "type": "string"
+    },
+    "oscFECMode": {
+      "description": "OSC FEC Mode",
+      "type": "string"
+    },
+    "oscFEC": {
+      "description": "OSC FEC",
+      "type": "string"
+    },
+    "linkPilotOutputEstimatedPower": {
+      "description": "Link Pilot output estimated power",
+      "type": "string"
+    },
+    "fiberTypeMode": {
+      "description": "Fiber type mode",
+      "type": "string"
+    },
+    "fiberType": {
+      "description": "Fiber type",
+      "type": "string"
+    },
+    "oscPfibEstimate": {
+      "description": "OSC Pfib Estimate",
+      "type": "string"
+    },
+    "ingressRepairMarginMode": {
+      "description": "Ingress Repair Margin mode",
+      "type": "string"
+    },
+    "ingressRepairMargin": {
+      "description": "Ingress Repair Margin",
+      "type": "string"
+    },
+    "fiberTypeOrLabel": {
+      "description": "Fiber Type or Label",
+      "type": "string"
+    },
+    "edfaPfibA": {
+      "description": "EDFA Pfib_a",
+      "type": "string"
+    },
+    "edfaPfibB": {
+      "description": "EDFA Pfib_b",
+      "type": "string"
+    },
+    "ramanPfibA": {
+      "description": "Raman Pfib_a",
+      "type": "string"
+    },
+    "ramanPfibB": {
+      "description": "Raman Pfib_b",
+      "type": "string"
+    },
+    "edfaInFiberType": {
+      "description": "EDFA-in FIber Type",
+      "type": "string"
+    },
+    "fiberAEff": {
+      "description": "Fiber A_eff",
+      "type": "string"
+    },
+    "fiberDispersionCoeff": {
+      "description": "Fiber Dispersion Coefficient",
+      "type": "string"
+    },
+    "fiberAttenuationCoeff": {
+      "description": "Fiber Attenuation Coefficient",
+      "type": "string"
+    },
+    "oscPlacementMode": {
+      "description": "OSC Placement mode",
+      "type": "string"
+    },
+    "oscSFP": {
+      "description": "OSC SFP",
+      "type": "string"
+    },
+    "omsName": {
+      "description": "OMS Name",
+      "type": "string"
+    },
+    "estimatedTotalPfib": {
+      "description": "Estimated Total Pfib",
+      "type": "string"
+    },
+    "targetTotalPfib": {
+      "description": "Target Total Pfib",
+      "type": "string"
+    },
+    "workingBandType": {
+      "description": "working band of ampTp ex- C-Band/L-Band",
+      "type": "string"
+    },
+    "parentEquipmentBandType": {
+      "description": "band type of parent equipment",
+      "type": "string"
+    },
+    "correspondingWorkingBandId": {
+      "description": "Corresponding working band default id",
+      "type": "string"
+    }
+  },
+    "additionalProperties": false
+  }

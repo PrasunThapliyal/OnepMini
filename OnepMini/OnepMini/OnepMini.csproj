@@ -6,7 +6,23 @@
 
   <ItemGroup>
     <Content Remove="OrmNhib\DummyReports\dummyCSAmpProvReport.json" />
+    <Content Remove="OrmNhib\DummyReports\dummyEquipmentReport.json" />
     <Content Remove="OrmNhib\DummyReports\dummyOchReport.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Common\EquipmentSpec.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Common\Location.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Common\LocationAddress.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Common\ModellingStatus.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Common\NodeIdentity.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Common\PlanningPhase.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Common\PlanningState.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Common\ReportingMetaInfo.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Reports\CSAmpProvisioningReport.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Reports\CSAmpProvisioningReportItem.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Reports\EligibleNE.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Reports\EquipmentReport.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Reports\EquipmentReportItem.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Reports\ReportingRoot.json" />
+    <Content Remove="OrmNhib\Model-Schema\v1\Etp\Reports\UrlParameter.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,31 +33,51 @@
     <None Remove="OrmNhib\HBM\OnepValidationresult.hbm.xml" />
     <None Remove="OrmNhib\HBM\OnepValidochpath.hbm.xml" />
     <None Remove="OrmNhib\HBM\ReportingInfra.hbm.xml" />
+    <None Remove="OrmNhib\HBM\V1\Common\EquipmentSpec.hbm.xml" />
+    <None Remove="OrmNhib\HBM\V1\Common\Location.hbm.xml" />
+    <None Remove="OrmNhib\HBM\V1\Common\LocationAddress.hbm.xml" />
+    <None Remove="OrmNhib\HBM\V1\Common\NodeIdentity.hbm.xml" />
+    <None Remove="OrmNhib\HBM\V1\Etp\Common\PlanningPhase.hbm.xml" />
+    <None Remove="OrmNhib\HBM\V1\Etp\Common\PlanningState.hbm.xml" />
     <None Remove="OrmNhib\HBM\V1\Etp\Common\ReportingMetaInfo.hbm.xml" />
-    <None Remove="OrmNhib\HBM\V1\Etp\Reports\CSAmpProvisioningReport.hbm.xml" />
-    <None Remove="OrmNhib\HBM\V1\Etp\Reports\CSAmpProvisioningReportItem.hbm.xml" />
-    <None Remove="OrmNhib\HBM\V1\Etp\Reports\FibersReport.hbm.xml" />
-    <None Remove="OrmNhib\HBM\V1\Etp\Reports\FibersReportItem.hbm.xml" />
-    <None Remove="OrmNhib\HBM\V1\Etp\Reports\OchReport.hbm.xml" />
-    <None Remove="OrmNhib\HBM\V1\Etp\Reports\OchReportData.hbm.xml" />
-    <None Remove="OrmNhib\HBM\V1\Etp\Reports\OpticalChannelsReportItem.hbm.xml" />
+    <None Remove="OrmNhib\HBM\V1\Etp\Reports\EligibleNE.hbm.xml" />
+    <None Remove="OrmNhib\HBM\V1\Etp\Reports\EquipmentReport.hbm.xml" />
+    <None Remove="OrmNhib\HBM\V1\Etp\Reports\EquipmentReportItem.hbm.xml" />
     <None Remove="OrmNhib\HBM\V1\Etp\Reports\ReportingRoot.hbm.xml" />
     <None Remove="OrmNhib\HBM\V1\Etp\Reports\UrlParameter.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="OrmNhib\DummyReports\dummyCSAmpProvReport.json" />
+    <EmbeddedResource Include="OrmNhib\DummyReports\dummyEquipmentReport.json" />
     <EmbeddedResource Include="OrmNhib\DummyReports\dummyOchReport.json" />
+    <EmbeddedResource Include="OrmNhib\HBM\V1\Common\EquipmentSpec.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\V1\Common\Location.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\V1\Common\LocationAddress.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\V1\Common\NodeIdentity.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Common\PlanningPhase.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Common\PlanningState.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Common\ReportingMetaInfo.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\CSAmpProvisioningReport.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\CSAmpProvisioningReportItem.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\FibersReport.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\FibersReportItem.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\OchReport.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\OchReportData.hbm.xml" />
-    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\OpticalChannelsReportItem.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\EligibleNE.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\EquipmentReport.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\EquipmentReportItem.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\ReportingRoot.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\V1\Etp\Reports\UrlParameter.hbm.xml" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Common\EquipmentSpec.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Common\Location.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Common\LocationAddress.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Common\ModellingStatus.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Common\NodeIdentity.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Common\PlanningPhase.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Common\PlanningState.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Common\ReportingMetaInfo.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Reports\CSAmpProvisioningReport.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Reports\CSAmpProvisioningReportItem.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Reports\EligibleNE.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Reports\EquipmentReport.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Reports\EquipmentReportItem.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Reports\ReportingRoot.json" />
+    <EmbeddedResource Include="OrmNhib\Model-Schema\v1\Etp\Reports\UrlParameter.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,5 +93,9 @@
     <Folder Include="OrmNhib\NHibernateConfig\" />
   </ItemGroup>
 
+
+  <Target Name="GeneratePocos">
+    <Exec Condition="'$(OS)' == 'Windows_NT'" Command="dotnet etppoco jsonSchemaFolder=OrmNhib\Model-Schema cSharpClassFolder=OrmNhib\BusinessObjects baseNameSpace=OnepMini hbmOutFolder=OrmNhib\HBM" />
+  </Target>
 
 </Project>

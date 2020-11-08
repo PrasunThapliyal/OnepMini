@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// <copyright file="OchReport.generated.cs" company="Ciena Corporation"\>
+// <copyright file="EquipmentReport.generated.cs" company="Ciena Corporation"\>
 //     Copyright (c) Ciena Corporation. All rights reserved.
 // </copyright\>
 //
@@ -7,7 +7,7 @@
 //
 //-----------------------------------------------------------------------------
 
-namespace TopologyRestLibrary.V1.Etp.Reports
+namespace OnepMini.V1.Etp.Reports
 {
     using System;
     using System.Collections.ObjectModel;
@@ -19,20 +19,20 @@ namespace TopologyRestLibrary.V1.Etp.Reports
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>OchReport</summary>
-    public partial class OchReport
+    /// <summary>EquipmentReport</summary>
+    public partial class EquipmentReport
     {
-        private TopologyRestLibrary.V1.Etp.Common.ReportingMetaInfo _reportingMetaInfo;
-        private IList<TopologyRestLibrary.V1.Etp.Reports.UrlParameter> _parameters;
-        private IList<TopologyRestLibrary.V1.Etp.Reports.OchReportData> _data;
+        private OnepMini.V1.Etp.Common.ReportingMetaInfo _reportingMetaInfo;
+        private IList<OnepMini.V1.Etp.Reports.UrlParameter> _parameters;
+        private IList<OnepMini.V1.Etp.Reports.EquipmentReportItem> _data;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OchReport"/> class.
+    	/// <summary>
+        /// Initializes a new instance of the <see cref="EquipmentReport"/> class.
         /// </summary>
-        public OchReport()
-        {
-            _parameters = new List<TopologyRestLibrary.V1.Etp.Reports.UrlParameter>();
-            _data = new List<TopologyRestLibrary.V1.Etp.Reports.OchReportData>();
+        public EquipmentReport()
+    	{
+            _parameters = new List<OnepMini.V1.Etp.Reports.UrlParameter>();
+            _data = new List<OnepMini.V1.Etp.Reports.EquipmentReportItem>();
         }
 
         [System.Runtime.Serialization.IgnoreDataMember]
@@ -42,7 +42,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>reportingMetaInfo</summary>
         [JsonProperty("reportingMetaInfo", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual TopologyRestLibrary.V1.Etp.Common.ReportingMetaInfo ReportingMetaInfo
+        public virtual OnepMini.V1.Etp.Common.ReportingMetaInfo ReportingMetaInfo
         {
             get { return _reportingMetaInfo; }
             set 
@@ -56,7 +56,7 @@ namespace TopologyRestLibrary.V1.Etp.Reports
 
         /// <summary>Stringified list of Url parameters</summary>
         [JsonProperty("parameters", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<TopologyRestLibrary.V1.Etp.Reports.UrlParameter> Parameters
+        public virtual IList<OnepMini.V1.Etp.Reports.UrlParameter> Parameters
         {
             get { return _parameters; }
             set 
@@ -68,9 +68,9 @@ namespace TopologyRestLibrary.V1.Etp.Reports
             }
         }
 
-        /// <summary>data</summary>
+        /// <summary>List of equipment</summary>
         [JsonProperty("data", Required = Required.Always)]
-        public virtual IList<TopologyRestLibrary.V1.Etp.Reports.OchReportData> Data
+        public virtual IList<OnepMini.V1.Etp.Reports.EquipmentReportItem> Data
         {
             get { return _data; }
             set 

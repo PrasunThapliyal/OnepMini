@@ -7,7 +7,7 @@
 //
 //-----------------------------------------------------------------------------
 
-namespace TopologyRestLibrary.V1.Etp.Reports
+namespace OnepMini.V1.Etp.Reports
 {
     using System;
     using System.Collections.ObjectModel;
@@ -25,18 +25,14 @@ namespace TopologyRestLibrary.V1.Etp.Reports
         private string _projectId;
         private DateTimeOffset? _creationDate;
         private DateTimeOffset? _lastAccessedDate;
-        private IList<TopologyRestLibrary.V1.Etp.Reports.FibersReport> _fibersReport;
-        private IList<TopologyRestLibrary.V1.Etp.Reports.OchReport> _ochReport;
-        private IList<TopologyRestLibrary.V1.Etp.Reports.CSAmpProvisioningReport> _csAmpProvisioningReport;
+        private IList<OnepMini.V1.Etp.Reports.EquipmentReport> _equipmentReports;
 
-        /// <summary>
+    	/// <summary>
         /// Initializes a new instance of the <see cref="ReportingRoot"/> class.
         /// </summary>
         public ReportingRoot()
-        {
-            _fibersReport = new List<TopologyRestLibrary.V1.Etp.Reports.FibersReport>();
-            _ochReport = new List<TopologyRestLibrary.V1.Etp.Reports.OchReport>();
-            _csAmpProvisioningReport = new List<TopologyRestLibrary.V1.Etp.Reports.CSAmpProvisioningReport>();
+    	{
+            _equipmentReports = new List<OnepMini.V1.Etp.Reports.EquipmentReport>();
         }
 
         [System.Runtime.Serialization.IgnoreDataMember]
@@ -86,44 +82,16 @@ namespace TopologyRestLibrary.V1.Etp.Reports
             }
         }
 
-        /// <summary>FibersReport</summary>
-        [JsonProperty("fibersReport", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<TopologyRestLibrary.V1.Etp.Reports.FibersReport> FibersReport
+        /// <summary>EquipmentReport</summary>
+        [JsonProperty("equipmentReports", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        public virtual IList<OnepMini.V1.Etp.Reports.EquipmentReport> EquipmentReports
         {
-            get { return _fibersReport; }
+            get { return _equipmentReports; }
             set 
             {
-                if (_fibersReport != value)
+                if (_equipmentReports != value)
                 {
-                    _fibersReport = value; 
-                }
-            }
-        }
-
-        /// <summary>OchReport</summary>
-        [JsonProperty("ochReport", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<TopologyRestLibrary.V1.Etp.Reports.OchReport> OchReport
-        {
-            get { return _ochReport; }
-            set 
-            {
-                if (_ochReport != value)
-                {
-                    _ochReport = value; 
-                }
-            }
-        }
-
-        /// <summary>CSAmpProvisioningReport</summary>
-        [JsonProperty("csAmpProvisioningReport", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<TopologyRestLibrary.V1.Etp.Reports.CSAmpProvisioningReport> CsAmpProvisioningReport
-        {
-            get { return _csAmpProvisioningReport; }
-            set 
-            {
-                if (_csAmpProvisioningReport != value)
-                {
-                    _csAmpProvisioningReport = value; 
+                    _equipmentReports = value; 
                 }
             }
         }

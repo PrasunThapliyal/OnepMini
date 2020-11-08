@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "UrlParameter",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "Parameter name.",
+      "type": "string"
+    },
+    "value": {
+      "description": "Parameter value.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "value"
+  ]
+}

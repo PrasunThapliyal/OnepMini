@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Planning State",
+  "description": "Planning State",
+  "type": "object",
+  "properties": {
+    "planningStatus": {
+      "description": "Planning State",
+      "type": "string"
+    },
+    "planningSource": {
+      "description": "Planning Source",
+      "type": "string"
+    },
+    "planningTimestamp": {
+      "description": "Planning Timestamp",
+      "type": "string"
+    },
+    "planningPhase": {
+      "description": "Planning Phase",
+      "type": "object",
+      "$ref": "PlanningPhase.json"
+    }
+  },
+  "additionalProperties": false
+}
