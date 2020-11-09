@@ -12,10 +12,10 @@
 
 
 
-    <bag name="Address" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+    <set name="Address" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
         <key column="location" update="true" foreign-key="location_address_FK_location" ></key>
         <one-to-many class="LocationAddress"></one-to-many>
-    </bag>
+    </set>
 
 
 

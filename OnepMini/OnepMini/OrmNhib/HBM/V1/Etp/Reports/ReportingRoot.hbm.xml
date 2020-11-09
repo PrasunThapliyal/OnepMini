@@ -14,10 +14,10 @@
 
 
 
-    <bag name="EquipmentReports" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+    <set name="EquipmentReports" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
         <key column="reportingRoot" update="true" foreign-key="equipment_report_FK_reportingRoot" ></key>
         <one-to-many class="EquipmentReport"></one-to-many>
-    </bag>
+    </set>
 
 
 

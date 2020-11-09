@@ -25,7 +25,7 @@ namespace OnepMini.V1.Etp.Reports
         private string _projectId;
         private DateTimeOffset? _creationDate;
         private DateTimeOffset? _lastAccessedDate;
-        private IList<OnepMini.V1.Etp.Reports.EquipmentReport> _equipmentReports;
+        private ICollection<OnepMini.V1.Etp.Reports.EquipmentReport> _equipmentReports;
 
     	/// <summary>
         /// Initializes a new instance of the <see cref="ReportingRoot"/> class.
@@ -84,7 +84,7 @@ namespace OnepMini.V1.Etp.Reports
 
         /// <summary>EquipmentReport</summary>
         [JsonProperty("equipmentReports", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<OnepMini.V1.Etp.Reports.EquipmentReport> EquipmentReports
+        public virtual ICollection<OnepMini.V1.Etp.Reports.EquipmentReport> EquipmentReports
         {
             get { return _equipmentReports; }
             set 

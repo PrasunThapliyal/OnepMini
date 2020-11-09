@@ -21,16 +21,16 @@
 
 
 
-    <bag name="EligibleNEs" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+    <set name="EligibleNEs" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
         <key column="equipmentReportItem" update="true" foreign-key="eligible_ne_FK_equipmentReportItem" ></key>
         <one-to-many class="EligibleNE"></one-to-many>
-    </bag>
+    </set>
 
 
-    <bag name="EligibleShelves" table="equipment_report_item_eligible_shelves" >
+    <set name="EligibleShelves" table="equipment_report_item_eligible_shelves" >
         <key column="equipmentReportItem" foreign-key="equipment_report_item_eligible_shelves_FK_equipmentReportItem" ></key>
         <element column="eligibleShelves" />
-    </bag>
+    </set>
 
 
   </class>

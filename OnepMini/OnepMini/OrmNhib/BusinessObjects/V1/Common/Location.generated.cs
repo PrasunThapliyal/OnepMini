@@ -23,7 +23,7 @@ namespace OnepMini.V1.Common
     public partial class Location
     {
         private MgmtAccessTypes _mgmtAccess;
-        private IList<OnepMini.V1.Common.LocationAddress> _address;
+        private ICollection<OnepMini.V1.Common.LocationAddress> _address;
 
     	/// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
@@ -67,7 +67,7 @@ namespace OnepMini.V1.Common
 
         /// <summary>List of attributes to describe a Location</summary>
         [JsonProperty("address", Required = Required.Always)]
-        public virtual IList<OnepMini.V1.Common.LocationAddress> Address
+        public virtual ICollection<OnepMini.V1.Common.LocationAddress> Address
         {
             get { return _address; }
             set 

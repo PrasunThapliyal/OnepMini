@@ -79,20 +79,132 @@ namespace OnepMini.Controllers
         }
 
         [HttpGet("GetEquipmentReport")]
-        public async Task<IActionResult> GetEquipmentReport(Guid projectId)
+        public async Task<IActionResult> GetEquipmentReport_LINQ_SUBQUERY(Guid projectId)
         {
+            // You need 'set' instead of 'bag' in HBM to do this, and 'ICollection' instead of 'IList' in .cs
 
+            var subQuery = await _session.Query<EquipmentReport>()
+                .Where(p => p.Parameters.Count >= 0)
+                .FetchMany(p => p.Data)
+                .Skip(0).Take(50)
+                .ToListAsync();
+
+
+            var report = await _session.Query<EquipmentReport>()
+                .FetchMany(p => p.Data)
+                .Where(x => subQuery.Contains(x))
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.EquipmentSpec)
+
+                .FetchMany(p => p.Data)
+                //.ThenFetchMany(q => q.EligibleNEs.Where(ne => ne.Tid == "NE4")) // Where clause wont work in NH
+                .ThenFetchMany(q => q.EligibleNEs)
+                .ThenFetch(r => r.EligibleShelves)
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.Location)
+                .ThenFetch(r => r.Address)
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.Node)
+
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.PlanningState)
+                .ThenFetch(r => r.PlanningPhase)
+
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.EligibleShelves)
+
+                .ToListAsync();
+
+            report[0].ReportingMetaInfo = new V1.Etp.Common.ReportingMetaInfo
+            {
+                TotalRecordsInReport = report[0].Data.Count
+            };
+
+            return Ok(report.FirstOrDefault());
+        }
+
+        [HttpGet("GetEquipmentReport_EagerLoadAllChildCollections")]
+        public async Task<IActionResult> GetEquipmentReport_EagerLoadAllChildCollections(Guid projectId)
+        {
+            var reportingRoot = await _session.Query<ReportingRoot>()
+                .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
+
+            // You need 'set' instead of 'bag' in HBM to do this, and 'ICollection' instead of 'IList' in .cs
+
+            var report = await _session.Query<EquipmentReport>()
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.EquipmentSpec)
+                
+                .FetchMany(p => p.Data)
+                .ThenFetchMany(q => q.EligibleNEs)
+                .ThenFetch(r => r.EligibleShelves)
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.Location)
+                .ThenFetch(r => r.Address)
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.Node)
+
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.PlanningState)
+                .ThenFetch(r => r.PlanningPhase)
+
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.EligibleShelves)
+
+                .Skip(0).Take(50)
+                .ToListAsync();
+
+            return Ok(report.FirstOrDefault());
+        }
+
+        [HttpGet("GetEquipmentReport_SQL_Working")]
+        public async Task<IActionResult> GetEquipmentReport_SQL_Working(Guid projectId)
+        {
             var reportingRoot = await _session.Query<ReportingRoot>() 
                 .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
 
             EquipmentReport report =
                 reportingRoot.EquipmentReports.FirstOrDefault();
 
+            var sqlQuery = $"select * from equipment_report_item data where equipmentreport = {report.OId} limit 50 offset 0";
+
+            var data = await _session.CreateSQLQuery(sqlQuery)
+                .AddEntity("data", typeof(EquipmentReportItem))
+                .ListAsync<EquipmentReportItem>().ConfigureAwait(false);
+
+            sqlQuery =
+                $"select count(*) from equipment_report_item data " +
+                $"where equipmentreport = {report.OId} " +
+                ";";
+
+            var countFilteredData = (long)(_session.CreateSQLQuery(sqlQuery).UniqueResult());
+
+            report.Data = data;
+            report.ReportingMetaInfo = new OnepMini.V1.Etp.Common.ReportingMetaInfo
+            {
+                TotalRecordsInDB = countFilteredData,
+                TotalRecordsInReport = data?.Count,
+                PageNumber = 1,
+                PageSize = 50
+            };
+
+            var sw = Stopwatch.StartNew();
+
             var x = System.Text.Json.JsonSerializer.Serialize<EquipmentReport>(report);
             var y = System.Text.Json.JsonSerializer.Deserialize<EquipmentReport>(x);
 
+            Console.WriteLine($"UnProxy took {sw.ElapsedMilliseconds} ms");
 
-            return Ok(y);
+            return Ok(report);
         }
 
 #if DONT_COMPILE

@@ -29,8 +29,8 @@ namespace OnepMini.V1.Etp.Reports
         private string _id;
         private decimal? _width;
         private bool? _canReslot;
-        private IList<string> _eligibleShelves;
-        private IList<OnepMini.V1.Etp.Reports.EligibleNE> _eligibleNEs;
+        private ICollection<string> _eligibleShelves;
+        private ICollection<OnepMini.V1.Etp.Reports.EligibleNE> _eligibleNEs;
         private string _equipmentGroupKey;
         private OnepMini.V1.Etp.Common.PlanningState _planningState;
 
@@ -167,7 +167,7 @@ namespace OnepMini.V1.Etp.Reports
 
         /// <summary>Eligible Shelves</summary>
         [JsonProperty("eligibleShelves", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<string> EligibleShelves
+        public virtual ICollection<string> EligibleShelves
         {
             get { return _eligibleShelves; }
             set 
@@ -181,7 +181,7 @@ namespace OnepMini.V1.Etp.Reports
 
         /// <summary>Eligible NEs</summary>
         [JsonProperty("eligibleNEs", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<OnepMini.V1.Etp.Reports.EligibleNE> EligibleNEs
+        public virtual ICollection<OnepMini.V1.Etp.Reports.EligibleNE> EligibleNEs
         {
             get { return _eligibleNEs; }
             set 

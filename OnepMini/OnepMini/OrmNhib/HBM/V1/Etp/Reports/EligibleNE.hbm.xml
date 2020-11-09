@@ -13,10 +13,10 @@
 
 
 
-    <bag name="EligibleShelves" table="eligible_ne_eligible_shelves" >
+    <set name="EligibleShelves" table="eligible_ne_eligible_shelves" >
         <key column="eligibleNE" foreign-key="eligible_ne_eligible_shelves_FK_eligibleNE" ></key>
         <element column="eligibleShelves" />
-    </bag>
+    </set>
 
 
   </class>

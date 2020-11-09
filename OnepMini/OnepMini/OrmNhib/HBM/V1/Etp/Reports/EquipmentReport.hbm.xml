@@ -12,14 +12,14 @@
 
 
 
-    <bag name="Parameters" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+    <set name="Parameters" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
         <key column="equipmentReport" update="true" foreign-key="url_parameter_FK_equipmentReport" ></key>
         <one-to-many class="UrlParameter"></one-to-many>
-    </bag>
-    <bag name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
+    </set>
+    <set name="Data" lazy="true" cascade="all-delete-orphan" inverse="false" fetch="select">
         <key column="equipmentReport" update="true" foreign-key="equipment_report_item_FK_equipmentReport" ></key>
         <one-to-many class="EquipmentReportItem"></one-to-many>
-    </bag>
+    </set>
 
 
 

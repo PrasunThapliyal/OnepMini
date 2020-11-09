@@ -23,7 +23,7 @@ namespace OnepMini.V1.Etp.Reports
     public partial class EligibleNE
     {
         private string _tid;
-        private IList<string> _eligibleShelves;
+        private ICollection<string> _eligibleShelves;
 
     	/// <summary>
         /// Initializes a new instance of the <see cref="EligibleNE"/> class.
@@ -54,7 +54,7 @@ namespace OnepMini.V1.Etp.Reports
 
         /// <summary>Eligible shelves for NE</summary>
         [JsonProperty("eligibleShelves", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<string> EligibleShelves
+        public virtual ICollection<string> EligibleShelves
         {
             get { return _eligibleShelves; }
             set 

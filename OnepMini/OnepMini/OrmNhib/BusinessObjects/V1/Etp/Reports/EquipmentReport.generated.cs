@@ -23,8 +23,8 @@ namespace OnepMini.V1.Etp.Reports
     public partial class EquipmentReport
     {
         private OnepMini.V1.Etp.Common.ReportingMetaInfo _reportingMetaInfo;
-        private IList<OnepMini.V1.Etp.Reports.UrlParameter> _parameters;
-        private IList<OnepMini.V1.Etp.Reports.EquipmentReportItem> _data;
+        private ICollection<OnepMini.V1.Etp.Reports.UrlParameter> _parameters;
+        private ICollection<OnepMini.V1.Etp.Reports.EquipmentReportItem> _data;
 
     	/// <summary>
         /// Initializes a new instance of the <see cref="EquipmentReport"/> class.
@@ -56,7 +56,7 @@ namespace OnepMini.V1.Etp.Reports
 
         /// <summary>Stringified list of Url parameters</summary>
         [JsonProperty("parameters", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public virtual IList<OnepMini.V1.Etp.Reports.UrlParameter> Parameters
+        public virtual ICollection<OnepMini.V1.Etp.Reports.UrlParameter> Parameters
         {
             get { return _parameters; }
             set 
@@ -70,7 +70,7 @@ namespace OnepMini.V1.Etp.Reports
 
         /// <summary>List of equipment</summary>
         [JsonProperty("data", Required = Required.Always)]
-        public virtual IList<OnepMini.V1.Etp.Reports.EquipmentReportItem> Data
+        public virtual ICollection<OnepMini.V1.Etp.Reports.EquipmentReportItem> Data
         {
             get { return _data; }
             set 
