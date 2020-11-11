@@ -7,6 +7,7 @@
   <ItemGroup>
     <Content Remove="OrmNhib\DummyReports\dummyCSAmpProvReport.json" />
     <Content Remove="OrmNhib\DummyReports\dummyEquipmentReport.json" />
+    <Content Remove="OrmNhib\DummyReports\dummyMCPExport_EquipmentReport.json" />
     <Content Remove="OrmNhib\DummyReports\dummyOchReport.json" />
     <Content Remove="OrmNhib\Model-Schema\v1\Common\EquipmentSpec.json" />
     <Content Remove="OrmNhib\Model-Schema\v1\Common\Location.json" />
@@ -50,6 +51,7 @@
   <ItemGroup>
     <EmbeddedResource Include="OrmNhib\DummyReports\dummyCSAmpProvReport.json" />
     <EmbeddedResource Include="OrmNhib\DummyReports\dummyEquipmentReport.json" />
+    <EmbeddedResource Include="OrmNhib\DummyReports\dummyMCPExport_EquipmentReport.json" />
     <EmbeddedResource Include="OrmNhib\DummyReports\dummyOchReport.json" />
     <EmbeddedResource Include="OrmNhib\HBM\V1\Common\EquipmentSpec.hbm.xml" />
     <EmbeddedResource Include="OrmNhib\HBM\V1\Common\Location.hbm.xml" />

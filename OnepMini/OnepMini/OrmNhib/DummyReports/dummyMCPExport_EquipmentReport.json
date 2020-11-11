@@ -1,0 +1,1581 @@
+{
+  "data": [
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK830AA",
+        "description": "SRA C-BAND MODULE (SINGLE LINE RAMAN AMPLIFIER, RLS)",
+        "aidType": "SRA",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "3"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291916083131284",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK504QB",
+        "description": "COMPACT FIBER INTERCONNECT MODULE TYPE 2 (CFIM2)",
+        "aidType": "CFIM",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "71"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291791529080084",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK805FA",
+        "description": "PIM 35A (BREAKERED POWER INPUT MODULE)",
+        "aidType": "PWR",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "61"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291774349241812",
+      "width": 0.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK852AA",
+        "description": "RLA 32X1 C-BAND 1X SFP MODULE (ROADM WITH LINE AMPLIFIER, RLS)",
+        "aidType": "RLA",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "3"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291568190807583",
+      "width": 2.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK807FA",
+        "description": "SHELF FAN MODULE",
+        "aidType": "FAN",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "51"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291551010930168",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK807FA",
+        "description": "SHELF FAN MODULE",
+        "aidType": "FAN",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "52"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291538126037831",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK807FA",
+        "description": "SHELF FAN MODULE",
+        "aidType": "FAN",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "51"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291525241108819",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK803FA",
+        "description": "6500-R4 8-SLOT SHELF ASSEMBLY",
+        "aidType": "SHELF",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTMSIMP0001"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291512356236688",
+      "width": 0.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK830AA",
+        "description": "SRA C-BAND MODULE (SINGLE LINE RAMAN AMPLIFIER, RLS)",
+        "aidType": "SRA",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "1"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291413571928210",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK805MA",
+        "description": "ACCESS PANEL (6500-R4)",
+        "aidType": "AP",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "40"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291396392094613",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK805FA",
+        "description": "PIM 35A (BREAKERED POWER INPUT MODULE)",
+        "aidType": "PWR",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "61"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291383507209739",
+      "width": 0.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK807FA",
+        "description": "SHELF FAN MODULE",
+        "aidType": "FAN",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "52"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291370622299402",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK850DA",
+        "description": "DLE C-BAND 2X SFP MODULE (DUAL LINE EQUALIZER, RLS)",
+        "aidType": "DLE",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "5"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291138694059987",
+      "width": 2.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK803FA",
+        "description": "6500-R4 8-SLOT SHELF ASSEMBLY",
+        "aidType": "SHELF",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTMSIMP0001"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291121514196420",
+      "width": 0.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK805FA",
+        "description": "PIM 35A (BREAKERED POWER INPUT MODULE)",
+        "aidType": "PWR",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "62"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "291108629306971",
+      "width": 0.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK504QB",
+        "description": "COMPACT FIBER INTERCONNECT MODULE TYPE 2 (CFIM2)",
+        "aidType": "CFIM",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "71"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290988370170329",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK805FA",
+        "description": "PIM 35A (BREAKERED POWER INPUT MODULE)",
+        "aidType": "PWR",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "62"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290971190306678",
+      "width": 0.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK830AA",
+        "description": "SRA C-BAND MODULE (SINGLE LINE RAMAN AMPLIFIER, RLS)",
+        "aidType": "SRA",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "1"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290872406066497",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK803FA",
+        "description": "6500-R4 8-SLOT SHELF ASSEMBLY",
+        "aidType": "SHELF",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTMSIMP0001"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290855226245080",
+      "width": 0.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK830AA",
+        "description": "SRA C-BAND MODULE (SINGLE LINE RAMAN AMPLIFIER, RLS)",
+        "aidType": "SRA",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "1"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290756441982228",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK807FA",
+        "description": "SHELF FAN MODULE",
+        "aidType": "FAN",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "51"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290739262086336",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK852AA",
+        "description": "RLA 32X1 C-BAND 1X SFP MODULE (ROADM WITH LINE AMPLIFIER, RLS)",
+        "aidType": "RLA",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "3"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290533103655017",
+      "width": 2.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK805MA",
+        "description": "ACCESS PANEL (6500-R4)",
+        "aidType": "AP",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "40"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290515923820495",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK810FA",
+        "description": "CTM (CONTROL AND TIMING MODULE, RLS)",
+        "aidType": "CTM",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "41"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290503038918088",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK805MA",
+        "description": "ACCESS PANEL (6500-R4)",
+        "aidType": "AP",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "40"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "290490153977454",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK843BA",
+        "description": "CCMD 8X24 C-BAND MODULE (8-DEGREE 24-CHANNEL COLORLESS MUX/DEMUX, RLS)",
+        "aidType": "CCMD8X24",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "5"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "289828728999907",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK843BA",
+        "description": "CCMD 8X24 C-BAND MODULE (8-DEGREE 24-CHANNEL COLORLESS MUX/DEMUX, RLS)",
+        "aidType": "CCMD8X24",
+        "modellingStatus": "Full"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "5"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "289163009082145",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK805FA",
+        "description": "PIM 35A (BREAKERED POWER INPUT MODULE)",
+        "aidType": "PWR",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "61"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "289145829232426",
+      "width": 0.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK805FA",
+        "description": "PIM 35A (BREAKERED POWER INPUT MODULE)",
+        "aidType": "PWR",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "62"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "289132944332693",
+      "width": 0.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "EAST",
+        "siteName": "EAST",
+        "ncId": "45ac78bf-3d48-32ac-920f-4e7fb08d55c5",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK810FA",
+        "description": "CTM (CONTROL AND TIMING MODULE, RLS)",
+        "aidType": "CTM",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "41"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "289120059412835",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "EAST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "WEST",
+        "siteName": "WEST",
+        "ncId": "83c9f569-2281-3f59-871b-13dfddb3af91",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK810FA",
+        "description": "CTM (CONTROL AND TIMING MODULE, RLS)",
+        "aidType": "CTM",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "41"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "289107174536854",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "WEST",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    },
+    {
+      "node": {
+        "tid": "CENTRAL",
+        "siteName": "CENTRAL",
+        "ncId": "1e5b1273-f11e-31d4-9fc4-03c56e7acee9",
+        "productType": "RLS"
+      },
+      "equipmentSpec": {
+        "partNumber": "NTK807FA",
+        "description": "SHELF FAN MODULE",
+        "aidType": "FAN",
+        "modellingStatus": "Full",
+        "serialNumber": "NNTM01S1MSER"
+      },
+      "location": {
+        "mgmtAccess": "TL1_ACCESS",
+        "address": [
+          {
+            "key": "SHELF",
+            "value": "1"
+          },
+          {
+            "key": "SLOT",
+            "value": "52"
+          }
+        ]
+      },
+      "changeType": "Undefined",
+      "id": "289094289642422",
+      "width": 1.0,
+      "canReslot": false,
+      "eligibleShelves": [ "1" ],
+      "eligibleNEs": [
+        {
+          "tid": "CENTRAL",
+          "eligibleShelves": [ "1" ]
+        }
+      ],
+      "equipmentGroupKey": "",
+      "planningState": {
+        "planningStatus": "Deployed",
+        "planningSource": "Network",
+        "planningTimestamp": "2020-11-06T00:00:00.000000+00:00",
+        "planningPhase": {
+          "id": "7499790319617080",
+          "name": "Baseline",
+          "order": "1"
+        }
+      }
+    }
+  ]
+}

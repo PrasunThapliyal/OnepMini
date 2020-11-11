@@ -16,6 +16,8 @@ namespace OnepMini.Controllers
     using NHibernate.Transform;
     using OnepMini.OrmNhib.DummyReports;
     using OnepMini.OrmNhib.Initializer;
+    using OnepMini.V1.Common;
+    using OnepMini.V1.Etp.Common;
     using OnepMini.V1.Etp.Reports;
 
     [Route("api/[controller]")]
@@ -37,48 +39,367 @@ namespace OnepMini.Controllers
             _configuration = _nHibernateInitializer.GetConfiguration();
         }
 
-        [HttpPost("GenerateEquipmentReport")]
-        public async Task<IActionResult> GenerateEquipmentReport(Guid projectId)
+        [HttpGet("GetEquipmentReport_Working_ImproveEfficiency")]
+        public async Task<IActionResult> GetEquipmentReport_Working_ImproveEfficiency(Guid projectId)
         {
-            EquipmentReport report = null;
-            {
-                var assembly = GetType().GetTypeInfo().Assembly;
-                var assemblyName = assembly.GetName().Name;
-                var resourceName = $"{assemblyName}.OrmNhib.DummyReports.dummyEquipmentReport.json";
+            // TBD: You need 'set' instead of 'bag' in HBM to do this, and 'ICollection' instead of 'IList' in .cs
 
-                report = JsonReader.ReadJsonDataFile<EquipmentReport>(assembly, resourceName);
-            }
-
-            ReportingRoot reportingRoot = new ReportingRoot()
-            {
-                ProjectId = projectId.ToString(),
-                CreationDate = DateTimeOffset.Now,
-                LastAccessedDate = DateTimeOffset.Now
-            };
-            reportingRoot.EquipmentReports.Add(report);
-
-
-
-            using var tx = _session.BeginTransaction();
             try
             {
-                await _session.SaveOrUpdateAsync(reportingRoot).ConfigureAwait(false);
+                var data = await _session.CreateSQLQuery(
+                    "select * from equipment_report_item e0 inner join equipment_spec es1 on e0.equipmentSpec = es1.oid and es1.partNumber = 'NTK554BA' left outer join equipment_report er on e0.equipmentReport = 196608;")
+                    //"select * from equipment_report er left outer join equipment_report_item e0 on e0.equipmentReport = er.oid and er.oid = 196608 inner join equipment_spec es1 on e0.equipmentSpec = es1.oid and es1.partNumber = 'NTK554BA';")
+                    .AddEntity("e0", typeof(EquipmentReportItem))
+                    .ListAsync<EquipmentReportItem>();
 
-                await tx.CommitAsync().ConfigureAwait(false);
+                var reports = await _session.Query<EquipmentReport>()
+                    .Where(p => p.OId == 196608)
+                    .ToListAsync<EquipmentReport>();
+
+                var report = reports.FirstOrDefault();
+                report.Data = data;
+                report.ReportingMetaInfo = new V1.Etp.Common.ReportingMetaInfo
+                {
+                    TotalRecordsInReport = report.Data.Count
+                };
+
+                return Ok(report);
             }
             catch (Exception ex)
             {
-                Debugger.Break();
-                Debug.WriteLine(ex);
-
-                await tx.RollbackAsync().ConfigureAwait(false);
-                throw;
+                Console.WriteLine($"{ex}");
             }
+
+            //var subQuery = await _session.Query<EquipmentReportItem>()
+            //    .Where(r => r.EquipmentSpec.PartNumber == "NTK554BA").ToListAsync();
+
+            //var reports = _session.Query<EquipmentReport>()
+            //    .FetchMany(p => subQuery)
+            //    .Where(p => p.Parameters.Count >= 0)
+            //    .Skip(0).Take(50)
+            //    .ToFuture<EquipmentReport>();
+
+            //_session.Query<EquipmentSpec>()
+            //    .Where(p => p.PartNumber == "NTK554BA")
+            //    .ToFutureValue();
+
+            //_session.Query<EquipmentReportItem>().Fetch(p => p.EquipmentSpec).ToFuture();
+            //_session.Query<EquipmentReportItem>().Fetch(p => p.EligibleNEs).ToFuture();
+            //_session.Query<EquipmentReportItem>().FetchMany(p => p.EligibleNEs).ThenFetch(q => q.EligibleShelves).ToFuture();
+            //_session.Query<EquipmentReportItem>().Fetch(p => p.EligibleShelves).ToFuture();
+            //_session.Query<EquipmentReportItem>().Fetch(p => p.Location).ThenFetch(q => q.Address).ToFuture();
+            //_session.Query<EquipmentReportItem>().Fetch(p => p.Node).ToFuture();
+            //_session.Query<EquipmentReportItem>().Fetch(p => p.PlanningState).ThenFetch(q => q.PlanningPhase).ToFuture();
+
+            //var report = reports.FirstOrDefault();
+            //report.ReportingMetaInfo = new V1.Etp.Common.ReportingMetaInfo
+            //{
+            //    TotalRecordsInReport = report.Data.Count
+            //};
+
+            await Task.Delay(0);
 
             return Ok();
         }
 
-        [HttpGet("GetEquipmentReport")]
+        [HttpGet("GetEquipmentReport_UsingFutures")]
+        public async Task<IActionResult> GetEquipmentReport_UsingFutures(Guid projectId)
+        {
+            // Works quite well ..
+
+            // TBD: You need 'set' instead of 'bag' in HBM to do this, and 'ICollection' instead of 'IList' in .cs
+
+            var reports = _session.Query<EquipmentReport>()
+                .Where(p => p.Parameters.Count >= 0)
+                .FetchMany(p => p.Data)
+                .Skip(0).Take(50)
+                .ToFuture<EquipmentReport>();
+
+            _session.Query<EquipmentReportItem>().Fetch(p => p.EquipmentSpec).ToFuture();
+            _session.Query<EquipmentReportItem>().Fetch(p => p.EligibleNEs).ToFuture();
+            _session.Query<EquipmentReportItem>().FetchMany(p => p.EligibleNEs).ThenFetch(q => q.EligibleShelves).ToFuture();
+            _session.Query<EquipmentReportItem>().Fetch(p => p.EligibleShelves).ToFuture();
+            _session.Query<EquipmentReportItem>().Fetch(p => p.Location).ThenFetch(q => q.Address).ToFuture();
+            _session.Query<EquipmentReportItem>().Fetch(p => p.Node).ToFuture();
+            _session.Query<EquipmentReportItem>().Fetch(p => p.PlanningState).ThenFetch(q => q.PlanningPhase).ToFuture();
+
+            var report = reports.FirstOrDefault();
+            report.ReportingMetaInfo = new V1.Etp.Common.ReportingMetaInfo
+            {
+                TotalRecordsInReport = report.Data.Count
+            };
+
+            await Task.Delay(0);
+
+            return Ok(report);
+        }
+
+        [HttpGet("GetEquipmentReport_SQL_FullJoins")]
+        public async Task<IActionResult> GetEquipmentReport_SQL_FullJoins(Guid projectId)
+        {
+            // This is giving me 175 rows of data, as expected
+            // But there are some more queries when un-proxying / serializing
+
+            var reportingRoot = await _session.Query<ReportingRoot>()
+                .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
+
+            EquipmentReport report =
+                reportingRoot.EquipmentReports.FirstOrDefault();
+
+            var sqlQuery =
+"    select * " +
+"    from " +
+"        equipment_report equipmentr0_ " +
+"    inner join " +
+"        equipment_report_item data1_ " +
+"            on (equipmentr0_.oid = data1_.equipmentReport and data1_.equipmentgroupkey = 'Site7_NE7_1_1') " +
+"    inner join " +
+"        equipment_spec equipments2_ " +
+"            on data1_.equipmentSpec = equipments2_.oid " +
+"    inner join " +
+"        eligible_ne eligiblene3_ " +
+"            on data1_.oid = eligiblene3_.equipmentReportItem " +
+"    inner join " +
+"        eligible_ne_eligible_shelves eligiblesh4_ " +
+"            on eligiblene3_.oid = eligiblesh4_.eligibleNE " +
+"    inner join " +
+"        location location5_ " +
+"            on data1_.location = location5_.oid " +
+"    inner join " +
+"        location_address address6_ " +
+"            on location5_.oid = address6_.location " +
+"    inner join " +
+"        node_identity nodeidenti7_ " +
+"            on data1_.node = nodeidenti7_.oid " +
+"    inner join " +
+"        planning_state planningst8_ " +
+"            on data1_.planningState = planningst8_.oid " +
+"    inner join " +
+"        planning_phase planningph9_ " +
+"            on planningst8_.planningPhase = planningph9_.oid " +
+"    inner join " +
+"        equipment_report_item_eligible_shelves eligiblesh10_ " +
+"            on data1_.oid = eligiblesh10_.equipmentReportItem " +
+"   ; "
+            ;
+
+            var equipmentr0_ = await _session.CreateSQLQuery(sqlQuery)
+                .AddEntity("equipmentr0_", typeof(EquipmentReport))
+                //.AddEntity("data1_", typeof(EquipmentReportItem))
+                //.AddEntity("equipments2_", typeof(EquipmentSpec))
+                //.AddEntity("eligiblene3_", typeof(EligibleNE))
+                ////.AddEntity("eligiblesh4_", typeof(Eli))
+                //.AddEntity("location5_", typeof(Location))
+                //.AddEntity("address6_", typeof(LocationAddress))
+                //.AddEntity("nodeidenti7_", typeof(NodeIdentity))
+                //.AddEntity("planningst8_", typeof(PlanningState))
+                //.AddEntity("planningph9_", typeof(PlanningPhase))
+                ////.AddEntity("eligiblesh10_", typeof(LocationAddress))
+                .ListAsync<EquipmentReport>().ConfigureAwait(false);
+
+            equipmentr0_[0].ReportingMetaInfo = new V1.Etp.Common.ReportingMetaInfo
+            {
+                TotalRecordsInReport = equipmentr0_[0].Data.Count
+            };
+
+            var sw = Stopwatch.StartNew();
+
+            var x = System.Text.Json.JsonSerializer.Serialize<EquipmentReport>(equipmentr0_[0]);
+            var y = System.Text.Json.JsonSerializer.Deserialize<EquipmentReport>(x);
+
+            Console.WriteLine($"UnProxy took {sw.ElapsedMilliseconds} ms");
+
+            return Ok(y);
+        }
+
+        [HttpGet("GetEquipmentReport_SQLWorking_FullJoins")]
+        public async Task<IActionResult> GetEquipmentReport_SQLWorking_FullJoins(Guid projectId)
+        {
+            // This is giving me 175 rows of data, as expected
+
+            var reportingRoot = await _session.Query<ReportingRoot>()
+                .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
+
+            EquipmentReport report =
+                reportingRoot.EquipmentReports.FirstOrDefault();
+
+            var sqlQuery =
+"    select * " +
+"    from " +
+"        equipment_report equipmentr0_ " +
+"    left outer join " +
+"        equipment_report_item data1_ " +
+"            on equipmentr0_.oid = data1_.equipmentReport " +
+"    left outer join " +
+"        equipment_spec equipments2_ " +
+"            on data1_.equipmentSpec = equipments2_.oid " +
+"    left outer join " +
+"        eligible_ne eligiblene3_ " +
+"            on data1_.oid = eligiblene3_.equipmentReportItem " +
+"    left outer join " +
+"        eligible_ne_eligible_shelves eligiblesh4_ " +
+"            on eligiblene3_.oid = eligiblesh4_.eligibleNE " +
+"    left outer join " +
+"        location location5_ " +
+"            on data1_.location = location5_.oid " +
+"    left outer join " +
+"        location_address address6_ " +
+"            on location5_.oid = address6_.location " +
+"    left outer join " +
+"        node_identity nodeidenti7_ " +
+"            on data1_.node = nodeidenti7_.oid " +
+"    left outer join " +
+"        planning_state planningst8_ " +
+"            on data1_.planningState = planningst8_.oid " +
+"    left outer join " +
+"        planning_phase planningph9_ " +
+"            on planningst8_.planningPhase = planningph9_.oid " +
+"    left outer join " +
+"        equipment_report_item_eligible_shelves eligiblesh10_ " +
+"            on data1_.oid = eligiblesh10_.equipmentReportItem " +
+"   ; "
+            ;
+
+            var equipmentr0_ = await _session.CreateSQLQuery(sqlQuery)
+                .AddEntity("equipmentr0_", typeof(EquipmentReport))
+                .ListAsync<EquipmentReport>().ConfigureAwait(false);
+
+            var sw = Stopwatch.StartNew();
+
+            var x = System.Text.Json.JsonSerializer.Serialize<EquipmentReport>(equipmentr0_[0]);
+            var y = System.Text.Json.JsonSerializer.Deserialize<EquipmentReport>(x);
+
+            Console.WriteLine($"UnProxy took {sw.ElapsedMilliseconds} ms");
+
+            return Ok(y);
+        }
+
+        [HttpGet("GetEquipmentReport_LINQ")]
+        public async Task<IActionResult> GetEquipmentReport_LINQ(Guid projectId)
+        {
+            var reportingRoot = await _session.Query<ReportingRoot>()
+                .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
+
+            // You need 'set' instead of 'bag' in HBM to do this, and 'ICollection' instead of 'IList' in .cs
+
+            var report = await _session.Query<EquipmentReport>()
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.EquipmentSpec)
+
+                .FetchMany(p => p.Data)
+                .ThenFetchMany(q => q.EligibleNEs)
+                .ThenFetch(r => r.EligibleShelves)
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.Location)
+                .ThenFetch(r => r.Address)
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.Node)
+
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.PlanningState)
+                .ThenFetch(r => r.PlanningPhase)
+
+
+                .FetchMany(p => p.Data)
+                .ThenFetch(q => q.EligibleShelves)
+
+                //.Skip(0).Take(50)
+                .ToListAsync();
+
+            return Ok(report.FirstOrDefault());
+        }
+
+        [HttpGet("GetEquipmentReport_WrongSQL")]
+        public async Task<IActionResult> GetEquipmentReport_WrongSQL(Guid projectId)
+        {
+            // I copied the SQL from console of the _LINQ_SUBQUERY example
+            // but it produces 68K rows whereas there are only 175 EquipmentReportItem rows
+            // Perhaps, its the cartesian product due to too many joins
+            // In _LINQ_SUBQUERY, I guess NH handles duplicates because of 'set' usage
+            // so it returns the correct 175 count
+
+            var reportingRoot = await _session.Query<ReportingRoot>()
+                .FirstOrDefaultAsync(p => p.ProjectId == projectId.ToString()).ConfigureAwait(false);
+
+            EquipmentReport report =
+                reportingRoot.EquipmentReports.FirstOrDefault();
+
+            var sqlQuery =
+"    select * " +
+"    from " +
+"        equipment_report equipmentr0_ " +
+"    left outer join " +
+"        equipment_report_item data1_ " +
+"            on equipmentr0_.oid = data1_.equipmentReport " +
+"    left outer join " +
+"        equipment_report_item data2_ " +
+"            on equipmentr0_.oid = data2_.equipmentReport " +
+"    left outer join " +
+"        equipment_spec equipments3_ " +
+"            on data2_.equipmentSpec = equipments3_.oid " +
+"    left outer join " +
+"        eligible_ne eligiblene4_ " +
+"            on data2_.oid = eligiblene4_.equipmentReportItem " +
+"    left outer join " +
+"        eligible_ne_eligible_shelves eligiblesh5_ " +
+"            on eligiblene4_.oid = eligiblesh5_.eligibleNE " +
+"    left outer join " +
+"        location location6_ " +
+"            on data2_.location = location6_.oid " +
+"    left outer join " +
+"        location_address address7_ " +
+"            on location6_.oid = address7_.location " +
+"    left outer join " +
+"        node_identity nodeidenti8_ " +
+"            on data2_.node = nodeidenti8_.oid " +
+"    left outer join " +
+"        planning_state planningst9_ " +
+"            on data2_.planningState = planningst9_.oid " +
+"    left outer join " +
+"        planning_phase planningph10_ " +
+"            on planningst9_.planningPhase = planningph10_.oid " +
+"    left outer join " +
+"        equipment_report_item_eligible_shelves eligiblesh11_ " +
+"            on data2_.oid = eligiblesh11_.equipmentReportItem " +
+"    where " +
+"        equipmentr0_.oid in ( 196608 )" +
+"                ; "
+            ;
+
+            var data = await _session.CreateSQLQuery(sqlQuery)
+                .AddEntity("data1_", typeof(EquipmentReportItem))
+                .ListAsync<EquipmentReportItem>().ConfigureAwait(false);
+
+            var countSqlQuery =
+                $"select count(*) from equipment_report_item data " +
+                $"where equipmentreport = {report.OId} " +
+                ";";
+
+            var countFilteredData = (long)(_session.CreateSQLQuery(countSqlQuery).UniqueResult());
+
+            report.Data = data;
+            report.ReportingMetaInfo = new OnepMini.V1.Etp.Common.ReportingMetaInfo
+            {
+                TotalRecordsInDB = countFilteredData,
+                TotalRecordsInReport = data?.Count,
+                PageNumber = 1,
+                PageSize = 50
+            };
+
+            var sw = Stopwatch.StartNew();
+
+            var x = System.Text.Json.JsonSerializer.Serialize<EquipmentReport>(report);
+            var y = System.Text.Json.JsonSerializer.Deserialize<EquipmentReport>(x);
+
+            Console.WriteLine($"UnProxy took {sw.ElapsedMilliseconds} ms");
+
+            return Ok(y);
+        }
+
+        [HttpGet("GetEquipmentReport_LINQ_SUBQUERY")]
         public async Task<IActionResult> GetEquipmentReport_LINQ_SUBQUERY(Guid projectId)
         {
             // You need 'set' instead of 'bag' in HBM to do this, and 'ICollection' instead of 'IList' in .cs
@@ -86,7 +407,7 @@ namespace OnepMini.Controllers
             var subQuery = await _session.Query<EquipmentReport>()
                 .Where(p => p.Parameters.Count >= 0)
                 .FetchMany(p => p.Data)
-                .Skip(0).Take(50)
+                //.Skip(0).Take(50)
                 .ToListAsync();
 
 
